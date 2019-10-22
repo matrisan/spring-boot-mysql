@@ -1,12 +1,11 @@
 package com.github.mysql.repository;
 
-
-import com.github.mysql.pojo.PersonAddressDO;
+import com.github.mysql.pojo.DateTimeDO;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  * <p>
- * 创建时间为 21:37 2019-07-03
+ * 创建时间为 15:54 2019-07-03
  * 项目名称 spring-boot-mysql
  * </p>
  *
@@ -15,6 +14,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @since 0.0.1
  */
 
-public interface IPersonAddressDoRepository extends JpaRepository<PersonAddressDO, Integer> {
+public interface IDateTimeRepository extends JpaRepository<DateTimeDO, Integer> {
+
+
 
 }

@@ -2,8 +2,8 @@ package com.github.mysql.controller;
 
 import com.github.mysql.pojo.PersonAddressDO;
 import com.github.mysql.pojo.PersonInfoDO;
-import com.github.mysql.repository.IPersonAddressDoRepository;
-import com.github.mysql.repository.IPersonInfoDoRepository;
+import com.github.mysql.repository.IPersonAddressRepository;
+import com.github.mysql.repository.IPersonInfoRepository;
 import lombok.SneakyThrows;
 import org.junit.After;
 import org.junit.Before;
@@ -43,10 +43,10 @@ public class PersonInfoDoControllerTest {
     private MockMvc mockMvc;
 
     @Resource
-    private IPersonAddressDoRepository repository;
+    private IPersonAddressRepository repository;
 
     @Resource
-    private IPersonInfoDoRepository personDoRepository;
+    private IPersonInfoRepository personDoRepository;
 
     private Integer personId;
 

@@ -1,10 +1,12 @@
 package com.github.mysql.pojo;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,21 +28,24 @@ import java.io.Serializable;
  * @since 0.0.1
  */
 @Data
+@Builder
 @ToString
 @EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "table_employee")
 @Entity(name = "entity_employee")
 public class CorpEmployeeDO implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Integer id;
+    @Column(name = "employee_id")
+    private Long employeeId;
 
     private String eName;
 
-//    @JoinColumn(name = "id")
-//    @ManyToOne(cascade = CascadeType.ALL)
-//    private CorpDepartmentDO department;
+    @ManyToOne(targetEntity = CorpDepartmentDO.class)
+    @JoinColumn(name = "dept_id", referencedColumnName = "department_id")
+    private CorpDepartmentDO department;
 
 }

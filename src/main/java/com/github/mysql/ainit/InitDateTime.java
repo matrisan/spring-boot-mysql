@@ -1,7 +1,7 @@
 package com.github.mysql.ainit;
 
 import com.github.mysql.pojo.DateTimeDO;
-import com.github.mysql.repository.IDateTimeDoRepository;
+import com.github.mysql.repository.IDateTimeRepository;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -22,7 +22,7 @@ import java.util.Date;
 public class InitDateTime {
 
     @Resource
-    private IDateTimeDoRepository repository;
+    private IDateTimeRepository repository;
 
     @PostConstruct
     public void init() {

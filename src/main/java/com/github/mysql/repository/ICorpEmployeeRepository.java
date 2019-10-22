@@ -14,6 +14,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @since 0.0.1
  */
 
-public interface ICorpEmployeeRepository extends JpaRepository<CorpEmployeeDO, Integer> {
+public interface ICorpEmployeeRepository extends JpaRepository<CorpEmployeeDO, Long> {
 
 }

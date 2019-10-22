@@ -6,7 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.jetbrains.annotations.Contract;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.domain.AfterDomainEventPublication;
@@ -38,7 +38,9 @@ import java.util.Date;
  * @version 0.0.1
  * @since 0.0.1
  */
+
 @Data
+@Slf4j
 @Builder
 @ToString
 @NoArgsConstructor
@@ -75,30 +77,32 @@ public class UserInfoDO {
         /**
          * 男
          */
-        MAIL("男"),
+        MAIL,
 
         /**
          * 女
          */
-        FMAIL("女");
-
-        private String value;
-
-        @Contract(pure = true)
-        Gender(String value) {
-            this.value = value;
-        }
-
+        FMAIL;
     }
 
+    /**
+     * 当这个对象被保存时会调用这个方法，这个方法会发布信息被
+     * {@link com.github.mysql.event.handler.EventUserSaveHandler#event} 方法接收到
+     *
+     * @return Collection
+     */
     @DomainEvents
     public Collection<EventUserSave> domainEvents() {
+        log.info("----------UserInfoDO----------domainEvents");
         return Collections.singletonList(new EventUserSave(this.id, this.username));
     }
 
+    /**
+     * 在发布事件完成后调用
+     */
     @AfterDomainEventPublication
-    void callbackMethod() {
-        //
+    public void callbackMethod() {
+        log.info("----------callbackMethod");
     }
 
 }

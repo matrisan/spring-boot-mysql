@@ -30,8 +30,8 @@ import javax.persistence.Table;
 public class PersonInfoDO {
 
     /**
-     * \@GeneratedValue(generator = "uuid2")
-     * \@GenericGenerator(name = "uuid2", strategy = "uuid2")
+     * -@GeneratedValue(generator = "uuid2")
+     * -@GenericGenerator(name = "uuid2", strategy = "uuid2")
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

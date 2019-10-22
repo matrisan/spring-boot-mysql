@@ -1,7 +1,7 @@
 package com.github.mysql.service.impl;
 
 import com.github.mysql.pojo.PersonInfoDO;
-import com.github.mysql.repository.IPersonInfoDoRepository;
+import com.github.mysql.repository.IPersonInfoRepository;
 import com.github.mysql.service.IPersonService;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
@@ -23,7 +23,7 @@ import javax.annotation.Resource;
 public class PersonServiceImpl implements IPersonService {
 
     @Resource
-    private IPersonInfoDoRepository repository;
+    private IPersonInfoRepository repository;
 
     @Override
     public PersonInfoDO savePerson(PersonInfoDO personInfoDO) {

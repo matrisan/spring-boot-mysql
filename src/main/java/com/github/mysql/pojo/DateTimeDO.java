@@ -1,7 +1,10 @@
 package com.github.mysql.pojo;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,8 +26,12 @@ import java.util.Date;
  * @version 0.0.1
  * @since 0.0.1
  */
+
 @Data
+@Builder
+@ToString
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "table_datetime")
 @Entity(name = "entity_datetime")
 public class DateTimeDO {
@@ -33,6 +40,8 @@ public class DateTimeDO {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    private String note;
 
     /**
      * 只有日期

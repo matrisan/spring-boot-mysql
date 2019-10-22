@@ -24,6 +24,7 @@ import java.util.List;
  * @version 0.0.1
  * @since 0.0.1
  */
+
 @DirtiesContext
 @AutoConfigureMockMvc
 @ActiveProfiles("junit")
@@ -37,8 +38,8 @@ public class UserInfoServiceImplTest {
     @Test
     public void save() {
         UserInfoDO userInfoDO = UserInfoDO.builder()
-                .username("TestName01")
-                .password("TestPass01")
+                .username("TestName02")
+                .password("TestPass02")
                 .gender(UserInfoDO.Gender.MAIL)
                 .build();
         service.save(userInfoDO);

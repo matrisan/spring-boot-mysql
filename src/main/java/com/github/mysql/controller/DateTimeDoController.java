@@ -2,7 +2,7 @@ package com.github.mysql.controller;
 
 
 import com.github.mysql.pojo.DateTimeDO;
-import com.github.mysql.repository.IDateTimeDoRepository;
+import com.github.mysql.repository.IDateTimeRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,7 +26,7 @@ import java.util.Optional;
 public class DateTimeDoController {
 
     @Resource
-    private IDateTimeDoRepository repository;
+    private IDateTimeRepository repository;
 
     /**
      * 查询效果

@@ -28,7 +28,7 @@ public class CorpDepartmentController {
     private ICorpDepartmentRepository repository;
 
     @GetMapping("/department/{id}")
-    public CorpDepartmentDO getDepartment(@PathVariable Integer id) {
+    public CorpDepartmentDO getDepartment(@PathVariable Long id) {
         return repository.findById(id).orElseGet(CorpDepartmentDO::new);
     }
 

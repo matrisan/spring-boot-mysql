@@ -1,6 +1,7 @@
 package com.github.mysql.event.handler;
 
 import com.github.mysql.event.EventUserSave;
+import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.event.TransactionPhase;
@@ -17,6 +18,7 @@ import org.springframework.transaction.event.TransactionalEventListener;
  * @since 0.0.1
  */
 
+@Slf4j
 @Component
 public class EventUserSaveHandler {
 
@@ -27,7 +29,7 @@ public class EventUserSaveHandler {
      */
     @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
     public void event(@NotNull EventUserSave event) {
-        System.out.println(event.toString());
+        log.info("TransactionPhase:AFTER_COMMIT-{}", event.toString());
     }
 
 }

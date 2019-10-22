@@ -27,8 +27,6 @@ public class PersonAddressDO {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @GeneratedValue(generator = "uuid2")
-//    @GenericGenerator(name = "uuid2", strategy = "uuid2")
     private Integer id;
 
     private String address;

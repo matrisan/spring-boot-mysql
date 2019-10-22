@@ -1,7 +1,7 @@
 package com.github.mysql.ainit;
 
 import com.github.mysql.pojo.PersonInfoDO;
-import com.github.mysql.repository.IPersonInfoDoRepository;
+import com.github.mysql.repository.IPersonInfoRepository;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -21,7 +21,7 @@ import javax.annotation.Resource;
 public class InitPerson {
 
     @Resource
-    private IPersonInfoDoRepository repository;
+    private IPersonInfoRepository repository;
 
     @PostConstruct
     public void init() {

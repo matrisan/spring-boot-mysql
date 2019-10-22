@@ -27,5 +27,4 @@ public interface IUserInfoService {
 
     List<UserInfoDO> findAllLike(String username);
 
-
 }

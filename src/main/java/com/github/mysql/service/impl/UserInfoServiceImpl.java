@@ -1,7 +1,7 @@
 package com.github.mysql.service.impl;
 
 import com.github.mysql.pojo.UserInfoDO;
-import com.github.mysql.repository.IUserInfoDoRepository;
+import com.github.mysql.repository.IUserInfoRepository;
 import com.github.mysql.service.IUserInfoService;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
@@ -26,7 +26,7 @@ import java.util.List;
 public class UserInfoServiceImpl implements IUserInfoService {
 
     @Resource
-    private IUserInfoDoRepository repository;
+    private IUserInfoRepository repository;
 
     @Override
     public UserInfoDO save(UserInfoDO userInfoDO) {

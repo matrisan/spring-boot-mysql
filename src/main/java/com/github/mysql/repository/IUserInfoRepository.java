@@ -18,7 +18,7 @@ import org.springframework.data.jpa.repository.Query;
  * @since 0.0.1
  */
 
-public interface IUserInfoDoRepository extends JpaSpecificationExecutor<UserInfoDO>, JpaRepository<UserInfoDO, Integer> {
+public interface IUserInfoRepository extends JpaSpecificationExecutor<UserInfoDO>, JpaRepository<UserInfoDO, Integer> {
 
     /**
      * 更新用户密码,不知道为什么只有原生 SQL 才能生效
