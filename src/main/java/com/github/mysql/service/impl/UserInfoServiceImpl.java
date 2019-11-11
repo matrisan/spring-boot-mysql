@@ -5,6 +5,7 @@ import com.github.mysql.repository.IUserInfoRepository;
 import com.github.mysql.service.IUserInfoService;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import javax.persistence.criteria.Path;
@@ -31,6 +32,15 @@ public class UserInfoServiceImpl implements IUserInfoService {
     @Override
     public UserInfoDO save(UserInfoDO userInfoDO) {
         return repository.save(userInfoDO);
+    }
+
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public UserInfoDO txSave(UserInfoDO userInfoDO) {
+        UserInfoDO infoDO = repository.save(userInfoDO);
+        int error = 1 / 0;
+        return infoDO;
     }
 
     @Override

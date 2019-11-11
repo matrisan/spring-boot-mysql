@@ -1,6 +1,7 @@
 package com.github.mysql.service.impl;
 
 import com.github.mysql.pojo.UserInfoDO;
+import com.github.mysql.repository.IUserInfoRepository;
 import com.github.mysql.service.IUserInfoService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -35,6 +36,9 @@ public class UserInfoServiceImplTest {
     @Resource
     private IUserInfoService service;
 
+    @Resource
+    private IUserInfoRepository repository;
+
     @Test
     public void save() {
         UserInfoDO userInfoDO = UserInfoDO.builder()
@@ -43,6 +47,21 @@ public class UserInfoServiceImplTest {
                 .gender(UserInfoDO.Gender.MAIL)
                 .build();
         service.save(userInfoDO);
+    }
+
+    @Test
+    public void txSave() {
+
+        System.out.println(repository.count());
+
+        UserInfoDO userInfoDO = UserInfoDO.builder()
+                .username("TestName03")
+                .password("TestPass03")
+                .gender(UserInfoDO.Gender.MAIL)
+                .build();
+        service.txSave(userInfoDO);
+
+        System.out.println(repository.count());
     }
 
     @Test
@@ -62,4 +81,6 @@ public class UserInfoServiceImplTest {
         List<UserInfoDO> list = service.findAllLike("TestName%");
         list.forEach(System.out::println);
     }
+
+
 }

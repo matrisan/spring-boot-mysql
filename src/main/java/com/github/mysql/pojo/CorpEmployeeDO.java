@@ -1,5 +1,6 @@
 package com.github.mysql.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.io.Serializable;
 
 /**
@@ -29,13 +31,15 @@ import java.io.Serializable;
  */
 @Data
 @Builder
-@ToString
-@EqualsAndHashCode
+@ToString(exclude = "department")
+@EqualsAndHashCode(exclude = "department")
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "table_employee")
 @Entity(name = "entity_employee")
 public class CorpEmployeeDO implements Serializable {
+
+    private static final long serialVersionUID = -1491389679180230248L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,6 +48,8 @@ public class CorpEmployeeDO implements Serializable {
 
     private String eName;
 
+    @Transient
+    @JsonIgnore
     @ManyToOne(targetEntity = CorpDepartmentDO.class)
     @JoinColumn(name = "dept_id", referencedColumnName = "department_id")
     private CorpDepartmentDO department;

@@ -19,6 +19,8 @@ public interface IUserInfoService {
 
     UserInfoDO save(UserInfoDO userInfoDO);
 
+    UserInfoDO txSave(UserInfoDO userInfoDO);
+
     void updatePasswordByUsername(String username, String password);
 
     UserInfoDO findByUsernameEqual(String username);

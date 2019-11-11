@@ -2,13 +2,15 @@ package com.github.mysql.pojo;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,7 +32,8 @@ import java.util.Set;
  * @since 0.0.1
  */
 
-@Data
+@Getter
+@Setter
 @Builder
 @ToString
 @NoArgsConstructor
@@ -39,6 +42,8 @@ import java.util.Set;
 @Entity(name = "entity_department")
 public class CorpDepartmentDO implements Serializable {
 
+    private static final long serialVersionUID = 6642907291335085530L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "department_id")
@@ -46,7 +51,7 @@ public class CorpDepartmentDO implements Serializable {
 
     private String dName;
 
-    @OneToMany(targetEntity = CorpEmployeeDO.class)
+    @OneToMany(targetEntity = CorpEmployeeDO.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "dept_id", referencedColumnName = "department_id")
     private Set<CorpEmployeeDO> employees;
 

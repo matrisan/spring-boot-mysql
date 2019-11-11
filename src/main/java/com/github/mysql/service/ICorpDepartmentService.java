@@ -1,6 +1,8 @@
 package com.github.mysql.service;
 
 import com.github.mysql.pojo.CorpDepartmentDO;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 /**
  * <p>
@@ -15,7 +17,12 @@ import com.github.mysql.pojo.CorpDepartmentDO;
 
 public interface ICorpDepartmentService {
 
+    CorpDepartmentDO findById(long id);
+
+    Page<CorpDepartmentDO> findAll(Pageable pageable);
+
     CorpDepartmentDO save(CorpDepartmentDO corpDepartmentDO);
 
 
+    void deleteById(Long id);
 }
