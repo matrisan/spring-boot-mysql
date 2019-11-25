@@ -1,6 +1,6 @@
 package com.github.mysql.service.impl;
 
-import com.github.mysql.pojo.SystemUserDO;
+import com.github.mysql.pojo.ManyToManyUserDO;
 import com.github.mysql.repository.ISystemUserRepository;
 import com.github.mysql.service.ISystemUserService;
 import org.springframework.stereotype.Service;
@@ -25,13 +25,13 @@ public class SystemUserServiceImpl implements ISystemUserService {
     private ISystemUserRepository repository;
 
     @Override
-    public SystemUserDO findOneById(Long id) {
+    public ManyToManyUserDO findOneById(Long id) {
         return repository.findById(id).orElse(null);
     }
 
     @Override
-    public SystemUserDO save(SystemUserDO systemUserDO) {
-        return repository.save(systemUserDO);
+    public ManyToManyUserDO save(ManyToManyUserDO manyToManyUserDO) {
+        return repository.save(manyToManyUserDO);
     }
 
 }

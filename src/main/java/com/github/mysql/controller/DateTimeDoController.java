@@ -1,7 +1,7 @@
 package com.github.mysql.controller;
 
 
-import com.github.mysql.pojo.DateTimeDO;
+import com.github.mysql.pojo.TemporalDateTimeDO;
 import com.github.mysql.repository.IDateTimeRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,14 +41,14 @@ public class DateTimeDoController {
      * @return DateTimeDO
      */
     @GetMapping("/datetime/{id}")
-    public DateTimeDO get(@PathVariable Integer id) {
-        Optional<DateTimeDO> optional = repository.findById(id);
-        return optional.orElse(new DateTimeDO());
+    public TemporalDateTimeDO get(@PathVariable Integer id) {
+        Optional<TemporalDateTimeDO> optional = repository.findById(id);
+        return optional.orElse(new TemporalDateTimeDO());
     }
 
     @PostMapping("/datetime")
-    public DateTimeDO save(@RequestBody DateTimeDO dateTimeDO) {
-        return repository.save(dateTimeDO);
+    public TemporalDateTimeDO save(@RequestBody TemporalDateTimeDO temporalDateTimeDO) {
+        return repository.save(temporalDateTimeDO);
     }
 
 }

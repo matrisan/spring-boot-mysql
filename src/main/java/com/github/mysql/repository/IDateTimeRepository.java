@@ -1,6 +1,6 @@
 package com.github.mysql.repository;
 
-import com.github.mysql.pojo.DateTimeDO;
+import com.github.mysql.pojo.TemporalDateTimeDO;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -14,7 +14,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @since 0.0.1
  */
 
-public interface IDateTimeRepository extends JpaRepository<DateTimeDO, Integer> {
+public interface IDateTimeRepository extends JpaRepository<TemporalDateTimeDO, Integer> {
 
 
 

@@ -1,6 +1,6 @@
 package com.github.mysql.service;
 
-import com.github.mysql.pojo.SystemUserDO;
+import com.github.mysql.pojo.ManyToManyUserDO;
 
 /**
  * <p>
@@ -15,10 +15,10 @@ import com.github.mysql.pojo.SystemUserDO;
 
 public interface ISystemUserService {
 
-    SystemUserDO findOneById(Long id);
+    ManyToManyUserDO findOneById(Long id);
 
 
-    SystemUserDO save(SystemUserDO systemUserDO);
+    ManyToManyUserDO save(ManyToManyUserDO manyToManyUserDO);
 
 
 }

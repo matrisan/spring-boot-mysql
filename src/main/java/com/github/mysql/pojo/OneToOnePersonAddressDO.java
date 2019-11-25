@@ -23,7 +23,7 @@ import javax.persistence.Table;
 @ToString
 @Table(name = "table_address")
 @Entity(name = "entity_address")
-public class PersonAddressDO {
+public class OneToOnePersonAddressDO {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

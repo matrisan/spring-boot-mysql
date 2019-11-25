@@ -1,25 +1,23 @@
 package com.github.mysql.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.io.Serializable;
-import java.util.Set;
-
 
 /**
  * <p>
@@ -31,28 +29,29 @@ import java.util.Set;
  * @version 0.0.1
  * @since 0.0.1
  */
-
-@Getter
-@Setter
+@Data
 @Builder
-@ToString
+@ToString(exclude = "department")
+@EqualsAndHashCode(exclude = "department")
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "table_department")
-@Entity(name = "entity_department")
-public class CorpDepartmentDO implements Serializable {
+@Table(name = "table_employee")
+@Entity(name = "entity_employee")
+public class OneToManyEmployeeDO implements Serializable {
 
-    private static final long serialVersionUID = 6642907291335085530L;
+    private static final long serialVersionUID = -1491389679180230248L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "department_id")
-    private Long departmentId;
+    @Column(name = "employee_id")
+    private Long employeeId;
 
-    private String dName;
+    private String eName;
 
-    @OneToMany(targetEntity = CorpEmployeeDO.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Transient
+    @JsonIgnore
+    @ManyToOne(targetEntity = OneToManyDepartmentDO.class)
     @JoinColumn(name = "dept_id", referencedColumnName = "department_id")
-    private Set<CorpEmployeeDO> employees;
+    private OneToManyDepartmentDO department;
 
 }

@@ -1,6 +1,6 @@
 package com.github.mysql.controller;
 
-import com.github.mysql.pojo.PersonAddressDO;
+import com.github.mysql.pojo.OneToOnePersonAddressDO;
 import com.github.mysql.repository.IPersonAddressRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,13 +27,13 @@ public class PersonAddressDoController {
     private IPersonAddressRepository repository;
 
     @GetMapping("/address/{id}")
-    public PersonAddressDO getAddress(@PathVariable Integer id) {
-        return repository.findById(id).orElseGet(PersonAddressDO::new);
+    public OneToOnePersonAddressDO getAddress(@PathVariable Integer id) {
+        return repository.findById(id).orElseGet(OneToOnePersonAddressDO::new);
     }
 
     @PostMapping("/address")
-    public PersonAddressDO save(@RequestBody PersonAddressDO personAddressDO) {
-        return repository.save(personAddressDO);
+    public OneToOnePersonAddressDO save(@RequestBody OneToOnePersonAddressDO oneToOnePersonAddressDO) {
+        return repository.save(oneToOnePersonAddressDO);
     }
 
 }

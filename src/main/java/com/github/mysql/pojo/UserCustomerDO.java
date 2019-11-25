@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.Column;
@@ -26,6 +28,8 @@ import java.io.Serializable;
  * @since 0.0.1
  */
 
+@DynamicInsert
+@DynamicUpdate
 @Getter
 @Setter
 @Builder
@@ -34,6 +38,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Table(name = "table_user_customer")
 @Entity(name = "entity_user_customer")
+//@SequenceGenerator(name="SequenceGenerator_id_seq", initialValue=5000, allocationSize=5)
 @EntityListeners({AuditingEntityListener.class, UserStatusAuditListener.class})
 public class UserCustomerDO extends AbstractAuditAble implements Serializable {
 
@@ -41,6 +46,12 @@ public class UserCustomerDO extends AbstractAuditAble implements Serializable {
 
     @Column(name = "name")
     private String name;
+
+    @Column(columnDefinition = "int default 18", insertable = false)
+    private Integer age;
+
+    @Column(columnDefinition = "varchar(255) default 'man'")
+    private String gender;
 
 
 }

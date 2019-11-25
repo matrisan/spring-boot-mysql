@@ -1,7 +1,7 @@
 package com.github.mysql.service.impl;
 
-import com.github.mysql.pojo.SystemRoleDO;
-import com.github.mysql.pojo.SystemUserDO;
+import com.github.mysql.pojo.ManyToManyRoleDO;
+import com.github.mysql.pojo.ManyToManyUserDO;
 import com.github.mysql.service.ISystemRoleService;
 import com.github.mysql.service.ISystemUserService;
 import com.google.common.collect.Sets;
@@ -46,11 +46,11 @@ public class SystemRoleServiceImplTest {
 
     @Test
     public void save() {
-        SystemRoleDO systemRoleDO = SystemRoleDO.builder().roleName("ROLE_USER").users(Sets.newHashSet()).build();
-        SystemUserDO systemUserDO = SystemUserDO.builder().userName("TestUser").roles(Sets.newHashSet(systemRoleDO)).build();
+        ManyToManyRoleDO manyToManyRoleDO = ManyToManyRoleDO.builder().roleName("ROLE_USER").users(Sets.newHashSet()).build();
+        ManyToManyUserDO manyToManyUserDO = ManyToManyUserDO.builder().userName("TestUser").roles(Sets.newHashSet(manyToManyRoleDO)).build();
 
-        userService.save(systemUserDO);
-        roleService.save(systemRoleDO);
+        userService.save(manyToManyUserDO);
+        roleService.save(manyToManyRoleDO);
     }
 
 }

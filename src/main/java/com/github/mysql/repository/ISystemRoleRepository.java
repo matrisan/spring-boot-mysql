@@ -1,6 +1,6 @@
 package com.github.mysql.repository;
 
-import com.github.mysql.pojo.SystemRoleDO;
+import com.github.mysql.pojo.ManyToManyRoleDO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
@@ -15,5 +15,5 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
  * @since 0.0.1
  */
 
-public interface ISystemRoleRepository extends JpaSpecificationExecutor<SystemRoleDO>, JpaRepository<SystemRoleDO, Long> {
+public interface ISystemRoleRepository extends JpaSpecificationExecutor<ManyToManyRoleDO>, JpaRepository<ManyToManyRoleDO, Long> {
 }

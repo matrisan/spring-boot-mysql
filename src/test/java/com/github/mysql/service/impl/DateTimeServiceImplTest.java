@@ -1,6 +1,6 @@
 package com.github.mysql.service.impl;
 
-import com.github.mysql.pojo.DateTimeDO;
+import com.github.mysql.pojo.TemporalDateTimeDO;
 import com.github.mysql.service.IDateTimeService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -38,13 +38,13 @@ public class DateTimeServiceImplTest {
     @Test
     public void save() {
         Date date = new Date();
-        DateTimeDO dateTimeDO = DateTimeDO.builder()
+        TemporalDateTimeDO temporalDateTimeDO = TemporalDateTimeDO.builder()
                 .note("测试时间!")
                 .date(date)
                 .time(date)
                 .timestamp(date)
                 .build();
-        service.save(dateTimeDO);
+        service.save(temporalDateTimeDO);
     }
 
 

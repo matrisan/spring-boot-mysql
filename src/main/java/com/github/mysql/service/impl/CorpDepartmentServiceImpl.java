@@ -1,6 +1,6 @@
 package com.github.mysql.service.impl;
 
-import com.github.mysql.pojo.CorpDepartmentDO;
+import com.github.mysql.pojo.OneToManyDepartmentDO;
 import com.github.mysql.repository.ICorpDepartmentRepository;
 import com.github.mysql.service.ICorpDepartmentService;
 import org.springframework.data.domain.Page;
@@ -28,19 +28,19 @@ public class CorpDepartmentServiceImpl implements ICorpDepartmentService {
     private ICorpDepartmentRepository repository;
 
     @Override
-    public CorpDepartmentDO findById(long id) {
-        Optional<CorpDepartmentDO> optional = repository.findById(id);
+    public OneToManyDepartmentDO findById(long id) {
+        Optional<OneToManyDepartmentDO> optional = repository.findById(id);
         return optional.orElse(null);
     }
 
     @Override
-    public Page<CorpDepartmentDO> findAll(Pageable pageable) {
+    public Page<OneToManyDepartmentDO> findAll(Pageable pageable) {
         return repository.findAll(pageable);
     }
 
     @Override
-    public CorpDepartmentDO save(CorpDepartmentDO corpDepartmentDO) {
-        return repository.save(corpDepartmentDO);
+    public OneToManyDepartmentDO save(OneToManyDepartmentDO oneToManyDepartmentDO) {
+        return repository.save(oneToManyDepartmentDO);
     }
 
     @Override

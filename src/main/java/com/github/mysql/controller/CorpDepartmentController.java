@@ -1,7 +1,7 @@
 package com.github.mysql.controller;
 
 
-import com.github.mysql.pojo.CorpDepartmentDO;
+import com.github.mysql.pojo.OneToManyDepartmentDO;
 import com.github.mysql.service.ICorpDepartmentService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import javax.persistence.Id;
 
 /**
  * <p>
@@ -37,22 +36,22 @@ public class CorpDepartmentController {
     private ICorpDepartmentService service;
 
     @GetMapping("/{departmentId}")
-    public CorpDepartmentDO getDepartment(@PathVariable("departmentId") CorpDepartmentDO corpDepartmentDO) {
-        return corpDepartmentDO;
+    public OneToManyDepartmentDO getDepartment(@PathVariable("departmentId") OneToManyDepartmentDO oneToManyDepartmentDO) {
+        return oneToManyDepartmentDO;
     }
 
     @GetMapping("/departments")
-    public Page<CorpDepartmentDO> findAll(@PageableDefault(size = 4, page = 1, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
+    public Page<OneToManyDepartmentDO> findAll(@PageableDefault(size = 4, page = 1, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
         return service.findAll(pageable);
     }
 
     @PostMapping("/department")
-    public CorpDepartmentDO create(@RequestBody CorpDepartmentDO department) {
+    public OneToManyDepartmentDO create(@RequestBody OneToManyDepartmentDO department) {
         return service.save(department);
     }
 
     @PutMapping("/department")
-    public CorpDepartmentDO update(@RequestBody CorpDepartmentDO department) {
+    public OneToManyDepartmentDO update(@RequestBody OneToManyDepartmentDO department) {
         return service.save(department);
     }
 

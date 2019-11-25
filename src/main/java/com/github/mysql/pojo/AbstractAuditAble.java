@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.TableGenerator;
 import java.util.Date;
 
 /**
@@ -29,6 +30,7 @@ import java.util.Date;
 public abstract class AbstractAuditAble {
 
     @Id
+    @TableGenerator(initialValue = 10000, name = "TableGeneratorName")
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -36,14 +36,14 @@ import java.util.Set;
 @Getter
 @Setter
 @Builder
-@ToString
-@EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString(exclude = {"roles"})
+@EqualsAndHashCode(exclude = {"roles"})
 @Table(name = "system_user")
 @Entity(name = "system_user")
 @EntityListeners(AuditingEntityListener.class)
-public class SystemUserDO {
+public class ManyToManyUserDO {
 
     @Id
     @Column(name = "user_id")
@@ -52,12 +52,12 @@ public class SystemUserDO {
 
     private String userName;
 
-    @ManyToMany(targetEntity = SystemRoleDO.class, cascade = CascadeType.ALL)
+    @ManyToMany(targetEntity = ManyToManyRoleDO.class, cascade = CascadeType.ALL)
     @JoinTable(
             name = "system_user_role",
             joinColumns = {@JoinColumn(name = "system_user_id", referencedColumnName = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "system_role_id", referencedColumnName = "role_id")}
     )
-    private Set<SystemRoleDO> roles;
+    private Set<ManyToManyRoleDO> roles;
 
 }

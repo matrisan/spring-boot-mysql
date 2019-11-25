@@ -1,6 +1,6 @@
 package com.github.mysql.service;
 
-import com.github.mysql.pojo.PersonInfoDO;
+import com.github.mysql.pojo.OneToOnePersonInfoDO;
 
 /**
  * <p>
@@ -15,8 +15,8 @@ import com.github.mysql.pojo.PersonInfoDO;
 
 public interface IPersonService {
 
-    PersonInfoDO savePerson(PersonInfoDO personInfoDO);
+    OneToOnePersonInfoDO savePerson(OneToOnePersonInfoDO oneToOnePersonInfoDO);
 
-    PersonInfoDO updatePerson(PersonInfoDO personInfoDO);
+    OneToOnePersonInfoDO updatePerson(OneToOnePersonInfoDO oneToOnePersonInfoDO);
 
 }

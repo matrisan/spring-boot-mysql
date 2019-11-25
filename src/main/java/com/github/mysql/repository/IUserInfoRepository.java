@@ -31,9 +31,6 @@ public interface IUserInfoRepository extends JpaSpecificationExecutor<UserInfoDO
     void updatePasswordByUsername(String username, String password);
 
 
-
-
-
 }
 
 

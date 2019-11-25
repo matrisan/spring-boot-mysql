@@ -1,6 +1,6 @@
 package com.github.mysql.service;
 
-import com.github.mysql.pojo.DateTimeDO;
+import com.github.mysql.pojo.TemporalDateTimeDO;
 
 /**
  * <p>
@@ -15,6 +15,6 @@ import com.github.mysql.pojo.DateTimeDO;
 
 public interface IDateTimeService {
 
-    DateTimeDO save(DateTimeDO dateTimeDO);
+    TemporalDateTimeDO save(TemporalDateTimeDO temporalDateTimeDO);
 
 }

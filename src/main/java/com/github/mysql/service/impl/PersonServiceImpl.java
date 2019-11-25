@@ -1,6 +1,6 @@
 package com.github.mysql.service.impl;
 
-import com.github.mysql.pojo.PersonInfoDO;
+import com.github.mysql.pojo.OneToOnePersonInfoDO;
 import com.github.mysql.repository.IPersonInfoRepository;
 import com.github.mysql.service.IPersonService;
 import org.jetbrains.annotations.NotNull;
@@ -26,18 +26,18 @@ public class PersonServiceImpl implements IPersonService {
     private IPersonInfoRepository repository;
 
     @Override
-    public PersonInfoDO savePerson(PersonInfoDO personInfoDO) {
-        return repository.save(personInfoDO);
+    public OneToOnePersonInfoDO savePerson(OneToOnePersonInfoDO oneToOnePersonInfoDO) {
+        return repository.save(oneToOnePersonInfoDO);
     }
 
     @Override
 //    @Transactional
-    public PersonInfoDO updatePerson(@NotNull PersonInfoDO personInfoDO) {
-        if (repository.existsById(personInfoDO.getId())) {
-            repository.deleteById(personInfoDO.getId());
+    public OneToOnePersonInfoDO updatePerson(@NotNull OneToOnePersonInfoDO oneToOnePersonInfoDO) {
+        if (repository.existsById(oneToOnePersonInfoDO.getId())) {
+            repository.deleteById(oneToOnePersonInfoDO.getId());
         }else {
             throw new RuntimeException();
         }
-        return repository.save(personInfoDO);
+        return repository.save(oneToOnePersonInfoDO);
     }
 }

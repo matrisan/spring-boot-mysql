@@ -1,7 +1,7 @@
 package com.github.mysql.controller;
 
 import com.github.mysql.pojo.UserCustomerDO;
-import com.github.mysql.service.IUserCustomerService;
+import com.github.mysql.repository.IUserCustomerRepository;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,22 +26,21 @@ import javax.annotation.Resource;
 public class UserCustomerController {
 
     @Resource
-    private IUserCustomerService service;
+    private IUserCustomerRepository repository;
 
     @PostMapping("/customer")
     public UserCustomerDO create(@RequestBody UserCustomerDO userCustomerDO) {
-        return service.create(userCustomerDO);
+        return repository.save(userCustomerDO);
     }
 
     @PutMapping("/customer")
     public UserCustomerDO update(@RequestBody UserCustomerDO userCustomerDO) {
-        return service.update(userCustomerDO);
-
+        return repository.save(userCustomerDO);
     }
 
     @DeleteMapping("/customer/{id}")
     public void deleteById(@PathVariable long id) {
-        service.deleteById(id);
+        repository.deleteById(id);
     }
 
 }

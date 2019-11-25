@@ -1,6 +1,6 @@
 package com.github.mysql.service;
 
-import com.github.mysql.pojo.SystemRoleDO;
+import com.github.mysql.pojo.ManyToManyRoleDO;
 
 /**
  * <p>
@@ -15,8 +15,8 @@ import com.github.mysql.pojo.SystemRoleDO;
 
 public interface ISystemRoleService {
 
-    SystemRoleDO findOneById(Long id);
+    ManyToManyRoleDO findOneById(Long id);
 
-    SystemRoleDO save(SystemRoleDO systemRoleDO);
+    ManyToManyRoleDO save(ManyToManyRoleDO manyToManyRoleDO);
 
 }

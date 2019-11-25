@@ -1,6 +1,6 @@
 package com.github.mysql.service.impl;
 
-import com.github.mysql.pojo.DateTimeDO;
+import com.github.mysql.pojo.TemporalDateTimeDO;
 import com.github.mysql.repository.IDateTimeRepository;
 import com.github.mysql.service.IDateTimeService;
 import org.springframework.stereotype.Service;
@@ -25,8 +25,8 @@ public class DateTimeServiceImpl implements IDateTimeService {
     private IDateTimeRepository repository;
 
     @Override
-    public DateTimeDO save(DateTimeDO dateTimeDO) {
-        return repository.save(dateTimeDO);
+    public TemporalDateTimeDO save(TemporalDateTimeDO temporalDateTimeDO) {
+        return repository.save(temporalDateTimeDO);
     }
 
 }

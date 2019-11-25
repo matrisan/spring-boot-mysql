@@ -27,7 +27,7 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @Table(name = "table_person")
 @Entity(name = "entity_person")
-public class PersonInfoDO {
+public class OneToOnePersonInfoDO {
 
     /**
      * -@GeneratedValue(generator = "uuid2")
@@ -48,7 +48,7 @@ public class PersonInfoDO {
      */
     @OneToOne
     @JoinColumn(name = "addressId", referencedColumnName = "id", insertable = false, updatable = false)
-    private PersonAddressDO address;
+    private OneToOnePersonAddressDO address;
 
 
 }

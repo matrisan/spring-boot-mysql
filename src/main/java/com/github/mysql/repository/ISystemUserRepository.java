@@ -1,6 +1,6 @@
 package com.github.mysql.repository;
 
-import com.github.mysql.pojo.SystemUserDO;
+import com.github.mysql.pojo.ManyToManyUserDO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
@@ -15,7 +15,7 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
  * @since 0.0.1
  */
 
-public interface ISystemUserRepository extends JpaSpecificationExecutor<SystemUserDO>, JpaRepository<SystemUserDO, Long> {
+public interface ISystemUserRepository extends JpaSpecificationExecutor<ManyToManyUserDO>, JpaRepository<ManyToManyUserDO, Long> {
 
 
 }

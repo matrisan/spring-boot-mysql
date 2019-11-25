@@ -1,8 +1,7 @@
 package com.github.mysql.controller;
 
-
-import com.github.mysql.pojo.OneToManyEmployeeDO;
-import com.github.mysql.repository.ICorpEmployeeRepository;
+import com.github.mysql.pojo.UserInfoDO;
+import com.github.mysql.repository.IUserInfoRepository;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,7 +10,7 @@ import javax.annotation.Resource;
 
 /**
  * <p>
- * 创建时间为 00:35 2019-07-04
+ * 创建时间为 下午4:08 2019/11/21
  * 项目名称 spring-boot-mysql
  * </p>
  *
@@ -19,15 +18,17 @@ import javax.annotation.Resource;
  * @version 0.0.1
  * @since 0.0.1
  */
+
 @RestController
-public class CorpEmployeeController {
+public class UserInfoController {
 
     @Resource
-    private ICorpEmployeeRepository repository;
+    private IUserInfoRepository repository;
 
-    @PostMapping("employee")
-    public OneToManyEmployeeDO save(@RequestBody OneToManyEmployeeDO employee) {
-        return repository.save(employee);
+    @PostMapping("/user_info")
+    public UserInfoDO save(@RequestBody UserInfoDO userInfoDO) {
+        return repository.save(userInfoDO);
     }
+
 
 }

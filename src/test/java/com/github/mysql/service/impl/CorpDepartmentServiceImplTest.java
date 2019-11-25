@@ -2,8 +2,8 @@ package com.github.mysql.service.impl;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.mysql.pojo.CorpDepartmentDO;
-import com.github.mysql.pojo.CorpEmployeeDO;
+import com.github.mysql.pojo.OneToManyDepartmentDO;
+import com.github.mysql.pojo.OneToManyEmployeeDO;
 import com.github.mysql.service.ICorpDepartmentService;
 import com.github.mysql.service.ICorpEmployeeService;
 import org.junit.Test;
@@ -50,15 +50,15 @@ public class CorpDepartmentServiceImplTest {
     @Test
     public void findById() {
 
-        CorpDepartmentDO corpDepartmentDO = departmentService.findById(1L);
-        System.out.println(corpDepartmentDO.toString());
+        OneToManyDepartmentDO oneToManyDepartmentDO = departmentService.findById(1L);
+        System.out.println(oneToManyDepartmentDO.toString());
 
     }
 
     @Test
     public void findAll() {
 
-        Page<CorpDepartmentDO> page = departmentService.findAll(PageRequest.of(0, 10));
+        Page<OneToManyDepartmentDO> page = departmentService.findAll(PageRequest.of(0, 10));
         page.stream().forEach(one -> {
             try {
                 System.out.println(objectMapper.writeValueAsString(one));
@@ -70,10 +70,10 @@ public class CorpDepartmentServiceImplTest {
 
     @Test
     public void save() {
-        CorpEmployeeDO employeeDO = CorpEmployeeDO.builder().eName("test_emp_01").build();
-        CorpDepartmentDO departmentDO = CorpDepartmentDO.builder().build();
+        OneToManyEmployeeDO employeeDO = OneToManyEmployeeDO.builder().eName("test_emp_01").build();
+        OneToManyDepartmentDO departmentDO = OneToManyDepartmentDO.builder().build();
         departmentDO.setDName("test_dep_01");
-        Set<CorpEmployeeDO> set = new HashSet<>();
+        Set<OneToManyEmployeeDO> set = new HashSet<>();
         set.add(employeeDO);
         departmentDO.setEmployees(set);
         employeeService.save(employeeDO);

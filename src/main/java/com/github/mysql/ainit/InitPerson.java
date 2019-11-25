@@ -1,6 +1,6 @@
 package com.github.mysql.ainit;
 
-import com.github.mysql.pojo.PersonInfoDO;
+import com.github.mysql.pojo.OneToOnePersonInfoDO;
 import com.github.mysql.repository.IPersonInfoRepository;
 import org.springframework.stereotype.Component;
 
@@ -27,11 +27,11 @@ public class InitPerson {
     public void init() {
         repository.deleteAll();
         for (int i = 0; i < 8; i++) {
-            PersonInfoDO personInfoDO = new PersonInfoDO();
-            personInfoDO.setId(i);
-            personInfoDO.setUsername("name:" + i);
-            personInfoDO.setAge(10);
-            repository.save(personInfoDO);
+            OneToOnePersonInfoDO oneToOnePersonInfoDO = new OneToOnePersonInfoDO();
+            oneToOnePersonInfoDO.setId(i);
+            oneToOnePersonInfoDO.setUsername("name:" + i);
+            oneToOnePersonInfoDO.setAge(10);
+            repository.save(oneToOnePersonInfoDO);
         }
     }
 

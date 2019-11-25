@@ -1,12 +1,10 @@
 package com.github.mysql.pojo.listener;
 
 
-import com.github.mysql.pojo.DateTimeDO;
 import com.github.mysql.pojo.UserCustomerDO;
 import com.github.mysql.service.IDateTimeService;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -17,7 +15,6 @@ import javax.persistence.PostUpdate;
 import javax.persistence.PrePersist;
 import javax.persistence.PreRemove;
 import javax.persistence.PreUpdate;
-import java.util.Date;
 
 /**
  * <p>

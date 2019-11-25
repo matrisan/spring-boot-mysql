@@ -1,7 +1,7 @@
 package com.github.mysql.repository;
 
 
-import com.github.mysql.pojo.PersonAddressDO;
+import com.github.mysql.pojo.OneToOnePersonAddressDO;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -15,6 +15,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @since 0.0.1
  */
 
-public interface IPersonAddressRepository extends JpaRepository<PersonAddressDO, Integer> {
+public interface IPersonAddressRepository extends JpaRepository<OneToOnePersonAddressDO, Integer> {
 
 }

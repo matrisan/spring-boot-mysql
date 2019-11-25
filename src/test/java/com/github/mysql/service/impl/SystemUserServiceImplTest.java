@@ -1,6 +1,6 @@
 package com.github.mysql.service.impl;
 
-import com.github.mysql.pojo.SystemUserDO;
+import com.github.mysql.pojo.ManyToManyUserDO;
 import com.github.mysql.service.ISystemUserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -37,7 +37,7 @@ public class SystemUserServiceImplTest {
     @Test
     @Transactional
     public void findOneById() {
-        SystemUserDO userDO = service.findOneById(1L);
+        ManyToManyUserDO userDO = service.findOneById(1L);
 
         userDO.getRoles().forEach(one->System.out.println(one.getRoleName()));
 

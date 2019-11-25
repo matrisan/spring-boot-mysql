@@ -1,6 +1,6 @@
 package com.github.mysql.service.impl;
 
-import com.github.mysql.pojo.SystemRoleDO;
+import com.github.mysql.pojo.ManyToManyRoleDO;
 import com.github.mysql.repository.ISystemRoleRepository;
 import com.github.mysql.service.ISystemRoleService;
 import org.springframework.stereotype.Service;
@@ -25,12 +25,12 @@ public class SystemRoleServiceImpl implements ISystemRoleService {
     private ISystemRoleRepository repository;
 
     @Override
-    public SystemRoleDO findOneById(Long id) {
+    public ManyToManyRoleDO findOneById(Long id) {
         return repository.findById(id).orElse(null);
     }
 
     @Override
-    public SystemRoleDO save(SystemRoleDO systemRoleDO) {
-        return repository.save(systemRoleDO);
+    public ManyToManyRoleDO save(ManyToManyRoleDO manyToManyRoleDO) {
+        return repository.save(manyToManyRoleDO);
     }
 }

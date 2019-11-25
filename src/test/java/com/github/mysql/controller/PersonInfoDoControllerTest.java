@@ -1,7 +1,7 @@
 package com.github.mysql.controller;
 
-import com.github.mysql.pojo.PersonAddressDO;
-import com.github.mysql.pojo.PersonInfoDO;
+import com.github.mysql.pojo.OneToOnePersonAddressDO;
+import com.github.mysql.pojo.OneToOnePersonInfoDO;
 import com.github.mysql.repository.IPersonAddressRepository;
 import com.github.mysql.repository.IPersonInfoRepository;
 import lombok.SneakyThrows;
@@ -53,16 +53,16 @@ public class PersonInfoDoControllerTest {
     @Before
     @SneakyThrows(Exception.class)
     public void setUp() {
-        PersonAddressDO toSaveAddr = new PersonAddressDO();
+        OneToOnePersonAddressDO toSaveAddr = new OneToOnePersonAddressDO();
         toSaveAddr.setAddress("jiangsu");
         toSaveAddr.setName("address name");
-        PersonAddressDO personAddressDO = repository.save(toSaveAddr);
+        OneToOnePersonAddressDO oneToOnePersonAddressDO = repository.save(toSaveAddr);
 
-        PersonInfoDO personInfoDO = new PersonInfoDO();
-        personInfoDO.setAge(18);
-        personInfoDO.setUsername("person name");
-        personInfoDO.setAddressId(personAddressDO.getId());
-        personId = personDoRepository.save(personInfoDO).getId();
+        OneToOnePersonInfoDO oneToOnePersonInfoDO = new OneToOnePersonInfoDO();
+        oneToOnePersonInfoDO.setAge(18);
+        oneToOnePersonInfoDO.setUsername("person name");
+        oneToOnePersonInfoDO.setAddressId(oneToOnePersonAddressDO.getId());
+        personId = personDoRepository.save(oneToOnePersonInfoDO).getId();
     }
 
     @After
