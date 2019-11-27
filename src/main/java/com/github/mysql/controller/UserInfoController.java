@@ -1,12 +1,6 @@
 package com.github.mysql.controller;
 
-import com.github.mysql.pojo.UserInfoDO;
-import com.github.mysql.repository.IUserInfoRepository;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.annotation.Resource;
 
 /**
  * <p>
@@ -21,14 +15,6 @@ import javax.annotation.Resource;
 
 @RestController
 public class UserInfoController {
-
-    @Resource
-    private IUserInfoRepository repository;
-
-    @PostMapping("/user_info")
-    public UserInfoDO save(@RequestBody UserInfoDO userInfoDO) {
-        return repository.save(userInfoDO);
-    }
 
 
 }
