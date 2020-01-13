@@ -1,11 +1,12 @@
 package com.github.mysql.event.handler;
 
-import com.github.mysql.event.EventUserSave;
+import com.github.mysql.pojo.UserInfoDO;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.event.TransactionPhase;
 import org.springframework.transaction.event.TransactionalEventListener;
+import org.springframework.web.client.RestTemplate;
 
 /**
  * <p>
@@ -20,16 +21,21 @@ import org.springframework.transaction.event.TransactionalEventListener;
 
 @Slf4j
 @Component
-public class EventUserSaveHandler {
+public class UserInfoSaveEventHandler {
+
+    private static final RestTemplate REST_TEMPLATE = new RestTemplate();
 
     /**
      * 接受User发出的类型为 EventUserSave 的DomainEvents事件
      *
      * @param event EventUserSave
      */
-    @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
-    public void event(@NotNull EventUserSave event) {
-        log.info("TransactionPhase:AFTER_COMMIT-{}", event.toString());
+    @TransactionalEventListener(phase = TransactionPhase.BEFORE_COMMIT)
+    public void event(@NotNull UserInfoDO event) {
+        log.info("TransactionPhase:BEFORE_COMMIT-{}", event.toString());
+        if (event.getUsername().contains("error")) {
+            REST_TEMPLATE.postForObject("http://www.1111.com", event.toString(), String.class);
+        }
     }
 
 }

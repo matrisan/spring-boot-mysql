@@ -2,11 +2,14 @@ package com.github.mysql.controller;
 
 import com.github.mysql.pojo.UserInfoDO;
 import com.github.mysql.repository.IUserInfoRepository;
+import com.github.mysql.service.UserInfoService;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * <p>
@@ -23,11 +26,20 @@ import javax.annotation.Resource;
 public class UserInfoController {
 
     @Resource
+    private UserInfoService service;
+
+    @Resource
     private IUserInfoRepository repository;
+
+    @GetMapping("users")
+    public List<UserInfoDO> getAll(){
+        return repository.findAll();
+    }
+
 
     @PostMapping("/user_info")
     public UserInfoDO save(@RequestBody UserInfoDO userInfoDO) {
-        return repository.save(userInfoDO);
+        return service.txSave(userInfoDO);
     }
 
 

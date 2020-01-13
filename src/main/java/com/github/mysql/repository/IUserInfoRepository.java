@@ -20,15 +20,15 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface IUserInfoRepository extends JpaSpecificationExecutor<UserInfoDO>, JpaRepository<UserInfoDO, Integer> {
 
-    /**
-     * 更新用户密码,不知道为什么只有原生 SQL 才能生效
-     *
-     * @param username 用户名
-     * @param password 密码
-     */
-    @Modifying
-    @Query(value = "UPDATE table_userinfo u SET u.password = ?2 WHERE u.username = ?1", nativeQuery = true)
-    void updatePasswordByUsername(String username, String password);
+//    /**
+//     * 更新用户密码,不知道为什么只有原生 SQL 才能生效
+//     *
+//     * @param username 用户名
+//     * @param password 密码
+//     */
+//    @Modifying
+//    @Query(value = "UPDATE table_userinfo u SET u.password = ?2 WHERE u.username = ?1", nativeQuery = true)
+//    void updatePasswordByUsername(String username, String password);
 
 
 }

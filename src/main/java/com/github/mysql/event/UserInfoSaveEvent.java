@@ -1,5 +1,6 @@
 package com.github.mysql.event;
 
+import com.github.mysql.pojo.UserInfoDO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -23,10 +24,8 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class EventUserSave {
+public class UserInfoSaveEvent {
 
-    private Integer id;
-
-    private String name;
+    private UserInfoDO userInfo;
 
 }
