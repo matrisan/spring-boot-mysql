@@ -47,6 +47,8 @@ public class UserInfoDO {
 
     private String username;
 
+    private String password;
+
     /**
      * 当这个对象被保存时会调用这个方法，这个方法会发布信息被
      * {@link com.github.mysql.event.handler.UserInfoSaveEventHandler#event} 方法接收到
@@ -67,7 +69,6 @@ public class UserInfoDO {
         log.info("----------callbackMethod");
     }
 
-//    private String password;
 
 //
 //    @CreatedDate
