@@ -6,16 +6,21 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.domain.AfterDomainEventPublication;
 import org.springframework.data.domain.DomainEvents;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Date;
 
 /**
  * Entity 实体类的名称, 全局唯一,
@@ -38,7 +43,7 @@ import java.util.Collections;
 @AllArgsConstructor
 @Table(name = "table_userinfo")
 @Entity(name = "entity_userinfo")
-//@EntityListeners(AuditingEntityListener.class)
+@EntityListeners(AuditingEntityListener.class)
 public class UserInfoDO {
 
     @Id
@@ -48,6 +53,12 @@ public class UserInfoDO {
     private String username;
 
     private String password;
+
+    @CreatedDate
+    private Date createDate;
+
+    @LastModifiedDate
+    private Date lastModifiedDate;
 
     /**
      * 当这个对象被保存时会调用这个方法，这个方法会发布信息被
@@ -68,14 +79,5 @@ public class UserInfoDO {
     public void callbackMethod() {
         log.info("----------callbackMethod");
     }
-
-
-//
-//    @CreatedDate
-//    private Date createDate;
-//
-//    @LastModifiedDate
-//    private Date lastModifiedDate;
-
 
 }

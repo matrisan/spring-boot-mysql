@@ -26,7 +26,7 @@ public class UserInfoSaveEventHandler {
     private static final RestTemplate REST_TEMPLATE = new RestTemplate();
 
     /**
-     * 接受User发出的类型为 EventUserSave 的DomainEvents事件
+     * 接受User发出的类型为 EventUserSave 的 DomainEvents事件
      *
      * @param event EventUserSave
      */
