@@ -1,11 +1,11 @@
 package com.github.mysql.repository;
 
-import com.github.mysql.pojo.OneToManyDepartmentDO;
+import com.github.mysql.pojo.TemporalTypeDO;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  * <p>
- * 创建时间为 下午4:43 2019/9/12
+ * 创建时间为 15:54 2019-07-03
  * 项目名称 spring-boot-mysql
  * </p>
  *
@@ -14,6 +14,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @since 0.0.1
  */
 
-public interface ICorpDepartmentRepository extends JpaRepository<OneToManyDepartmentDO, Long> {
+public interface ITemporalTypeRepository extends JpaRepository<TemporalTypeDO, Integer> {
 
 }

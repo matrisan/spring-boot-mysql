@@ -13,12 +13,11 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import javax.annotation.Resource;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
  * <p>
- * 创建时间为 上午10:33 2019/9/11
+ * 创建时间为 上午11:02 2019/9/11
  * 项目名称 spring-boot-mysql
  * </p>
  *
@@ -31,14 +30,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ActiveProfiles("junit")
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class UserDoControllerTest {
+public class TemporalTypeControllerTest {
 
     @Resource
     private MockMvc mockMvc;
 
     @Test
-    public void getUser() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/user/1"))
+    public void get() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/datetime/1"))
                 .andDo(print())
                 .andExpect(status().isOk())
 //                .andExpect(jsonPath("$.length()").value(2))
@@ -48,17 +47,6 @@ public class UserDoControllerTest {
     }
 
     @Test
-    public void saveUser() {
-    }
-
-    @Test
-    public void getUsers() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/users"))
-                .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.totalElements").value(8))
-                .andReturn()
-                .getResponse()
-                .getContentAsString();
+    public void save() {
     }
 }

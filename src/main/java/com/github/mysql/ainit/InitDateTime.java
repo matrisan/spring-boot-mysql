@@ -1,7 +1,7 @@
 package com.github.mysql.ainit;
 
-import com.github.mysql.pojo.TemporalDateTimeDO;
-import com.github.mysql.repository.IDateTimeRepository;
+import com.github.mysql.pojo.TemporalTypeDO;
+import com.github.mysql.repository.ITemporalTypeRepository;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -22,18 +22,18 @@ import java.util.Date;
 public class InitDateTime {
 
     @Resource
-    private IDateTimeRepository repository;
+    private ITemporalTypeRepository repository;
 
     @PostConstruct
     public void init() {
         repository.deleteAll();
         for (int i = 0; i < 8; i++) {
             Date date = new Date();
-            TemporalDateTimeDO temporalDateTimeDO = new TemporalDateTimeDO();
-            temporalDateTimeDO.setDate(date);
-            temporalDateTimeDO.setTime(date);
-            temporalDateTimeDO.setTimestamp(date);
-            repository.save(temporalDateTimeDO);
+            TemporalTypeDO temporalTypeDO = new TemporalTypeDO();
+            temporalTypeDO.setDate(date);
+            temporalTypeDO.setTime(date);
+            temporalTypeDO.setTimestamp(date);
+            repository.save(temporalTypeDO);
         }
     }
 

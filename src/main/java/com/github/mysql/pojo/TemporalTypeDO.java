@@ -34,7 +34,7 @@ import java.util.Date;
 @AllArgsConstructor
 @Table(name = "table_datetime")
 @Entity(name = "entity_datetime")
-public class TemporalDateTimeDO {
+public class TemporalTypeDO {
 
     @Id
     @Column(name = "id")

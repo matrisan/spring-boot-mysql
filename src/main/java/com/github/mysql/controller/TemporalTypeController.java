@@ -1,8 +1,8 @@
 package com.github.mysql.controller;
 
 
-import com.github.mysql.pojo.TemporalDateTimeDO;
-import com.github.mysql.repository.IDateTimeRepository;
+import com.github.mysql.pojo.TemporalTypeDO;
+import com.github.mysql.repository.ITemporalTypeRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.util.Optional;
+import java.util.List;
 
 /**
  * <p>
@@ -23,10 +23,16 @@ import java.util.Optional;
  * @since 0.0.1
  */
 @RestController
-public class DateTimeDoController {
+public class TemporalTypeController {
 
     @Resource
-    private IDateTimeRepository repository;
+    private ITemporalTypeRepository repository;
+
+    @GetMapping("/datetimes")
+    public List<TemporalTypeDO> getAll() {
+        return repository.findAll();
+    }
+
 
     /**
      * 查询效果
@@ -37,18 +43,17 @@ public class DateTimeDoController {
      * "timestamp": "2019-07-03T09:42:00.000+0000"
      * }
      *
-     * @param id id
+     * @param dateTime dateTime
      * @return DateTimeDO
      */
     @GetMapping("/datetime/{id}")
-    public TemporalDateTimeDO get(@PathVariable Integer id) {
-        Optional<TemporalDateTimeDO> optional = repository.findById(id);
-        return optional.orElse(new TemporalDateTimeDO());
+    public TemporalTypeDO get(@PathVariable("id") TemporalTypeDO dateTime) {
+        return dateTime;
     }
 
     @PostMapping("/datetime")
-    public TemporalDateTimeDO save(@RequestBody TemporalDateTimeDO temporalDateTimeDO) {
-        return repository.save(temporalDateTimeDO);
+    public TemporalTypeDO save(@RequestBody TemporalTypeDO temporalTypeDO) {
+        return repository.save(temporalTypeDO);
     }
 
 }
