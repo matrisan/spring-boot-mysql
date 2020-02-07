@@ -7,9 +7,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -18,16 +21,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import java.util.Set;
+import java.util.Date;
 
 import static com.github.mysql.pojo.SystemCommon.SYSTEM_USER_ROLE;
 
 /**
  * <p>
- * 创建时间为 上午9:46 2019/10/22
+ * 创建时间为 下午10:49 2020/2/5
  * 项目名称 spring-boot-mysql
  * </p>
  *
@@ -41,29 +43,34 @@ import static com.github.mysql.pojo.SystemCommon.SYSTEM_USER_ROLE;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(exclude = {"roles"})
-@EqualsAndHashCode(exclude = {"roles"})
+@ToString
+@EqualsAndHashCode
 @Entity
+@Table(name = SYSTEM_USER_ROLE)
 @EntityListeners(AuditingEntityListener.class)
-@Table(name = "system_user")
-public class ManyToManyUserDO {
+public class SystemUserRoleDO {
 
     @Id
-    @Column(name = "user_id")
+    @Column(name = "mid_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
+    private Long midId;
 
-    private String userName;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @Cascade(value = CascadeType.REFRESH)
+    @JoinColumn(name = "user_id")
+    private ManyToManyUserDO manyUser;
 
-    @ManyToMany(targetEntity = ManyToManyRoleDO.class, cascade = CascadeType.ALL, fetch= FetchType.EAGER)
-//    @ManyToMany(cascade = CascadeType.REFRESH, fetch=FetchType.EAGER)
-    @JoinTable(
-            name = SYSTEM_USER_ROLE,
-            joinColumns = {@JoinColumn(name = "user_id")},
-//            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "user_id")},
-            inverseJoinColumns = {@JoinColumn(name = "role_id")}
-//            inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "role_id")}
-    )
-    private Set<ManyToManyRoleDO> roles;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @Cascade(value = CascadeType.REFRESH)
+    @JoinColumn(name = "role_id")
+    private ManyToManyRoleDO manyRole;
+
+    @CreatedDate
+    @Column(name = "create_date")
+    private Date createDate;
+
+    @LastModifiedDate
+    @Column(name = "last_modified_date")
+    private Date lastModifiedDate;
 
 }

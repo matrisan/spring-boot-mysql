@@ -13,6 +13,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,6 +22,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import java.util.Set;
+
+import static com.github.mysql.pojo.SystemCommon.SYSTEM_USER_ROLE;
 
 /**
  * <p>
@@ -40,9 +43,9 @@ import java.util.Set;
 @AllArgsConstructor
 @ToString(exclude = {"users"})
 @EqualsAndHashCode(exclude = {"users"})
-@Table(name = "system_role")
-@Entity(name = "system_role")
+@Entity
 @EntityListeners(AuditingEntityListener.class)
+@Table(name = "system_role")
 public class ManyToManyRoleDO {
 
     @Id
@@ -52,11 +55,14 @@ public class ManyToManyRoleDO {
 
     private String roleName;
 
-    @ManyToMany(targetEntity = ManyToManyUserDO.class, cascade = CascadeType.ALL)
+    @ManyToMany(targetEntity = ManyToManyUserDO.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//    @ManyToMany(cascade = CascadeType.REFRESH, fetch=FetchType.EAGER)
     @JoinTable(
-            name = "system_user_role",
-            joinColumns = {@JoinColumn(name = "system_role_id", referencedColumnName = "role_id")},
-            inverseJoinColumns = {@JoinColumn(name = "system_user_id", referencedColumnName = "user_id")}
+            name = SYSTEM_USER_ROLE,
+            joinColumns = {@JoinColumn(name = "role_id")},
+//            joinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "role_id")},
+            inverseJoinColumns = {@JoinColumn(name = "user_id")}
+//            inverseJoinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "user_id")}
     )
     private Set<ManyToManyUserDO> users;
 
