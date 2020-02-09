@@ -52,14 +52,11 @@ public class SystemRoleServiceImplTest {
     @Test
     public void save() {
         ManyToManyRoleDO manyToManyRoleDO = ManyToManyRoleDO.builder().roleName("ROLE_USER").users(Sets.newHashSet()).build();
-        ManyToManyUserDO manyToManyUserDO = ManyToManyUserDO.builder().userName("TestUser").roles(Sets.newHashSet()).build();
-//        ManyToManyUserDO manyToManyUserDO = ManyToManyUserDO.builder().userName("TestUser").roles(Sets.newHashSet(manyToManyRoleDO)).build();
-//        roleService.save(manyToManyRoleDO);
-//        userService.save(manyToManyUserDO);
-        SystemUserRoleDO systemUserRole = SystemUserRoleDO.builder().manyUser(manyToManyUserDO).manyRole(manyToManyRoleDO).build();
+        ManyToManyUserDO manyToManyUserDO = ManyToManyUserDO.builder().username("TestUser").roles(Sets.newHashSet()).build();
+//        SystemUserRoleDO systemUserRole = SystemUserRoleDO.builder().manyUser(manyToManyUserDO).manyRole(manyToManyRoleDO).build();
         roleService.save(manyToManyRoleDO);
         userService.save(manyToManyUserDO);
-        repository.save(systemUserRole);
+//        repository.save(systemUserRole);
     }
 
 }

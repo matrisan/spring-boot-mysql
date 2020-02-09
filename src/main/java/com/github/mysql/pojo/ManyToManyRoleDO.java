@@ -55,14 +55,15 @@ public class ManyToManyRoleDO {
 
     private String roleName;
 
-    @ManyToMany(targetEntity = ManyToManyUserDO.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//    @ManyToMany(cascade = CascadeType.REFRESH, fetch=FetchType.EAGER)
+    @ManyToMany(
+            targetEntity = ManyToManyUserDO.class,
+            cascade = {CascadeType.REFRESH, CascadeType.PERSIST},
+            fetch = FetchType.EAGER
+    )
     @JoinTable(
             name = SYSTEM_USER_ROLE,
-            joinColumns = {@JoinColumn(name = "role_id")},
-//            joinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "role_id")},
-            inverseJoinColumns = {@JoinColumn(name = "user_id")}
-//            inverseJoinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "user_id")}
+            joinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "role_id")},
+            inverseJoinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "user_id")}
     )
     private Set<ManyToManyUserDO> users;
 

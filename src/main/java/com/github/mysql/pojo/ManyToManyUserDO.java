@@ -53,16 +53,17 @@ public class ManyToManyUserDO {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
 
-    private String userName;
+    private String username;
 
-    @ManyToMany(targetEntity = ManyToManyRoleDO.class, cascade = CascadeType.ALL, fetch= FetchType.EAGER)
-//    @ManyToMany(cascade = CascadeType.REFRESH, fetch=FetchType.EAGER)
+    @ManyToMany(
+            targetEntity = ManyToManyRoleDO.class,
+            cascade = {CascadeType.REFRESH, CascadeType.PERSIST},
+            fetch = FetchType.EAGER
+    )
     @JoinTable(
             name = SYSTEM_USER_ROLE,
-            joinColumns = {@JoinColumn(name = "user_id")},
-//            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "user_id")},
-            inverseJoinColumns = {@JoinColumn(name = "role_id")}
-//            inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "role_id")}
+            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "role_id")}
     )
     private Set<ManyToManyRoleDO> roles;
 
