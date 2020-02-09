@@ -1,6 +1,8 @@
 package com.github.mysql.pojo;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.Entity;
@@ -20,10 +22,11 @@ import javax.persistence.Table;
  * @since 0.0.1
  */
 @Data
-@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
 @Table(name = "table_address")
-@Entity(name = "entity_address")
-public class OneToOnePersonAddressDO {
+public class OneToOneChildrenInfoDO {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,7 +1,5 @@
-package com.github.mysql.service.impl;
+package com.github.mysql.controller;
 
-import com.github.mysql.pojo.TemporalDateTimeDO;
-import com.github.mysql.service.IDateTimeService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -10,12 +8,9 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.annotation.Resource;
-import java.util.Date;
-
 /**
  * <p>
- * 创建时间为 上午10:56 2019/10/22
+ * 创建时间为 上午11:14 2019/9/11
  * 项目名称 spring-boot-mysql
  * </p>
  *
@@ -23,29 +18,19 @@ import java.util.Date;
  * @version 0.0.1
  * @since 0.0.1
  */
-
-
 @DirtiesContext
 @AutoConfigureMockMvc
 @ActiveProfiles("junit")
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class DateTimeServiceImplTest {
+public class ChildrenInfoControllerTest {
 
-    @Resource
-    private IDateTimeService service;
+    @Test
+    public void getAddress() {
+    }
 
     @Test
     public void save() {
-        Date date = new Date();
-        TemporalDateTimeDO temporalDateTimeDO = TemporalDateTimeDO.builder()
-                .note("测试时间!")
-                .date(date)
-                .time(date)
-                .timestamp(date)
-                .build();
-        service.save(temporalDateTimeDO);
     }
-
 
 }

@@ -1,11 +1,12 @@
 package com.github.mysql.repository;
 
-import com.github.mysql.pojo.OneToManyEmployeeDO;
+
+import com.github.mysql.pojo.OneToOneChildrenInfoDO;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  * <p>
- * 创建时间为 下午4:44 2019/9/12
+ * 创建时间为 21:37 2019-07-03
  * 项目名称 spring-boot-mysql
  * </p>
  *
@@ -14,6 +15,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @since 0.0.1
  */
 
-public interface ICorpEmployeeRepository extends JpaRepository<OneToManyEmployeeDO, Long> {
+public interface IChildrenInfoRepository extends JpaRepository<OneToOneChildrenInfoDO, Integer> {
 
 }

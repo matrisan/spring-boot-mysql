@@ -1,9 +1,12 @@
 package com.github.mysql.pojo;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,9 +28,11 @@ import javax.persistence.Table;
  */
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
+@Entity
 @Table(name = "table_person")
-@Entity(name = "entity_person")
-public class OneToOnePersonInfoDO {
+//@JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler" })
+public class OneToOneParentInfoDO {
 
     /**
      * -@GeneratedValue(generator = "uuid2")
@@ -44,11 +49,11 @@ public class OneToOnePersonInfoDO {
     private Integer addressId;
 
     /**
-     * name = "addressId" 指定了上面 String addressId,映射到 AddressDO 的 id 字段.
+     * name = "addressId" 指定了上面 String addressId, 映射到 AddressDO 的 id 字段.
      */
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "addressId", referencedColumnName = "id", insertable = false, updatable = false)
-    private OneToOnePersonAddressDO address;
+    private OneToOneChildrenInfoDO address;
 
 
 }
