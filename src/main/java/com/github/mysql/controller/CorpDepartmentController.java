@@ -2,21 +2,19 @@ package com.github.mysql.controller;
 
 
 import com.github.mysql.pojo.OneToManyDepartmentDO;
+import com.github.mysql.repository.ICorpDepartmentRepository;
 import com.github.mysql.service.ICorpDepartmentService;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * <p>
@@ -28,21 +26,24 @@ import javax.annotation.Resource;
  * @version 0.0.1
  * @since 0.0.1
  */
-@RequestMapping("/department")
+
 @RestController
 public class CorpDepartmentController {
 
     @Resource
     private ICorpDepartmentService service;
 
-    @GetMapping("/{departmentId}")
-    public OneToManyDepartmentDO getDepartment(@PathVariable("departmentId") OneToManyDepartmentDO oneToManyDepartmentDO) {
-        return oneToManyDepartmentDO;
-    }
+    @Resource
+    private ICorpDepartmentRepository repository;
 
     @GetMapping("/departments")
-    public Page<OneToManyDepartmentDO> findAll(@PageableDefault(size = 4, page = 1, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
-        return service.findAll(pageable);
+    public List<OneToManyDepartmentDO> findAll() {
+        return repository.findAll();
+    }
+
+    @GetMapping("/department/{id}")
+    public OneToManyDepartmentDO getDepartment(@PathVariable("id") OneToManyDepartmentDO oneToManyDepartmentDO) {
+        return oneToManyDepartmentDO;
     }
 
     @PostMapping("/department")
@@ -56,7 +57,7 @@ public class CorpDepartmentController {
     }
 
     @DeleteMapping("/department/{id}")
-    public void deleteById(@PathVariable Long id){
+    public void deleteById(@PathVariable Long id) {
         service.deleteById(id);
     }
 

@@ -2,6 +2,7 @@ package com.github.mysql.pojo;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,6 +17,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Set;
@@ -35,11 +37,12 @@ import java.util.Set;
 @Getter
 @Setter
 @Builder
-@ToString
+@ToString(exclude = "employees")
+@EqualsAndHashCode(exclude = "employees")
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "table_department")
-@Entity(name = "entity_department")
+@Entity
 public class OneToManyDepartmentDO implements Serializable {
 
     private static final long serialVersionUID = 6642907291335085530L;
@@ -51,8 +54,10 @@ public class OneToManyDepartmentDO implements Serializable {
 
     private String dName;
 
-    @OneToMany(targetEntity = OneToManyEmployeeDO.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OrderBy("employee_id asc")
+    @OneToMany(targetEntity = OneToManyEmployeeDO.class, cascade = {CascadeType.REFRESH}, fetch = FetchType.EAGER)
     @JoinColumn(name = "dept_id", referencedColumnName = "department_id")
+//    @NotFound(action = NotFoundAction.IGNORE)
     private Set<OneToManyEmployeeDO> employees;
 
 }
