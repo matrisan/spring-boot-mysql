@@ -2,10 +2,9 @@ package com.github.mysql.service.impl;
 
 import com.github.mysql.pojo.ManyToManyRoleDO;
 import com.github.mysql.pojo.ManyToManyUserDO;
-import com.github.mysql.pojo.SystemUserRoleDO;
+import com.github.mysql.repository.ISystemRoleRepository;
+import com.github.mysql.repository.ISystemUserRepository;
 import com.github.mysql.repository.ISystemUserRoleRepository;
-import com.github.mysql.service.ISystemRoleService;
-import com.github.mysql.service.ISystemUserService;
 import com.google.common.collect.Sets;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -36,10 +35,10 @@ import javax.annotation.Resource;
 public class SystemRoleServiceImplTest {
 
     @Resource
-    private ISystemRoleService roleService;
+    private ISystemRoleRepository roleRepository;
 
     @Resource
-    private ISystemUserService userService;
+    private ISystemUserRepository userRepository;
 
     @Resource
     private ISystemUserRoleRepository repository;
@@ -54,8 +53,8 @@ public class SystemRoleServiceImplTest {
         ManyToManyRoleDO manyToManyRoleDO = ManyToManyRoleDO.builder().roleName("ROLE_USER").users(Sets.newHashSet()).build();
         ManyToManyUserDO manyToManyUserDO = ManyToManyUserDO.builder().username("TestUser").roles(Sets.newHashSet()).build();
 //        SystemUserRoleDO systemUserRole = SystemUserRoleDO.builder().manyUser(manyToManyUserDO).manyRole(manyToManyRoleDO).build();
-        roleService.save(manyToManyRoleDO);
-        userService.save(manyToManyUserDO);
+        roleRepository.save(manyToManyRoleDO);
+        userRepository.save(manyToManyUserDO);
 //        repository.save(systemUserRole);
     }
 

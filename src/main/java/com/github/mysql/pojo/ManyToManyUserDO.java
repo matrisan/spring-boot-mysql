@@ -1,5 +1,6 @@
 package com.github.mysql.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -21,6 +22,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.Set;
 
 import static com.github.mysql.pojo.SystemCommon.SYSTEM_USER_ROLE;
@@ -46,7 +48,9 @@ import static com.github.mysql.pojo.SystemCommon.SYSTEM_USER_ROLE;
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "system_user")
-public class ManyToManyUserDO {
+public class ManyToManyUserDO implements Serializable {
+
+    private static final long serialVersionUID = 4895689647407244215L;
 
     @Id
     @Column(name = "user_id")
@@ -57,14 +61,15 @@ public class ManyToManyUserDO {
 
     @ManyToMany(
             targetEntity = ManyToManyRoleDO.class,
-            cascade = {CascadeType.REFRESH, CascadeType.PERSIST},
+            cascade = {CascadeType.PERSIST, CascadeType.REFRESH},
             fetch = FetchType.EAGER
     )
     @JoinTable(
             name = SYSTEM_USER_ROLE,
-            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "user_id")},
-            inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "role_id")}
+            joinColumns = {@JoinColumn(name = "mid_user_id", referencedColumnName = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "mid_role_id", referencedColumnName = "role_id")}
     )
+    @JsonIgnoreProperties(value = "users")
     private Set<ManyToManyRoleDO> roles;
 
 }
