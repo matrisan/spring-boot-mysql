@@ -1,8 +1,7 @@
 package com.github.mysql.ainit;
 
-import com.github.mysql.pojo.UserIndexDO;
-import com.github.mysql.repository.IUserIndexRepository;
-import org.springframework.stereotype.Component;
+import com.github.mysql.pojo.UserInfoDO;
+import com.github.mysql.repository.IUserInfoRepository;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
@@ -17,21 +16,21 @@ import javax.annotation.Resource;
  * @version 0.0.1
  * @since 0.0.1
  */
-@Component
+//@Component
 public class InitUserIndex {
 
     @Resource
-    private IUserIndexRepository repository;
+    private IUserInfoRepository repository;
 
     @PostConstruct
     public void init() {
         repository.deleteAll();
         for (int i = 0; i < 10; i++) {
-            UserIndexDO userIndexDO = UserIndexDO.builder()
-                    .roleName("name:" + i)
+            UserInfoDO userInfoDO = UserInfoDO.builder()
+                    .username("name:" + i)
                     .role("role:" + i)
                     .build();
-            repository.save(userIndexDO);
+            repository.save(userInfoDO);
         }
     }
 

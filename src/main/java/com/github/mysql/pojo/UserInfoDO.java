@@ -34,20 +34,23 @@ import javax.persistence.UniqueConstraint;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "UserIndexDO")
+@Entity
 @Table(
-        name = "UserIndexDO",
-        uniqueConstraints = {@UniqueConstraint(columnNames = {"role_name"}, name = "IDX_UNIQUE_NAME")},
-        indexes = {@Index(columnList = "role",name = "IDX_NON_UNIQUE_ROLE")}
+        name = "UserInfoDO",
+        uniqueConstraints = {@UniqueConstraint(columnNames = {"username"}, name = "IDX_UNIQUE_NAME")},
+        indexes = {@Index(columnList = "role", name = "IDX_NON_UNIQUE_ROLE")}
 )
-public class UserIndexDO {
+public class UserInfoDO {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "role_name")
-    private String roleName;
+    @Column(name = "username", nullable = false, columnDefinition = "varchar(100) default '默认名字' comment '我是username注释'")
+    private String username;
+
+    @Column(name = "age", nullable = false, columnDefinition = "INT(11) default 18 comment '我是age注释'")
+    private Integer age;
 
     private String role;
 
