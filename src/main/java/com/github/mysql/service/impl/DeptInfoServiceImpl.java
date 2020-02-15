@@ -1,8 +1,8 @@
 package com.github.mysql.service.impl;
 
-import com.github.mysql.pojo.UserInfoDO;
-import com.github.mysql.repository.IUserInfoRepository;
-import com.github.mysql.service.IUserInfoService;
+import com.github.mysql.pojo.DeptInfoDO;
+import com.github.mysql.repository.IDeptInfoRepository;
+import com.github.mysql.service.IDeptInfoService;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,29 +24,29 @@ import java.util.List;
  */
 
 @Service
-public class UserInfoServiceImpl implements IUserInfoService {
+public class DeptInfoServiceImpl implements IDeptInfoService {
 
     @Resource
-    private IUserInfoRepository repository;
+    private IDeptInfoRepository repository;
 
     @Override
-    public UserInfoDO save(UserInfoDO userInfoDO) {
-        return repository.save(userInfoDO);
+    public DeptInfoDO save(DeptInfoDO deptInfoDO) {
+        return repository.save(deptInfoDO);
     }
 
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public UserInfoDO txSave(UserInfoDO userInfoDO) {
-        UserInfoDO infoDO = repository.save(userInfoDO);
+    public DeptInfoDO txSave(DeptInfoDO deptInfoDO) {
+        DeptInfoDO infoDO = repository.save(deptInfoDO);
         int error = 1 / 0;
         return infoDO;
     }
 
-    @Override
-    public void updatePasswordByUsername(String username, String password) {
-        repository.updatePasswordByUsername(username, password);
-    }
+//    @Override
+//    public void updatePasswordByUsername(String username, String password) {
+//        repository.updatePasswordByUsername(username, password);
+//    }
 
 
     /**
@@ -58,8 +58,8 @@ public class UserInfoServiceImpl implements IUserInfoService {
      * @return UserInfoDO
      */
     @Override
-    public UserInfoDO findByUsernameEqual(String username) {
-        Specification<UserInfoDO> specification = (Specification<UserInfoDO>) (root, criteriaQuery, criteriaBuilder) -> {
+    public DeptInfoDO findByUsernameEqual(String username) {
+        Specification<DeptInfoDO> specification = (Specification<DeptInfoDO>) (root, criteriaQuery, criteriaBuilder) -> {
             //1.获取比较的属性
             Path<String> path = root.get("username");
             //2.构造查询条件
@@ -72,8 +72,8 @@ public class UserInfoServiceImpl implements IUserInfoService {
     }
 
     @Override
-    public UserInfoDO findByUsernameAndPassword(String username, String password) {
-        Specification<UserInfoDO> specification = (Specification<UserInfoDO>) (root, criteriaQuery, criteriaBuilder) -> {
+    public DeptInfoDO findByUsernameAndPassword(String username, String password) {
+        Specification<DeptInfoDO> specification = (Specification<DeptInfoDO>) (root, criteriaQuery, criteriaBuilder) -> {
             //1.获取比较的属性
             Path<String> path1 = root.get("username");
             Path<String> path2 = root.get("password");
@@ -90,8 +90,8 @@ public class UserInfoServiceImpl implements IUserInfoService {
 
 
     @Override
-    public List<UserInfoDO> findAllLike(String username) {
-        Specification<UserInfoDO> specification = (Specification<UserInfoDO>) (root, query, criteriaBuilder) -> {
+    public List<DeptInfoDO> findAllLike(String username) {
+        Specification<DeptInfoDO> specification = (Specification<DeptInfoDO>) (root, query, criteriaBuilder) -> {
             Path<String> path = root.get("username");
             return criteriaBuilder.like(path.as(String.class), username);
         };

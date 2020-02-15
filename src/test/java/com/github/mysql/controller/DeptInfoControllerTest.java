@@ -1,9 +1,12 @@
 package com.github.mysql.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.mysql.pojo.DeptInfoDO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -13,12 +16,11 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import javax.annotation.Resource;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
  * <p>
- * 创建时间为 上午10:33 2019/9/11
+ * 创建时间为 下午4:10 2019/11/21
  * 项目名称 spring-boot-mysql
  * </p>
  *
@@ -31,34 +33,31 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ActiveProfiles("junit")
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class UserDoControllerTest {
+public class DeptInfoControllerTest {
 
     @Resource
     private MockMvc mockMvc;
 
+    @Resource
+    private ObjectMapper objectMapper;
+
     @Test
-    public void getUser() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/user/1"))
+    public void save() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/customer")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString( getUserInfo() )))
                 .andDo(print())
                 .andExpect(status().isOk())
-//                .andExpect(jsonPath("$.length()").value(2))
                 .andReturn()
                 .getResponse()
                 .getContentAsString();
     }
 
-    @Test
-    public void saveUser() {
+    private DeptInfoDO getUserInfo() {
+        return DeptInfoDO.builder()
+
+
+                .build();
     }
 
-    @Test
-    public void getUsers() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/users"))
-                .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.totalElements").value(8))
-                .andReturn()
-                .getResponse()
-                .getContentAsString();
-    }
 }

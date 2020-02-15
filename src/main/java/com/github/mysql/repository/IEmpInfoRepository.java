@@ -1,12 +1,13 @@
 package com.github.mysql.repository;
 
-import com.github.mysql.pojo.ManyToManyUserDO;
+
+import com.github.mysql.pojo.EmpInfoDO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 /**
  * <p>
- * 创建时间为 上午9:58 2019/10/22
+ * 创建时间为 15:54 2019-07-03
  * 项目名称 spring-boot-mysql
  * </p>
  *
@@ -15,7 +16,9 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
  * @since 0.0.1
  */
 
-public interface ISystemUserRepository extends JpaSpecificationExecutor<ManyToManyUserDO>, JpaRepository<ManyToManyUserDO, Long> {
-
+public interface IEmpInfoRepository extends JpaSpecificationExecutor<EmpInfoDO>, JpaRepository<EmpInfoDO, Integer> {
 
 }
+
+
+
