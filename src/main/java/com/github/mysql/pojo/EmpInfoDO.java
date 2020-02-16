@@ -1,5 +1,6 @@
 package com.github.mysql.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.annotations.Where;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.CascadeType;
@@ -46,6 +48,7 @@ import java.io.Serializable;
 @Table(name = "table_emp")
 @Entity
 @EntityListeners(AuditingEntityListener.class)
+@Where(clause = "deleted = false")
 public class EmpInfoDO implements Serializable {
 
     private static final long serialVersionUID = 7680830897352997922L;
@@ -66,4 +69,7 @@ public class EmpInfoDO implements Serializable {
     @ManyToOne(targetEntity = DeptInfoDO.class, cascade = {CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.EAGER)
     @JoinColumn(name = "foreign_dept_id", referencedColumnName = "dept_id")
     public DeptInfoDO deptInfo;
+
+    @JsonIgnore
+    private Boolean deleted;
 }

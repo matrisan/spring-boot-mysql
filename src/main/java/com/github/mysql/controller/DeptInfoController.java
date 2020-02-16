@@ -47,22 +47,16 @@ public class DeptInfoController {
         return repository.save(deptInfoDO);
     }
 
-
-    @GetMapping("dept/spec")
-    public List<DeptInfoDO> findSpec(){
-        Specification<DeptInfoDO> specification = (Specification<DeptInfoDO>) (root, query, cb) -> {
-            Subquery<EmpInfoDO> subquery = query.subquery(EmpInfoDO.class);
-
-
-
-            Path<String> path = root.get("username");
-            return cb.like(path.as(String.class), username);
-        };
-        return repository.findAll(specification);
-    }
-
-
-
-
+//    @GetMapping("dept/spec")
+//    public List<DeptInfoDO> findSpec() {
+//        Specification<DeptInfoDO> specification = (Specification<DeptInfoDO>) (root, query, cb) -> {
+//            Subquery<EmpInfoDO> subquery = query.subquery(EmpInfoDO.class);
+//
+//
+//            Path<String> path = root.get("username");
+//            return cb.like(path.as(String.class), username);
+//        };
+//        return repository.findAll(specification);
+//    }
 
 }

@@ -1,5 +1,6 @@
 package com.github.mysql.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -50,6 +51,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Table(name = "table_dept")
 @Entity
+@Where(clause = "deleted = false")
 public class DeptInfoDO implements Serializable {
 
     private static final long serialVersionUID = -3509680463086200457L;
@@ -61,10 +63,11 @@ public class DeptInfoDO implements Serializable {
 
     private String name;
 
-
     @JsonIgnoreProperties("deptInfo")
     @OneToMany(mappedBy = "deptInfo", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     @OrderBy("age desc")
-    @Where(clause = "emp_id > 4")
     public Set<EmpInfoDO> empInfos;
+
+    @JsonIgnore
+    private Boolean deleted;
 }
