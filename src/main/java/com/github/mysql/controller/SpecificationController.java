@@ -1,6 +1,7 @@
 package com.github.mysql.controller;
 
 import com.github.mysql.pojo.DeptInfoDO;
+import com.github.mysql.pojo.EmpInfoDO;
 import com.github.mysql.repository.IDeptInfoRepository;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,8 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.persistence.criteria.Path;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+import javax.persistence.criteria.Subquery;
 import java.util.Optional;
-import java.util.function.Supplier;
 
 /**
  * <p>
@@ -37,5 +40,32 @@ public class SpecificationController {
         });
         return optional.orElse(new DeptInfoDO());
     }
+
+    @GetMapping("dept/spec/sub/{name}")
+    public DeptInfoDO findByNameAnd(@PathVariable String name) {
+        Optional<DeptInfoDO> optional = repository.findOne((Specification<DeptInfoDO>) (root, query, builder) -> {
+            Path<String> parentPath = root.get("name");
+            Predicate predicateParent = builder.equal(parentPath.as(String.class), name);
+
+            Subquery<EmpInfoDO> subQuery = query.subquery(EmpInfoDO.class);
+            Root<EmpInfoDO> subRoot = subQuery.from(EmpInfoDO.class);
+            Path<Integer> agePath = subRoot.get("age");
+            subQuery.select(subRoot).where(builder.ge(agePath.as(Integer.class), 5));
+
+
+            return builder.and(predicateParent, subQuery.getRestriction());
+
+
+//            Subquery<EmpInfoDO> subQuery = query.subquery(EmpInfoDO.class);
+//            Root<EmpInfoDO> subRoot = subQuery.from(EmpInfoDO.class);
+//            Path<Integer> agePath = subRoot.get("age");
+//            subQuery.select(subRoot).where(builder.ge(agePath.as(Integer.class), 5));
+//            Path<String> parentPath = root.get("name");
+//            Predicate parentPredicate = builder.equal(parentPath, name);
+//            return builder.and(parentPredicate);
+        });
+        return optional.orElse(new DeptInfoDO());
+    }
+
 
 }

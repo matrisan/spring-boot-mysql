@@ -69,5 +69,6 @@ public class DeptInfoDO implements Serializable {
     public Set<EmpInfoDO> empInfos;
 
     @JsonIgnore
+    @Column(name = "deleted", columnDefinition = "INT(11) default 0 comment '是否删除'")
     private Boolean deleted;
 }
