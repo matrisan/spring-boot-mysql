@@ -53,6 +53,8 @@ public class RoleInfoDO {
     @Column(name = "age", columnDefinition = "INT(11) default 18 comment '我是age注释'")
     private Integer age;
 
+    @Column(name = "note", columnDefinition = "VARCHAR(100) DEFAULT '' COMMENT '我是 note 注释'")
+    private String note;
 }
 
 
