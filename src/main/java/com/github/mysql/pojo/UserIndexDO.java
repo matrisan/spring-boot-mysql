@@ -42,7 +42,6 @@ import javax.persistence.UniqueConstraint;
         uniqueConstraints = {@UniqueConstraint(columnNames = {"role_name"}, name = "IDX_UNIQUE_NAME")},
         indexes = {@Index(columnList = "role",name = "IDX_NON_UNIQUE_ROLE")}
 )
-@EntityListeners(AuditingEntityListener.class)
 public class UserIndexDO extends BaseEntity {
 
     @Id
