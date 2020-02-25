@@ -1,6 +1,6 @@
 package com.github.mysql.repository;
 
-import com.github.mysql.pojo.UserIndexDO;
+import com.github.mysql.pojo.UserInfoDO;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -14,6 +14,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @since 0.0.1
  */
 
-public interface IUserIndexRepository extends JpaRepository<UserIndexDO, Long> {
+public interface IUserInfoRepository extends JpaRepository<UserInfoDO, Long> {
 
 }

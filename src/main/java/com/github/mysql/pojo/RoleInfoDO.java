@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -14,9 +15,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Index;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
 /**
  * <p>
@@ -37,25 +36,25 @@ import javax.persistence.UniqueConstraint;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(
-        name = "UserIndexDO",
-        uniqueConstraints = {@UniqueConstraint(columnNames = {"role_name"}, name = "IDX_UNIQUE_NAME")},
-        indexes = {@Index(columnList = "role", name = "IDX_NON_UNIQUE_ROLE")}
-)
+@Table(name = "RoleInfoDO")
 @DynamicInsert
 @DynamicUpdate
-public class UserIndexDO extends BaseEntity {
+public class RoleInfoDO {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "role_name")
-    private String roleName;
+//    @ColumnDefault("默认名字")
+    @Column(name = "rolename", columnDefinition = "varchar(100) default '默认名字' comment '我是username注释'")
+    private String rolename;
 
-    private String role;
+//    @ColumnDefault("18")
+    @Column(name = "age", columnDefinition = "INT(11) default 18 comment '我是age注释'")
+    private Integer age;
 
-
+    @Column(name = "note", columnDefinition = "VARCHAR(100) DEFAULT '' COMMENT '我是 note 注释'")
+    private String note;
 }
 
 

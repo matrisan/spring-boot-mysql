@@ -1,6 +1,6 @@
 package com.github.mysql.repository;
 
-import com.github.mysql.pojo.UserIndexDO;
+import com.github.mysql.pojo.UserInfoDO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -29,18 +29,18 @@ import javax.annotation.Resource;
 @ActiveProfiles("junit")
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class IUserIndexRepositoryTest {
+public class IUserInfoRepositoryTest {
 
     @Resource
-    private IUserIndexRepository repository;
+    private IUserInfoRepository repository;
 
     @Test
     public void saveTest() {
-        UserIndexDO userIndexDO1 = UserIndexDO.builder().roleName("name1").role("role1").build();
-        UserIndexDO userIndexDO2 = UserIndexDO.builder().roleName("name2").role("role1").build();
-        repository.save(userIndexDO1);
+        UserInfoDO userInfoDO1 = UserInfoDO.builder().username("name1").role("role1").build();
+        UserInfoDO userInfoDO2 = UserInfoDO.builder().username("name2").role("role1").build();
+        repository.save(userInfoDO1);
 //        userIndexDO.setName("name2");
-        repository.save(userIndexDO2);
+        repository.save(userInfoDO2);
     }
 
 }
