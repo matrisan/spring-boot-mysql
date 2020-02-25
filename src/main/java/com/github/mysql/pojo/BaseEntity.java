@@ -2,9 +2,12 @@ package com.github.mysql.pojo;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import javax.persistence.Column;
 import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
 import java.util.Date;
@@ -22,9 +25,13 @@ import java.util.Date;
 
 @Getter
 @Setter
+
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 public class BaseEntity {
+
+    @Column(columnDefinition = "INT(1) DEFAULT 0 COMMENT '改记录是否删除'")
+    private Boolean deleted;
 
     @CreatedDate
     private Date createDate;

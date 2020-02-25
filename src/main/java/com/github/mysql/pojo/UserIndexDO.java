@@ -6,11 +6,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -36,12 +36,14 @@ import javax.persistence.UniqueConstraint;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "UserIndexDO")
+@Entity
 @Table(
         name = "UserIndexDO",
         uniqueConstraints = {@UniqueConstraint(columnNames = {"role_name"}, name = "IDX_UNIQUE_NAME")},
-        indexes = {@Index(columnList = "role",name = "IDX_NON_UNIQUE_ROLE")}
+        indexes = {@Index(columnList = "role", name = "IDX_NON_UNIQUE_ROLE")}
 )
+@DynamicInsert
+@DynamicUpdate
 public class UserIndexDO extends BaseEntity {
 
     @Id
@@ -52,6 +54,7 @@ public class UserIndexDO extends BaseEntity {
     private String roleName;
 
     private String role;
+
 
 }
 
