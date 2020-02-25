@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -42,8 +44,7 @@ import javax.persistence.UniqueConstraint;
 )
 @DynamicInsert
 @DynamicUpdate
-public class UserIndexDO extends BaseEntity {
-public class UserInfoDO {
+public class UserInfoDO extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
