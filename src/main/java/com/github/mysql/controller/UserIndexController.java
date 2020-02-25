@@ -1,7 +1,8 @@
 package com.github.mysql.controller;
 
-import com.github.mysql.pojo.UserIndexDO;
-import com.github.mysql.repository.IUserIndexRepository;
+
+import com.github.mysql.pojo.UserInfoDO;
+import com.github.mysql.repository.IUserInfoRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,15 +26,15 @@ import java.util.List;
 public class UserIndexController {
 
     @Resource
-    private IUserIndexRepository repository;
+    private IUserInfoRepository repository;
 
     @GetMapping("user")
-    public List<UserIndexDO> findAll() {
+    public List<UserInfoDO> findAll() {
         return repository.findAll();
     }
 
     @PostMapping("user")
-    public UserIndexDO findAll(@RequestBody UserIndexDO userIndex) {
+    public UserInfoDO findAll(@RequestBody UserInfoDO userIndex) {
         return repository.save(userIndex);
     }
 
