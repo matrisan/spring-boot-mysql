@@ -61,7 +61,7 @@ public class ManyToManyUserDO implements Serializable {
 
     @ManyToMany(
             targetEntity = ManyToManyRoleDO.class,
-            cascade = {CascadeType.PERSIST, CascadeType.REFRESH},
+            cascade = {CascadeType.REFRESH},
             fetch = FetchType.EAGER
     )
     @JoinTable(
