@@ -41,7 +41,7 @@ import javax.persistence.UniqueConstraint;
 @Entity
 @Table(
         name = "UserInfoDO",
-        uniqueConstraints = {@UniqueConstraint(columnNames = {"username"}, name = "IDX_UNIQUE_NAME")},
+        uniqueConstraints = {@UniqueConstraint(columnNames = {"name"}, name = "IDX_UNIQUE_NAME")},
         indexes = {@Index(columnList = "role", name = "IDX_NON_UNIQUE_ROLE")}
 )
 @DynamicInsert
@@ -52,7 +52,7 @@ public class UserInfoDO extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "username", nullable = false, columnDefinition = "varchar(100) default '默认名字' comment '我是username注释'")
+    @Column(name = "name", nullable = false, columnDefinition = "varchar(100) default '默认名字' comment '我是username注释'")
     private String username;
 
     @Column(name = "age", nullable = false, columnDefinition = "INT(11) default 18 comment '我是age注释'")
