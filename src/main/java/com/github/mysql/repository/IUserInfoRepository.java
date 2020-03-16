@@ -1,6 +1,7 @@
 package com.github.mysql.repository;
 
 import com.github.mysql.pojo.UserInfoDO;
+import com.github.mysql.pojo.vo.UserInfoVO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -44,5 +45,8 @@ public interface IUserInfoRepository extends JpaRepository<UserInfoDO, Long> {
     @Transactional(rollbackFor = Exception.class)
     @Query("UPDATE UserInfoDO as user SET user.age = (user.age + :age) WHERE user.username=:username")
     void updateAge(@Param("username") String username, @Param("age") int age);
+
+    @Query("SELECT new com.github.mysql.pojo.vo.UserInfoVO(user.username, user.age) FROM UserInfoDO as user WHERE user.username=:username")
+    UserInfoVO findByUsername(@Param("username") String username);
 
 }

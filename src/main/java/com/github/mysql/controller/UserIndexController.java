@@ -2,8 +2,10 @@ package com.github.mysql.controller;
 
 
 import com.github.mysql.pojo.UserInfoDO;
+import com.github.mysql.pojo.vo.UserInfoVO;
 import com.github.mysql.repository.IUserInfoRepository;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,6 +38,11 @@ public class UserIndexController {
     @PostMapping("user")
     public UserInfoDO findAll(@RequestBody UserInfoDO userIndex) {
         return repository.save(userIndex);
+    }
+
+    @GetMapping("/user/{username}")
+    public UserInfoVO getByUsername(@PathVariable String username) {
+        return repository.findByUsername(username);
     }
 
 }
