@@ -32,7 +32,7 @@ public interface IUserInfoRepository extends JpaRepository<UserInfoDO, Long> {
     /**
      * @return Set
      */
-    @Query("SELECT user.username FROM UserInfoDO as user")
+    @Query("SELECT user.username FROM UserInfoDO AS user")
     Set<String> findAllRoles();
 
     /**
@@ -43,10 +43,13 @@ public interface IUserInfoRepository extends JpaRepository<UserInfoDO, Long> {
      */
     @Modifying
     @Transactional(rollbackFor = Exception.class)
-    @Query("UPDATE UserInfoDO as user SET user.age = (user.age + :age) WHERE user.username=:username")
+    @Query("UPDATE UserInfoDO AS user SET user.age = (user.age + :age) WHERE user.username=:username")
     void updateAge(@Param("username") String username, @Param("age") int age);
 
-    @Query("SELECT new com.github.mysql.pojo.vo.UserInfoVO(user.username, user.age) FROM UserInfoDO as user WHERE user.username=:username")
+    @Query("SELECT new com.github.mysql.pojo.vo.UserInfoVO(user.username, user.age) FROM UserInfoDO AS user WHERE user.username=:username")
     UserInfoVO findByUsername(@Param("username") String username);
+
+    @Query("FROM UserInfoDO AS user WHERE user.username IN (SELECT res.username FROM ResInfoDO AS res)")
+    Set<UserInfoDO> findByUsernameIn();
 
 }
