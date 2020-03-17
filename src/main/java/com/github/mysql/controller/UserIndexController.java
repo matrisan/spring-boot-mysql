@@ -35,12 +35,17 @@ public class UserIndexController {
         return repository.findAll();
     }
 
+    @GetMapping("user/id/{userId}")
+    public UserInfoDO getByUserId(@PathVariable("userId") UserInfoDO userInfoDO) {
+        return userInfoDO;
+    }
+
     @PostMapping("user")
     public UserInfoDO findAll(@RequestBody UserInfoDO userIndex) {
         return repository.save(userIndex);
     }
 
-    @GetMapping("/user/{username}")
+    @GetMapping("/user/username/{username}")
     public UserInfoVO getByUsername(@PathVariable String username) {
         return repository.findByUsername(username);
     }

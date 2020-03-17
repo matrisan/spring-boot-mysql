@@ -49,7 +49,7 @@ public interface IUserInfoRepository extends JpaRepository<UserInfoDO, Long> {
     @Query("SELECT new com.github.mysql.pojo.vo.UserInfoVO(user.username, user.age) FROM UserInfoDO AS user WHERE user.username=:username")
     UserInfoVO findByUsername(@Param("username") String username);
 
-    @Query("FROM UserInfoDO AS user WHERE user.username IN (SELECT res.username FROM ResInfoDO AS res)")
-    Set<UserInfoDO> findByUsernameIn();
+//    @Query("FROM UserInfoDO AS user WHERE user.username IN (SELECT res.username FROM ResInfoDO AS res)")
+//    Set<UserInfoDO> findByUsernameIn();
 
 }
