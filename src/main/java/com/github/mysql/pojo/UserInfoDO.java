@@ -11,13 +11,18 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.Column;
+import javax.persistence.ColumnResult;
+import javax.persistence.ConstructorResult;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Index;
+import javax.persistence.SqlResultSetMapping;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.executable.ExecutableType;
+import javax.validation.executable.ValidateOnExecution;
 
 /**
  * <p>
@@ -29,7 +34,17 @@ import javax.persistence.UniqueConstraint;
  * @version 0.0.1
  * @since 0.0.1
  */
-
+//@SqlResultSetMapping(name = "RoleInfoVOMapping",
+//        classes = {
+//                @ConstructorResult(
+//                        targetClass = UserInfoVO.class,
+//                        columns = {
+//                                @ColumnResult(name = "id"),
+//                                @ColumnResult(name = "username"),
+//                                @ColumnResult(name = "role")
+//                        }
+//                )}
+//)
 
 @EqualsAndHashCode(callSuper = true)
 @Data
