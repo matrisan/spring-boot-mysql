@@ -4,6 +4,10 @@ package com.github.mysql.controller;
 import com.github.mysql.pojo.UserInfoDO;
 import com.github.mysql.pojo.vo.UserInfoVO;
 import com.github.mysql.repository.IUserInfoRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,6 +38,12 @@ public class UserIndexController {
     public List<UserInfoDO> findAll() {
         return repository.findAll();
     }
+
+    @GetMapping("user/roles")
+    public Page<String> findAllRoles(@PageableDefault(size = 4, direction = Sort.Direction.DESC) Pageable pageable) {
+        return repository.findAllRoles(pageable);
+    }
+
 
     @GetMapping("user/id/{userId}")
     public UserInfoDO getByUserId(@PathVariable("userId") UserInfoDO userInfoDO) {

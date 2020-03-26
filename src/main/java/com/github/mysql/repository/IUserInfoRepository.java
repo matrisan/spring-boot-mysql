@@ -2,6 +2,8 @@ package com.github.mysql.repository;
 
 import com.github.mysql.pojo.UserInfoDO;
 import com.github.mysql.pojo.vo.UserInfoVO;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -34,6 +36,12 @@ public interface IUserInfoRepository extends JpaRepository<UserInfoDO, Long> {
      */
     @Query("SELECT user.username FROM UserInfoDO AS user")
     Set<String> findAllRoles();
+
+    /**
+     * @return Set
+     */
+    @Query("SELECT user.username FROM UserInfoDO AS user")
+    Page<String> findAllRoles(Pageable pageable);
 
     /**
      * 更新加10
