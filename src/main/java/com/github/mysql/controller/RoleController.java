@@ -4,6 +4,7 @@ import com.github.mysql.pojo.ManyToManyRoleDO;
 import com.github.mysql.repository.ISystemRoleRepository;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,7 +30,7 @@ public class RoleController {
     @Resource
     private ISystemRoleRepository repository;
 
-    @GetMapping("role")
+    @GetMapping("roles")
     public List<ManyToManyRoleDO> findAll() {
         return repository.findAll();
     }
@@ -44,9 +45,10 @@ public class RoleController {
         return repository.save(manyRole);
     }
 
-    @DeleteMapping("role")
-    public ManyToManyRoleDO delete(@RequestBody ManyToManyRoleDO manyRole) {
-        return repository.save(manyRole);
+    @DeleteMapping("role/{roleId}")
+    public String delete(@PathVariable long roleId) {
+        repository.deleteById(roleId);
+        return "删除数据";
     }
 
 }

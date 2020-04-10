@@ -4,6 +4,7 @@ import com.github.mysql.pojo.ManyToManyUserDO;
 import com.github.mysql.repository.ISystemUserRepository;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,7 +30,7 @@ public class UserController {
     @Resource
     private ISystemUserRepository repository;
 
-    @GetMapping("user")
+    @GetMapping("users")
     public List<ManyToManyUserDO> findAll() {
         return repository.findAll();
     }
@@ -44,9 +45,10 @@ public class UserController {
         return repository.save(manyUser);
     }
 
-    @DeleteMapping("user")
-    public ManyToManyUserDO delete(@RequestBody ManyToManyUserDO manyUser) {
-        return repository.save(manyUser);
+    @DeleteMapping("user/{userId}")
+    public String delete(@PathVariable long userId) {
+        repository.deleteById(userId);
+        return "删除成功";
     }
 
 }
