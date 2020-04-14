@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.List;
+import java.util.Set;
 
 /**
  * <p>
@@ -27,9 +29,21 @@ public class GroupInfoController {
     @Resource
     private IGroupInfoRepository repository;
 
-    @GetMapping("group/{group_id}")
+
+    @GetMapping("all")
+    public List<GroupInfoDO> findAll() {
+        return repository.findAll();
+    }
+
+
+        @GetMapping("group/{group_id}")
     public GroupInfoDO findById(@PathVariable("group_id") GroupInfoDO groupInfo) {
         return groupInfo;
+    }
+
+    @GetMapping("groups/{group_id}")
+    public Set<GroupInfoDO> findById(@PathVariable("group_id") Set<GroupInfoDO> groupInfos) {
+        return groupInfos;
     }
 
     @PostMapping("group")

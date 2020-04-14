@@ -2,6 +2,7 @@ package com.github.mysql.ainit;
 
 import com.github.mysql.pojo.UserInfoDO;
 import com.github.mysql.repository.IUserInfoRepository;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
@@ -16,7 +17,7 @@ import javax.annotation.Resource;
  * @version 0.0.1
  * @since 0.0.1
  */
-//@Component
+@Component
 public class InitUserIndex {
 
     @Resource
