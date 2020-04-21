@@ -29,14 +29,12 @@ public class GroupInfoController {
     @Resource
     private IGroupInfoRepository repository;
 
-
     @GetMapping("all")
     public List<GroupInfoDO> findAll() {
         return repository.findAll();
     }
 
-
-        @GetMapping("group/{group_id}")
+    @GetMapping("group/{group_id}")
     public GroupInfoDO findById(@PathVariable("group_id") GroupInfoDO groupInfo) {
         return groupInfo;
     }
