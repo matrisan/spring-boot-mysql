@@ -1,8 +1,8 @@
 package com.github.mysql.service.impl;
 
-import com.github.mysql.pojo.OneToManyDepartmentDO;
-import com.github.mysql.repository.ICorpDepartmentRepository;
-import com.github.mysql.service.ICorpDepartmentService;
+import com.github.mysql.pojo.DepDO;
+import com.github.mysql.repository.IDepRepository;
+import com.github.mysql.service.IDepService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -22,25 +22,25 @@ import java.util.Optional;
  */
 
 @Service
-public class CorpDepartmentServiceImpl implements ICorpDepartmentService {
+public class DepServiceImpl implements IDepService {
 
     @Resource
-    private ICorpDepartmentRepository repository;
+    private IDepRepository repository;
 
     @Override
-    public OneToManyDepartmentDO findById(long id) {
-        Optional<OneToManyDepartmentDO> optional = repository.findById(id);
+    public DepDO findById(long id) {
+        Optional<DepDO> optional = repository.findById(id);
         return optional.orElse(null);
     }
 
     @Override
-    public Page<OneToManyDepartmentDO> findAll(Pageable pageable) {
+    public Page<DepDO> findAll(Pageable pageable) {
         return repository.findAll(pageable);
     }
 
     @Override
-    public OneToManyDepartmentDO save(OneToManyDepartmentDO oneToManyDepartmentDO) {
-        return repository.save(oneToManyDepartmentDO);
+    public DepDO save(DepDO depDO) {
+        return repository.save(depDO);
     }
 
     @Override

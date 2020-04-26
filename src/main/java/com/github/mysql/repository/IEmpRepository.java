@@ -1,6 +1,6 @@
 package com.github.mysql.repository;
 
-import com.github.mysql.pojo.OneToManyEmployeeDO;
+import com.github.mysql.pojo.EmpDO;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -14,6 +14,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @since 0.0.1
  */
 
-public interface ICorpEmployeeRepository extends JpaRepository<OneToManyEmployeeDO, Long> {
+public interface IEmpRepository extends JpaRepository<EmpDO, Long> {
 
 }

@@ -1,13 +1,14 @@
 package com.github.mysql.pojo;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
-import org.hibernate.annotations.Where;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -19,11 +20,13 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.Set;
+
 
 /**
  * <p>
- * 创建时间为 下午9:20 2020/2/13
+ * 创建时间为 下午4:16 2019/9/12
  * 项目名称 spring-boot-mysql
  * </p>
  *
@@ -32,27 +35,29 @@ import java.util.Set;
  * @since 0.0.1
  */
 
-@Data
+@Getter
+@Setter
 @Builder
-@ToString(exclude = "items")
-@EqualsAndHashCode(exclude = "items")
+@ToString(exclude = "emps")
+@EqualsAndHashCode(exclude = "emps")
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "SystemOrder")
+@Table(name = "table_dep")
 @Entity
-public class SystemOrder {
+public class DepDO implements Serializable {
+
+    private static final long serialVersionUID = 6642907291335085530L;
 
     @Id
-    @Column(name = "order_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long orderId;
+    @Column(name = "dep_id")
+    private Long depId;
 
-    private String orderName;
+    private String depName;
 
-    @Where(clause = "item_id = 1")
-    @JsonIgnoreProperties(value = "order")
-    @OrderBy("item_id desc")
-    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER, mappedBy = "order")
-    private Set<SystemItem> items;
+    @OrderBy("emp_id asc")
+    @NotFound(action = NotFoundAction.IGNORE)
+    @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "dep")
+    private Set<EmpDO> emps;
 
 }

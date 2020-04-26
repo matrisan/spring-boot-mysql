@@ -1,6 +1,6 @@
 package com.github.mysql.service;
 
-import com.github.mysql.pojo.OneToManyDepartmentDO;
+import com.github.mysql.pojo.DepDO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -15,13 +15,13 @@ import org.springframework.data.domain.Pageable;
  * @since 0.0.1
  */
 
-public interface ICorpDepartmentService {
+public interface IDepService {
 
-    OneToManyDepartmentDO findById(long id);
+    DepDO findById(long id);
 
-    Page<OneToManyDepartmentDO> findAll(Pageable pageable);
+    Page<DepDO> findAll(Pageable pageable);
 
-    OneToManyDepartmentDO save(OneToManyDepartmentDO oneToManyDepartmentDO);
+    DepDO save(DepDO depDO);
 
 
     void deleteById(Long id);

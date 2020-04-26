@@ -1,9 +1,9 @@
 //package com.github.mysql.controller;
 //
-//import com.github.mysql.pojo.DepartmentDO;
-//import com.github.mysql.pojo.EmployeeDO;
-//import com.github.mysql.repository.IDepartmentRepository;
-//import com.github.mysql.repository.IEmployeeRepository;
+//import com.github.mysql.pojo.depDO;
+//import com.github.mysql.pojo.empDO;
+//import com.github.mysql.repository.IdepRepository;
+//import com.github.mysql.repository.IempRepository;
 //import org.junit.Before;
 //import org.junit.Test;
 //import org.junit.runner.RunWith;
@@ -38,31 +38,31 @@
 //@ActiveProfiles("junit")
 //@RunWith(SpringRunner.class)
 //@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-//public class DepartmentControllerTest {
+//public class depControllerTest {
 //
 //    @Resource
 //    private MockMvc mockMvc;
 //
 //    @Resource
-//    private IDepartmentRepository departmentRepository;
+//    private IdepRepository depRepository;
 //
 //    @Resource
-//    private IEmployeeRepository employeeRepository;
+//    private IempRepository empRepository;
 //
-//    private DepartmentDO departmentDO;
+//    private depDO depDO;
 //
 //    @Before
 //    public void setUp() throws Exception {
 //        // 创建部门
-//        departmentDO = departmentRepository.save(getDepartmentDO());
+//        depDO = depRepository.save(getdepDO());
 //        //
-//        List<EmployeeDO> employees = getEmployees().stream().peek(one -> one.setDepartment(departmentDO)).collect(Collectors.toList());
-//        employeeRepository.saveAll(employees);
+//        List<empDO> emps = getemps().stream().peek(one -> one.setdep(depDO)).collect(Collectors.toList());
+//        empRepository.saveAll(emps);
 //    }
 //
 //    @Test
-//    public void getDepartment() throws Exception {
-//        mockMvc.perform(MockMvcRequestBuilders.get("/department/" + departmentDO.getId()))
+//    public void getdep() throws Exception {
+//        mockMvc.perform(MockMvcRequestBuilders.get("/dep/" + depDO.getId()))
 //                .andDo(print())
 //                .andExpect(status().isOk())
 //                .andReturn()
@@ -74,20 +74,20 @@
 //    public void testSave() {
 //    }
 //
-//    private DepartmentDO getDepartmentDO() {
-//        DepartmentDO departmentDO = new DepartmentDO();
-//        departmentDO.setDName("dep1");
-//        return departmentRepository.save(departmentDO);
+//    private depDO getdepDO() {
+//        depDO depDO = new depDO();
+//        depDO.setDName("dep1");
+//        return depRepository.save(depDO);
 //    }
 //
-//    private List<EmployeeDO> getEmployees() {
-//        List<EmployeeDO> employees = new ArrayList<>();
+//    private List<empDO> getemps() {
+//        List<empDO> emps = new ArrayList<>();
 //        for (int i = 0; i < 3; i++) {
-//            EmployeeDO employeeDO = new EmployeeDO();
-//            employeeDO.setEName("name:" + i);
-//            employees.add(employeeDO);
+//            empDO empDO = new empDO();
+//            empDO.setEName("name:" + i);
+//            emps.add(empDO);
 //        }
-//        return employees;
+//        return emps;
 //    }
 //
 //}

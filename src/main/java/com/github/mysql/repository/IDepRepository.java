@@ -1,6 +1,6 @@
 package com.github.mysql.repository;
 
-import com.github.mysql.pojo.OneToManyDepartmentDO;
+import com.github.mysql.pojo.DepDO;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -14,6 +14,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @since 0.0.1
  */
 
-public interface ICorpDepartmentRepository extends JpaRepository<OneToManyDepartmentDO, Long> {
+public interface IDepRepository extends JpaRepository<DepDO, Long> {
 
 }

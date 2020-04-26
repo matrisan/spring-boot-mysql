@@ -1,6 +1,6 @@
 package com.github.mysql.service;
 
-import com.github.mysql.pojo.OneToManyEmployeeDO;
+import com.github.mysql.pojo.EmpDO;
 
 /**
  * <p>
@@ -13,8 +13,8 @@ import com.github.mysql.pojo.OneToManyEmployeeDO;
  * @since 0.0.1
  */
 
-public interface ICorpEmployeeService {
+public interface IEmpService {
 
-    OneToManyEmployeeDO save(OneToManyEmployeeDO oneToManyEmployeeDO);
+    EmpDO save(EmpDO empDO);
 
 }
