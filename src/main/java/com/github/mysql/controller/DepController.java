@@ -1,9 +1,8 @@
 package com.github.mysql.controller;
 
 
-import com.github.mysql.pojo.DepDO;
+import com.github.mysql.pojo.table.DepDO;
 import com.github.mysql.repository.IDepRepository;
-import com.github.mysql.service.IDepService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,8 +29,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class DepController {
 
-    private final IDepService service;
-
     private final IDepRepository repository;
 
     @GetMapping("/deps")
@@ -46,17 +43,17 @@ public class DepController {
 
     @PostMapping("/dep")
     public DepDO create(@RequestBody DepDO dep) {
-        return service.save(dep);
+        return repository.save(dep);
     }
 
     @PutMapping("/dep")
     public DepDO update(@RequestBody DepDO dep) {
-        return service.save(dep);
+        return repository.save(dep);
     }
 
     @DeleteMapping("/dep/{id}")
     public void deleteById(@PathVariable Long id) {
-        service.deleteById(id);
+        repository.deleteById(id);
     }
 
 }

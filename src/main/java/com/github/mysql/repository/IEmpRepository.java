@@ -1,6 +1,6 @@
 package com.github.mysql.repository;
 
-import com.github.mysql.pojo.EmpDO;
+import com.github.mysql.pojo.table.EmpDO;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

@@ -1,9 +1,9 @@
-package com.github.mysql.pojo;
+package com.github.mysql.pojo.table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -57,6 +57,8 @@ public class EmpDO implements Serializable {
 
     @ManyToOne(targetEntity = DepDO.class, cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "foreign_key_dept_id", referencedColumnName = "dep_id")
+    @JsonIgnoreProperties(value = {"emps"})
+    @JsonIgnore
     private DepDO dep;
 
 }

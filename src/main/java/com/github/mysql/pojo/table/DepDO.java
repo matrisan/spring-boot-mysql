@@ -1,5 +1,6 @@
-package com.github.mysql.pojo;
+package com.github.mysql.pojo.table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -7,8 +8,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import org.hibernate.annotations.NotFound;
-import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -55,9 +54,10 @@ public class DepDO implements Serializable {
 
     private String depName;
 
-    @OrderBy("emp_id asc")
-    @NotFound(action = NotFoundAction.IGNORE)
+    @OrderBy("empId asc")
+//    @NotFound(action = NotFoundAction.IGNORE)
     @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "dep")
+    @JsonIgnoreProperties(value = {"dep"})
     private Set<EmpDO> emps;
 
 }

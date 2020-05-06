@@ -1,6 +1,6 @@
 package com.github.mysql.repository;
 
-import com.github.mysql.pojo.DepDO;
+import com.github.mysql.pojo.table.DepDO;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -15,5 +15,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 
 public interface IDepRepository extends JpaRepository<DepDO, Long> {
+
 
 }
