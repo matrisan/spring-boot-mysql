@@ -57,7 +57,7 @@ public class DepDO implements Serializable {
     @OrderBy("empId asc")
 //    @NotFound(action = NotFoundAction.IGNORE)
     @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "dep")
-    @JsonIgnoreProperties(value = {"dep"})
+//    @JsonIgnoreProperties(value = {"dep"})
     private Set<EmpDO> emps;
 
 }

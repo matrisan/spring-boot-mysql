@@ -30,7 +30,7 @@ public class EmpController {
 
     private final IEmpRepository repository;
 
-    @GetMapping("emp")
+    @GetMapping("emps")
     public List<EmpDO> findAll() {
         return repository.findAll();
     }
