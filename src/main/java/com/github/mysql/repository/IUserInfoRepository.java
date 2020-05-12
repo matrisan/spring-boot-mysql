@@ -1,7 +1,10 @@
 package com.github.mysql.repository;
 
 import com.github.mysql.pojo.UserInfoDO;
+import com.github.mysql.pojo.UserInfoVO;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.Set;
 
 /**
  * <p>
@@ -15,5 +18,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 
 public interface IUserInfoRepository extends JpaRepository<UserInfoDO, Long> {
+
+    Set<UserInfoVO> findAllUsers();
 
 }

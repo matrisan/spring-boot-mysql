@@ -18,11 +18,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Index;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.SqlResultSetMapping;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-import javax.validation.executable.ExecutableType;
-import javax.validation.executable.ValidateOnExecution;
 
 /**
  * <p>
@@ -34,17 +34,23 @@ import javax.validation.executable.ValidateOnExecution;
  * @version 0.0.1
  * @since 0.0.1
  */
-//@SqlResultSetMapping(name = "RoleInfoVOMapping",
-//        classes = {
-//                @ConstructorResult(
-//                        targetClass = UserInfoVO.class,
-//                        columns = {
-//                                @ColumnResult(name = "id"),
-//                                @ColumnResult(name = "username"),
-//                                @ColumnResult(name = "role")
-//                        }
-//                )}
-//)
+
+
+@NamedQueries({
+        @NamedQuery(
+                name = "UserInfoDO.findAllUsers",
+                query = "SELECT UserInfoDO as user FROM UserInfoDO"
+
+        )
+})
+
+@SqlResultSetMapping(
+        name = "UserInfoVO",
+        classes = @ConstructorResult(targetClass = UserInfoVO.class,
+                columns = {
+                        @ColumnResult(name = "username", type = String.class),
+                        @ColumnResult(name = "age", type = Integer.class)
+                }))
 
 @EqualsAndHashCode(callSuper = true)
 @Data

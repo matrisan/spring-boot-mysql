@@ -2,7 +2,7 @@ package com.github.mysql.controller;
 
 
 import com.github.mysql.pojo.UserInfoDO;
-import com.github.mysql.pojo.UserInfoDTO;
+import com.github.mysql.pojo.UserInfoVO;
 import com.github.mysql.repository.IUserInfoRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
@@ -51,7 +51,7 @@ public class UserIndexController {
     }
 
     @GetMapping("/users/condition")
-    public Page<String> findAllCondition(@NotNull UserInfoDTO dto,
+    public Page<String> findAllCondition(@NotNull UserInfoVO dto,
                                          @PageableDefault(direction = Sort.Direction.DESC, size = 4) Pageable pageable) {
         log.warn("dto:{}", dto.toString());
 
