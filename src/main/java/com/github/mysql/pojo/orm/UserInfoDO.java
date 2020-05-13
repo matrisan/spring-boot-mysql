@@ -1,5 +1,7 @@
-package com.github.mysql.pojo;
+package com.github.mysql.pojo.orm;
 
+import com.github.mysql.pojo.BaseEntity;
+import com.github.mysql.pojo.vo.UserInfoVO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,13 +11,14 @@ import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.NamedQueries;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.EntityResult;
 import javax.persistence.Index;
+import javax.persistence.SqlResultSetMapping;
+import javax.persistence.SqlResultSetMappings;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -30,7 +33,9 @@ import javax.persistence.UniqueConstraint;
  * @since 0.0.1
  */
 
-
+@SqlResultSetMappings({
+        @SqlResultSetMapping(name = "user", entities = {@EntityResult(entityClass = UserInfoVO.class)})
+})
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Slf4j
@@ -48,10 +53,7 @@ import javax.persistence.UniqueConstraint;
 @DynamicUpdate
 public class UserInfoDO extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
-    private Long userId;
+    private static final long serialVersionUID = 460626250371942731L;
 
     @Column(name = "name", nullable = false, columnDefinition = "varchar(100) default '默认名字' comment '我是username注释'")
     private String username;

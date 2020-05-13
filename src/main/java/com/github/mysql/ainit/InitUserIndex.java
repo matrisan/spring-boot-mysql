@@ -1,6 +1,6 @@
 package com.github.mysql.ainit;
 
-import com.github.mysql.pojo.UserInfoDO;
+import com.github.mysql.pojo.orm.UserInfoDO;
 import com.github.mysql.repository.IUserInfoRepository;
 import org.springframework.stereotype.Component;
 

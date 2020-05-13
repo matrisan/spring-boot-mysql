@@ -1,5 +1,6 @@
-package com.github.mysql.pojo;
+package com.github.mysql.pojo.orm;
 
+import com.github.mysql.pojo.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -39,11 +40,9 @@ import javax.persistence.Table;
 @Table(name = "RoleInfoDO")
 @DynamicInsert
 @DynamicUpdate
-public class RoleInfoDO {
+public class RoleInfoDO extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private static final long serialVersionUID = -8807482859115915839L;
 
 //    @ColumnDefault("默认名字")
     @Column(name = "rolename", columnDefinition = "varchar(100) default '默认名字' comment '我是username注释'")

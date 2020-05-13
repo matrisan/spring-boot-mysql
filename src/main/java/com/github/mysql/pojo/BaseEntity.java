@@ -2,14 +2,16 @@ package com.github.mysql.pojo;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.Column;
 import javax.persistence.EntityListeners;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -28,7 +30,13 @@ import java.util.Date;
 
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-public class BaseEntity {
+public abstract class BaseEntity implements Serializable {
+
+    private static final long serialVersionUID = 3240984593269159969L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(columnDefinition = "INT(1) DEFAULT 0 COMMENT '改记录是否删除'")
     private Boolean deleted;
