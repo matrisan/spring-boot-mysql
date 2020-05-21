@@ -60,9 +60,5 @@ public class UserInfoController {
         return repository.save(userIndex);
     }
 
-//    @GetMapping("/user/username/{username}")
-//    public UserInfoVO getByUsername(@PathVariable String username) {
-//        return repository.findByUsername(username);
-//    }
 
 }

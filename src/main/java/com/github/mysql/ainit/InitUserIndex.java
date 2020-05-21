@@ -1,11 +1,11 @@
 package com.github.mysql.ainit;
 
+import com.github.mysql.pojo.bo.GroupInfoBO;
 import com.github.mysql.pojo.orm.RoleInfoDO;
 import com.github.mysql.pojo.orm.UserInfoDO;
 import com.github.mysql.repository.IRoleInfoRepository;
 import com.github.mysql.repository.IUserInfoRepository;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -44,7 +44,10 @@ public class InitUserIndex {
                     .username("name:" + i)
 //                    .roles(Sets.newHashSet(list))
                     .age(i)
+                    .mobile("mobile-" + i)
+                    .groupInfo(GroupInfoBO.builder().groupName("name:" + i).groupCode("code:" + i).build())
                     .build();
+
             userInfoRepository.save(userInfoDO);
         }
     }

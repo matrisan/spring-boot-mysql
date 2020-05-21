@@ -1,6 +1,9 @@
 package com.github.mysql.pojo.orm;
 
 import com.github.mysql.pojo.BaseEntity;
+import com.github.mysql.pojo.bo.GroupInfoBO;
+import com.github.mysql.pojo.converter.GroupConverter;
+import com.github.mysql.pojo.converter.MobileConverter;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,19 +13,13 @@ import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
-import org.springframework.data.annotation.Transient;
-import org.springframework.data.domain.Persistable;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import java.util.Set;
 
 /**
  * <p>
@@ -56,6 +53,13 @@ public class UserInfoDO extends BaseEntity {
 
     @Column(name = "age", nullable = false, columnDefinition = "INT(4) default 18 comment '我是age注释'")
     private Integer age;
+
+    @Convert(converter = MobileConverter.class)
+    private String mobile;
+
+    @Convert(converter = GroupConverter.class)
+    private GroupInfoBO groupInfo;
+
 
 //    @ManyToMany(targetEntity = RoleInfoDO.class, cascade = {CascadeType.REFRESH})
 //    @JoinTable(

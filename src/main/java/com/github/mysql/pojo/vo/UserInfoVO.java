@@ -1,5 +1,6 @@
 package com.github.mysql.pojo.vo;
 
+import com.github.mysql.pojo.bo.GroupInfoBO;
 import lombok.Value;
 
 import java.io.Serializable;
@@ -24,18 +25,8 @@ public class UserInfoVO implements Serializable {
 
     Integer age;
 
-//    private Set<RoleInfoVO> roles;
+    String mobile;
 
-//    public UserInfoVO(String username, Integer age, RoleInfoDO roles) {
-//        this.username = username;
-//        this.age = age;
-//        this.roles.add(getVo(roles));
-//    }
-//
-//    @NotNull
-//    private RoleInfoVO getVo(RoleInfoDO role) {
-//        RoleInfoVO vo = new RoleInfoVO();
-//        BeanUtils.copyProperties(role, vo);
-//        return vo;
-//    }
+    GroupInfoBO groupInfo;
+
 }
