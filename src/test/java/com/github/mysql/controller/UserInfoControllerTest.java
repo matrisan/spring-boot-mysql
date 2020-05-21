@@ -27,7 +27,7 @@ import javax.annotation.Resource;
 @ActiveProfiles("junit")
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class UserIndexControllerTest {
+public class UserInfoControllerTest {
 
     @Resource
     private MockMvc mockMvc;

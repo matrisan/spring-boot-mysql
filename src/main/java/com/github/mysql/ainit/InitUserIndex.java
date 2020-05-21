@@ -42,7 +42,7 @@ public class InitUserIndex {
         for (int i = 0; i < 10; i++) {
             UserInfoDO userInfoDO = UserInfoDO.builder()
                     .username("name:" + i)
-                    .roles(Sets.newHashSet(list))
+//                    .roles(Sets.newHashSet(list))
                     .age(i)
                     .build();
             userInfoRepository.save(userInfoDO);

@@ -55,8 +55,8 @@ public class RoleInfoDO extends BaseEntity {
     @Column(name = "role_code", columnDefinition = "varchar(20) default '默认名字' comment '我是roleCode注释'")
     private String roleCode;
 
-    @ManyToMany(targetEntity = UserInfoDO.class, cascade = {CascadeType.REFRESH}, mappedBy = "roles")
-    private Set<UserInfoDO> users;
+//    @ManyToMany(targetEntity = UserInfoDO.class, cascade = {CascadeType.REFRESH}, mappedBy = "roles")
+//    private Set<UserInfoDO> users;
 
 
 }

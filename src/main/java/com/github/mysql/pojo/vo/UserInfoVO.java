@@ -1,15 +1,8 @@
 package com.github.mysql.pojo.vo;
 
-import com.github.mysql.pojo.orm.RoleInfoDO;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-import org.jetbrains.annotations.NotNull;
-import org.springframework.beans.BeanUtils;
+import lombok.Value;
 
 import java.io.Serializable;
-import java.util.Set;
 
 /**
  * <p>
@@ -22,30 +15,27 @@ import java.util.Set;
  * @since 0.0.1
  */
 
-@Data
-@ToString
-@NoArgsConstructor
-@AllArgsConstructor
+@Value
 public class UserInfoVO implements Serializable {
 
     private static final long serialVersionUID = 8795817443828424498L;
 
-    private String username;
+    String username;
 
-    private Integer age;
+    Integer age;
 
-    private Set<RoleInfoVO> roles;
+//    private Set<RoleInfoVO> roles;
 
-    public UserInfoVO(String username, Integer age, RoleInfoDO roles) {
-        this.username = username;
-        this.age = age;
-        this.roles.add(getVo(roles));
-    }
-
-    @NotNull
-    private RoleInfoVO getVo(RoleInfoDO role) {
-        RoleInfoVO vo = new RoleInfoVO();
-        BeanUtils.copyProperties(role, vo);
-        return vo;
-    }
+//    public UserInfoVO(String username, Integer age, RoleInfoDO roles) {
+//        this.username = username;
+//        this.age = age;
+//        this.roles.add(getVo(roles));
+//    }
+//
+//    @NotNull
+//    private RoleInfoVO getVo(RoleInfoDO role) {
+//        RoleInfoVO vo = new RoleInfoVO();
+//        BeanUtils.copyProperties(role, vo);
+//        return vo;
+//    }
 }

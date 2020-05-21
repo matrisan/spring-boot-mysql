@@ -29,7 +29,7 @@ import java.util.Collection;
  */
 
 @RestController
-public class UserIndexController {
+public class UserInfoController {
 
     @Resource
     private IUserInfoRepository repository;
@@ -37,6 +37,11 @@ public class UserIndexController {
     @GetMapping("users")
     public Page<UserInfoVO> findAll(@PageableDefault Pageable pageable) {
         return repository.findAllBy(pageable, UserInfoVO.class);
+    }
+
+    @GetMapping("user/u/{name}")
+    public UserInfoVO findByUsername(@PathVariable String name) {
+        return repository.findByUsername(name, UserInfoVO.class);
     }
 
 

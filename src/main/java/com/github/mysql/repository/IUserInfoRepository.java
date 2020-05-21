@@ -42,7 +42,7 @@ public interface IUserInfoRepository extends JpaRepository<UserInfoDO, Long> {
      * @param <T>  泛型
      * @return Set
      */
-    <T> Set<T> findByUsername(String name, Class<T> clz);
+    <T> T findByUsername(String name, Class<T> clz);
 
     /**
      * @param username 用户名
