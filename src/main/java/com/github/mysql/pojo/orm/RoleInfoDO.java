@@ -4,19 +4,21 @@ import com.github.mysql.pojo.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.EntityListeners;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import java.util.Set;
 
 /**
  * <p>
@@ -36,24 +38,27 @@ import javax.persistence.Table;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(exclude = "users", callSuper = false)
 @Entity
 @Table(name = "RoleInfoDO")
 @DynamicInsert
 @DynamicUpdate
+@EntityListeners({AuditingEntityListener.class})
 public class RoleInfoDO extends BaseEntity {
 
     private static final long serialVersionUID = -8807482859115915839L;
 
-//    @ColumnDefault("默认名字")
-    @Column(name = "rolename", columnDefinition = "varchar(100) default '默认名字' comment '我是username注释'")
-    private String rolename;
+    //    @ColumnDefault("默认名字")
+    @Column(name = "role_name", columnDefinition = "varchar(20) default '默认名字' comment '我是roleName注释'")
+    private String roleName;
 
-//    @ColumnDefault("18")
-    @Column(name = "age", columnDefinition = "INT(11) default 18 comment '我是age注释'")
-    private Integer age;
+    @Column(name = "role_code", columnDefinition = "varchar(20) default '默认名字' comment '我是roleCode注释'")
+    private String roleCode;
 
-    @Column(name = "note", columnDefinition = "VARCHAR(100) DEFAULT '' COMMENT '我是 note 注释'")
-    private String note;
+    @ManyToMany(targetEntity = UserInfoDO.class, cascade = {CascadeType.REFRESH}, mappedBy = "roles")
+    private Set<UserInfoDO> users;
+
+
 }
 
 

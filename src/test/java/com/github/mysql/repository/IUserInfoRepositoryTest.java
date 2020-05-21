@@ -1,6 +1,7 @@
 package com.github.mysql.repository;
 
 import com.github.mysql.pojo.orm.UserInfoDO;
+import com.github.mysql.pojo.vo.UserInfoVO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -10,6 +11,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
+import java.util.Collection;
 import java.util.Set;
 
 
@@ -35,13 +37,20 @@ public class IUserInfoRepositoryTest {
     @Resource
     private IUserInfoRepository repository;
 
+
+    @Test
+    public void findAllTest() {
+//        Collection<UserInfoVO> set = repository.findAll(UserInfoVO.class);
+//        set.forEach(System.out::println);
+    }
+
     @Test
     public void saveTest() {
-        UserInfoDO userInfoDO1 = UserInfoDO.builder().username("name1").role("role1").build();
-        UserInfoDO userInfoDO2 = UserInfoDO.builder().username("name2").role("role1").build();
-        repository.save(userInfoDO1);
+//        UserInfoDO userInfoDO1 = UserInfoDO.builder().username("name1").role("role1").build();
+//        UserInfoDO userInfoDO2 = UserInfoDO.builder().username("name2").role("role1").build();
+//        repository.save(userInfoDO1);
 //        userIndexDO.setName("name2");
-        repository.save(userInfoDO2);
+//        repository.save(userInfoDO2);
     }
 
     @Test

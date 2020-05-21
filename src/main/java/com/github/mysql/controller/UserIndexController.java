@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.util.List;
+import java.util.Collection;
 
 /**
  * <p>
@@ -34,16 +34,16 @@ public class UserIndexController {
     @Resource
     private IUserInfoRepository repository;
 
-    @GetMapping("user")
-    public List<UserInfoDO> findAll() {
-        return repository.findAll();
+    @GetMapping("users")
+    public Page<UserInfoVO> findAll(@PageableDefault Pageable pageable) {
+        return repository.findAllBy(pageable, UserInfoVO.class);
     }
+
 
     @GetMapping("user/roles")
     public Page<String> findAllRoles(@PageableDefault(size = 4, direction = Sort.Direction.DESC) Pageable pageable) {
         return repository.findAllRoles(pageable);
     }
-
 
     @GetMapping("user/id/{userId}")
     public UserInfoDO getByUserId(@PathVariable("userId") UserInfoDO userInfoDO) {
@@ -55,9 +55,9 @@ public class UserIndexController {
         return repository.save(userIndex);
     }
 
-    @GetMapping("/user/username/{username}")
-    public UserInfoVO getByUsername(@PathVariable String username) {
-        return repository.findByUsername(username);
-    }
+//    @GetMapping("/user/username/{username}")
+//    public UserInfoVO getByUsername(@PathVariable String username) {
+//        return repository.findByUsername(username);
+//    }
 
 }

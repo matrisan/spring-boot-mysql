@@ -1,7 +1,6 @@
 package com.github.mysql.pojo.orm;
 
 import com.github.mysql.pojo.BaseEntity;
-import com.github.mysql.pojo.vo.UserInfoVO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,16 +10,18 @@ import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
-import org.hibernate.annotations.NamedQueries;
+import org.springframework.data.domain.Persistable;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EntityResult;
-import javax.persistence.Index;
-import javax.persistence.SqlResultSetMapping;
-import javax.persistence.SqlResultSetMappings;
+import javax.persistence.EntityListeners;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+import java.util.Set;
 
 /**
  * <p>
@@ -33,9 +34,6 @@ import javax.persistence.UniqueConstraint;
  * @since 0.0.1
  */
 
-@SqlResultSetMappings({
-        @SqlResultSetMapping(name = "user", entities = {@EntityResult(entityClass = UserInfoVO.class)})
-})
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Slf4j
@@ -44,24 +42,27 @@ import javax.persistence.UniqueConstraint;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(
-        name = "UserInfoDO",
-        uniqueConstraints = {@UniqueConstraint(columnNames = {"name"}, name = "IDX_UNIQUE_NAME")},
-        indexes = {@Index(columnList = "role", name = "IDX_NON_UNIQUE_ROLE")}
-)
+@Table(name = "UserInfoDO")
 @DynamicInsert
 @DynamicUpdate
+@EntityListeners({AuditingEntityListener.class})
 public class UserInfoDO extends BaseEntity {
 
     private static final long serialVersionUID = 460626250371942731L;
 
-    @Column(name = "name", nullable = false, columnDefinition = "varchar(100) default '默认名字' comment '我是username注释'")
+    @Column(name = "name", nullable = false, columnDefinition = "varchar(20) default '默认名字' comment '我是username注释'")
     private String username;
 
-    @Column(name = "age", nullable = false, columnDefinition = "INT(11) default 18 comment '我是age注释'")
+    @Column(name = "age", nullable = false, columnDefinition = "INT(4) default 18 comment '我是age注释'")
     private Integer age;
 
-    private String role;
+    @ManyToMany(targetEntity = RoleInfoDO.class, cascade = {CascadeType.REFRESH})
+    @JoinTable(
+            name = "user_role",
+            joinColumns = {@JoinColumn(name = "mid_user_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "mid_role_id", referencedColumnName = "id")}
+    )
+    private Set<RoleInfoDO> roles;
 
 }
 

@@ -1,7 +1,6 @@
 package com.github.mysql.repository;
 
 import com.github.mysql.pojo.orm.UserInfoDO;
-import com.github.mysql.pojo.vo.UserInfoVO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -25,6 +24,25 @@ import java.util.Set;
 
 public interface IUserInfoRepository extends JpaRepository<UserInfoDO, Long> {
 
+    /**
+     * 分页查询所有的UserInfoDO，并将字段投影到泛型 T 的字段上
+     *
+     * @param pageable 分页信息
+     * @param clz      泛型类型
+     * @param <T>      泛型
+     * @return Page
+     */
+    <T> Page<T> findAllBy(Pageable pageable, Class<T> clz);
+
+    /**
+     * 根据用户名查询出所有的用户
+     *
+     * @param name 用户名
+     * @param clz  泛型类型
+     * @param <T>  泛型
+     * @return Set
+     */
+    <T> Set<T> findByUsername(String name, Class<T> clz);
 
     /**
      * @param username 用户名
@@ -54,11 +72,5 @@ public interface IUserInfoRepository extends JpaRepository<UserInfoDO, Long> {
     @Transactional(rollbackFor = Exception.class)
     @Query("UPDATE UserInfoDO AS user SET user.age = (user.age + :age) WHERE user.username=:username")
     void updateAge(@Param("username") String username, @Param("age") int age);
-
-    @Query("SELECT new com.github.mysql.pojo.vo.UserInfoVO(user.username, user.age) FROM UserInfoDO AS user WHERE user.username=:username")
-    UserInfoVO findByUsername(@Param("username") String username);
-
-//    @Query("FROM UserInfoDO AS user WHERE user.username IN (SELECT res.username FROM ResInfoDO AS res)")
-//    Set<UserInfoDO> findByUsernameIn();
 
 }
