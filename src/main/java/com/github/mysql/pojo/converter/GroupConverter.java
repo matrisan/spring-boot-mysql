@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 
 import javax.persistence.AttributeConverter;
+import javax.persistence.Converter;
 
 /**
  * <p>
@@ -17,6 +18,7 @@ import javax.persistence.AttributeConverter;
  * @version 0.0.1
  * @since 0.0.1
  */
+@Converter(autoApply = true)
 @RequiredArgsConstructor
 public class GroupConverter implements AttributeConverter<GroupInfoBO, String> {
 

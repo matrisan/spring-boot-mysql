@@ -60,15 +60,6 @@ public class UserInfoDO extends BaseEntity {
     @Convert(converter = GroupConverter.class)
     private GroupInfoBO groupInfo;
 
-
-//    @ManyToMany(targetEntity = RoleInfoDO.class, cascade = {CascadeType.REFRESH})
-//    @JoinTable(
-//            name = "user_role",
-//            joinColumns = {@JoinColumn(name = "mid_user_id", referencedColumnName = "id")},
-//            inverseJoinColumns = {@JoinColumn(name = "mid_role_id", referencedColumnName = "id")}
-//    )
-//    private Set<RoleInfoDO> roles;
-
 }
 
 

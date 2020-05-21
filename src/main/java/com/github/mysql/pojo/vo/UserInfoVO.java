@@ -1,5 +1,6 @@
 package com.github.mysql.pojo.vo;
 
+import com.github.mysql.pojo.BaseEntity;
 import com.github.mysql.pojo.bo.GroupInfoBO;
 import lombok.Value;
 
@@ -17,7 +18,7 @@ import java.io.Serializable;
  */
 
 @Value
-public class UserInfoVO implements Serializable {
+public class UserInfoVO extends BaseEntity implements Serializable {
 
     private static final long serialVersionUID = 8795817443828424498L;
 
