@@ -1,14 +1,17 @@
 package com.github.mysql.controller;
 
 import com.github.mysql.pojo.orm.RoleInfoDO;
+import com.github.mysql.pojo.vo.RoleInfoVO;
 import com.github.mysql.repository.IRoleInfoRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * <p>
@@ -28,8 +31,8 @@ public class RoleInfoController {
     private IRoleInfoRepository repository;
 
     @GetMapping("role")
-    public List<RoleInfoDO> findAll() {
-        return repository.findAll();
+    public Page<RoleInfoVO> findAll(@PageableDefault Pageable pageable) {
+        return repository.findAllBy(pageable);
     }
 
     @PostMapping("role")
