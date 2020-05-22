@@ -16,6 +16,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import java.util.Set;
@@ -55,9 +56,8 @@ public class RoleInfoDO extends BaseEntity {
     @Column(name = "role_code", columnDefinition = "varchar(20) default '默认名字' comment '我是roleCode注释'")
     private String roleCode;
 
-//    @ManyToMany(targetEntity = UserInfoDO.class, cascade = {CascadeType.REFRESH}, mappedBy = "roles")
-//    private Set<UserInfoDO> users;
-
+    @ManyToMany(targetEntity = UserInfoDO.class, fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH}, mappedBy = "roles")
+    private Set<UserInfoDO> users;
 
 }
 

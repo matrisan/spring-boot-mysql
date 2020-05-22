@@ -2,6 +2,7 @@ package com.github.mysql.controller;
 
 
 import com.github.mysql.pojo.orm.UserInfoDO;
+import com.github.mysql.pojo.vo.IUserProjectionVO;
 import com.github.mysql.pojo.vo.UserInfoVO;
 import com.github.mysql.repository.IUserInfoRepository;
 import org.springframework.data.domain.Page;
@@ -35,15 +36,19 @@ public class UserInfoController {
     private IUserInfoRepository repository;
 
     @GetMapping("users")
-    public Page<UserInfoVO> findAll(@PageableDefault Pageable pageable) {
-        return repository.findAllBy(pageable, UserInfoVO.class);
+    public Page<IUserProjectionVO> findAll(@PageableDefault Pageable pageable) {
+        return repository.findAllBy(pageable, IUserProjectionVO.class);
     }
+
+//    @GetMapping("users")
+//    public Page<UserInfoVO> findAll(@PageableDefault Pageable pageable) {
+//        return repository.findAllBy(pageable, UserInfoVO.class);
+//    }
 
     @GetMapping("user/u/{name}")
     public UserInfoVO findByUsername(@PathVariable String name) {
         return repository.findByUsername(name, UserInfoVO.class);
     }
-
 
     @GetMapping("user/roles")
     public Page<String> findAllRoles(@PageableDefault(size = 4, direction = Sort.Direction.DESC) Pageable pageable) {

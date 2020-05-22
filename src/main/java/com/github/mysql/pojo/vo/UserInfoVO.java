@@ -1,8 +1,10 @@
 package com.github.mysql.pojo.vo;
 
+import lombok.ToString;
 import lombok.Value;
 
 import java.io.Serializable;
+import java.util.Set;
 
 /**
  * <p>
@@ -16,6 +18,7 @@ import java.io.Serializable;
  */
 
 @Value
+@ToString
 public class UserInfoVO implements Serializable {
 
     private static final long serialVersionUID = 8795817443828424498L;
@@ -24,18 +27,6 @@ public class UserInfoVO implements Serializable {
 
     Integer age;
 
-//    private Set<RoleInfoVO> roles;
+    Set<RoleInfoVO> roles;
 
-//    public UserInfoVO(String username, Integer age, RoleInfoDO roles) {
-//        this.username = username;
-//        this.age = age;
-//        this.roles.add(getVo(roles));
-//    }
-//
-//    @NotNull
-//    private RoleInfoVO getVo(RoleInfoDO role) {
-//        RoleInfoVO vo = new RoleInfoVO();
-//        BeanUtils.copyProperties(role, vo);
-//        return vo;
-//    }
 }
