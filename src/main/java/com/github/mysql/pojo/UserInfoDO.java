@@ -1,28 +1,15 @@
 package com.github.mysql.pojo;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import com.google.common.collect.Lists;
+import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.data.domain.AfterDomainEventPublication;
+import org.springframework.data.domain.DomainEvents;
 
-import javax.persistence.Column;
-import javax.persistence.ColumnResult;
-import javax.persistence.ConstructorResult;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Index;
-import javax.persistence.SqlResultSetMapping;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
-import javax.validation.executable.ExecutableType;
-import javax.validation.executable.ValidateOnExecution;
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * <p>
@@ -34,17 +21,6 @@ import javax.validation.executable.ValidateOnExecution;
  * @version 0.0.1
  * @since 0.0.1
  */
-//@SqlResultSetMapping(name = "RoleInfoVOMapping",
-//        classes = {
-//                @ConstructorResult(
-//                        targetClass = UserInfoVO.class,
-//                        columns = {
-//                                @ColumnResult(name = "id"),
-//                                @ColumnResult(name = "username"),
-//                                @ColumnResult(name = "role")
-//                        }
-//                )}
-//)
 
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -74,6 +50,16 @@ public class UserInfoDO extends BaseEntity {
     private Integer age;
 
     private String role;
+
+    @DomainEvents
+    public List<UserSaveEvent> domainEvents() {
+        return Lists.newArrayList(new UserSaveEvent(this.id));
+    }
+
+    @AfterDomainEventPublication
+    public void callbackMethod() {
+        System.out.println("CallBackMethod");
+    }
 
 }
 

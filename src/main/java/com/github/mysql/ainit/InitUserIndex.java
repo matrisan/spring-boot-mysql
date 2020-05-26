@@ -30,6 +30,7 @@ public class InitUserIndex {
             UserInfoDO userInfoDO = UserInfoDO.builder()
                     .username("name:" + i)
                     .role("role:" + i)
+                    .age(i)
                     .build();
             repository.save(userInfoDO);
         }
