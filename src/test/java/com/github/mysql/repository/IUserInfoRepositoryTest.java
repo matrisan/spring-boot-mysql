@@ -1,5 +1,6 @@
 package com.github.mysql.repository;
 
+import com.github.mysql.pojo.bo.GroupInfoBO;
 import com.github.mysql.pojo.orm.UserInfoDO;
 import com.github.mysql.pojo.vo.UserInfoVO;
 import org.junit.Test;
@@ -68,4 +69,13 @@ public class IUserInfoRepositoryTest {
     }
 
 
+    @Test
+    public void updateGroupInfo() {
+        String username = "name:0";
+        System.out.println(repository.findByUsernameEquals(username));
+        GroupInfoBO info = GroupInfoBO.builder().groupName("TestGroupName4").groupCode("TestGroupCode4").build();
+        repository.updateGroupInfo(info, username);
+        System.out.println(repository.findByUsernameEquals(username));
+
+    }
 }

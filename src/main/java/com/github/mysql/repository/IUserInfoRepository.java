@@ -1,5 +1,6 @@
 package com.github.mysql.repository;
 
+import com.github.mysql.pojo.bo.GroupInfoBO;
 import com.github.mysql.pojo.orm.UserInfoDO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -72,5 +73,16 @@ public interface IUserInfoRepository extends JpaRepository<UserInfoDO, Long> {
     @Transactional(rollbackFor = Exception.class)
     @Query("UPDATE UserInfoDO AS user SET user.age = (user.age + :age) WHERE user.username=:username")
     void updateAge(@Param("username") String username, @Param("age") int age);
+
+    /**
+     * 根据用户新修改 groupInfo
+     *
+     * @param group    组织信息
+     * @param username 用户名
+     */
+    @Modifying
+    @Transactional(rollbackFor = Exception.class)
+    @Query("UPDATE UserInfoDO AS user SET user.groupInfo= :groupInfo WHERE user.username=:username")
+    void updateGroupInfo(@Param("groupInfo") GroupInfoBO group, @Param("username") String username);
 
 }
