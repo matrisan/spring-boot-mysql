@@ -1,6 +1,9 @@
 package com.github.mysql.repository;
 
+import com.github.mysql.pojo.orm.RoleInfoDO;
 import com.github.mysql.pojo.orm.UserInfoDO;
+import com.github.mysql.pojo.vo.IRoleProjectionVO;
+import com.github.mysql.pojo.vo.IUserProjectionVO;
 import com.github.mysql.pojo.vo.UserInfoVO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -36,6 +39,12 @@ public class IUserInfoRepositoryTest {
 
     @Resource
     private IUserInfoRepository repository;
+
+    @Test
+    public void findRolesByUsername() {
+        Set<RoleInfoDO>roles = repository.findRolesByUsername("name:1");
+        roles.forEach(one -> System.out.println(one.getRoleName()));
+    }
 
 
     @Test

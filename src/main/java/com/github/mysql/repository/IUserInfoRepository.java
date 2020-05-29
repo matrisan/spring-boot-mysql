@@ -1,5 +1,6 @@
 package com.github.mysql.repository;
 
+import com.github.mysql.pojo.orm.RoleInfoDO;
 import com.github.mysql.pojo.orm.UserInfoDO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,6 +24,13 @@ import java.util.Set;
  */
 
 public interface IUserInfoRepository extends JpaRepository<UserInfoDO, Long> {
+
+    @Query("SELECT user.roles FROM UserInfoDO AS user WHERE user.username=?1")
+    Set<RoleInfoDO> findRolesByUsername(String username);
+
+
+    @Query("SELECT user.roles FROM UserInfoDO AS user WHERE user.username=?1")
+    <T> Set<T> findRolesByUsername(String username, Class<T> clz);
 
     /**
      * 分页查询所有的UserInfoDO，并将字段投影到泛型 T 的字段上
