@@ -25,9 +25,14 @@ import java.util.Set;
 
 public interface IUserInfoRepository extends JpaRepository<UserInfoDO, Long> {
 
+    /**
+     * 根据用户名查找角色
+     *
+     * @param username 用户名
+     * @return Set
+     */
     @Query("SELECT user.roles FROM UserInfoDO AS user WHERE user.username=?1")
     Set<RoleInfoDO> findRolesByUsername(String username);
-
 
     @Query("SELECT user.roles FROM UserInfoDO AS user WHERE user.username=?1")
     <T> Set<T> findRolesByUsername(String username, Class<T> clz);
