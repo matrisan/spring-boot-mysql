@@ -39,10 +39,6 @@ import java.util.List;
 @DynamicUpdate
 public class UserInfoDO extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @Column(name = "username", nullable = false, columnDefinition = "varchar(100) default '默认名字' comment '我是username注释'")
     private String username;
 
@@ -53,7 +49,7 @@ public class UserInfoDO extends BaseEntity {
 
     @DomainEvents
     public List<UserSaveEvent> domainEvents() {
-        return Lists.newArrayList(new UserSaveEvent(this.id));
+        return Lists.newArrayList(new UserSaveEvent(this.getId()));
     }
 
     @AfterDomainEventPublication
