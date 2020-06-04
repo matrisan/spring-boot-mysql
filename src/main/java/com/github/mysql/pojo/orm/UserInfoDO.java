@@ -3,6 +3,7 @@ package com.github.mysql.pojo.orm;
 import com.github.mysql.pojo.BaseEntity;
 import com.github.mysql.pojo.bo.GroupInfoBO;
 import com.github.mysql.pojo.converter.GroupConverter;
+import com.github.mysql.pojo.converter.ListConverter;
 import com.github.mysql.pojo.converter.MobileConverter;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,6 +21,7 @@ import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.Table;
+import java.util.List;
 
 /**
  * <p>
@@ -59,6 +61,9 @@ public class UserInfoDO extends BaseEntity {
 
     @Convert(converter = GroupConverter.class)
     private GroupInfoBO groupInfo;
+
+    @Convert(converter = ListConverter.class)
+    private List<String> message;
 
 }
 

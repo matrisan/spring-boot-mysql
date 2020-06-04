@@ -7,6 +7,8 @@ import com.github.mysql.repository.IRoleInfoRepository;
 import com.github.mysql.repository.IUserInfoRepository;
 import com.google.common.collect.Lists;
 import lombok.RequiredArgsConstructor;
+import net.bytebuddy.utility.RandomString;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -46,6 +48,7 @@ public class InitUserIndex {
                     .age(i)
                     .mobile("mobile-" + i)
                     .groupInfo(GroupInfoBO.builder().groupName("name:" + i).groupCode("code:" + i).build())
+//                    .message(Lists.newArrayList(RandomStringUtils.randomAlphabetic(4), RandomStringUtils.randomAlphabetic(4)))
                     .build();
 
             userInfoRepository.save(userInfoDO);
