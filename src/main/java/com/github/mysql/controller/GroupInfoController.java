@@ -1,6 +1,6 @@
 package com.github.mysql.controller;
 
-import com.github.mysql.pojo.GroupInfoDO;
+import com.github.mysql.pojo.orm.GroupInfoDO;
 import com.github.mysql.repository.IGroupInfoRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

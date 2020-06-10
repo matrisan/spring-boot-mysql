@@ -1,6 +1,6 @@
 package com.github.mysql.controller;
 
-import com.github.mysql.pojo.RoleInfoDO;
+import com.github.mysql.pojo.orm.RoleInfoDO;
 import com.github.mysql.repository.IRoleInfoRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

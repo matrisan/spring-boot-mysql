@@ -1,4 +1,4 @@
-package com.github.mysql.pojo;
+package com.github.mysql.pojo.orm;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

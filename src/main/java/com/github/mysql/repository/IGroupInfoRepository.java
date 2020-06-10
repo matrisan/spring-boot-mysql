@@ -1,7 +1,6 @@
 package com.github.mysql.repository;
 
-import com.github.mysql.pojo.GroupInfoDO;
-import com.github.mysql.pojo.RoleInfoDO;
+import com.github.mysql.pojo.orm.GroupInfoDO;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

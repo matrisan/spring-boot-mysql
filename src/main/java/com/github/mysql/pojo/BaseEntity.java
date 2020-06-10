@@ -10,6 +10,8 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.Column;
 import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Version;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -25,15 +27,17 @@ import java.util.Date;
 
 @Getter
 @Setter
-
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-public class BaseEntity {
+public abstract class BaseEntity implements Serializable {
 
     @Column(columnDefinition = "INT(1) DEFAULT 0 COMMENT '改记录是否删除'")
     private Boolean deleted;
 
     @CreatedDate
     private Date createDate;
+
+    @Version
+    private Long version;
 
 }

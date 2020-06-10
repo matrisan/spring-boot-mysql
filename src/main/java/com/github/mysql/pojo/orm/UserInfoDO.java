@@ -1,5 +1,6 @@
-package com.github.mysql.pojo;
+package com.github.mysql.pojo.orm;
 
+import com.github.mysql.pojo.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -34,17 +35,6 @@ import javax.validation.executable.ValidateOnExecution;
  * @version 0.0.1
  * @since 0.0.1
  */
-//@SqlResultSetMapping(name = "RoleInfoVOMapping",
-//        classes = {
-//                @ConstructorResult(
-//                        targetClass = UserInfoVO.class,
-//                        columns = {
-//                                @ColumnResult(name = "id"),
-//                                @ColumnResult(name = "username"),
-//                                @ColumnResult(name = "role")
-//                        }
-//                )}
-//)
 
 @EqualsAndHashCode(callSuper = true)
 @Data
