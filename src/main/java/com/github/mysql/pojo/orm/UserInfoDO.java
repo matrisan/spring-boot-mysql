@@ -16,10 +16,13 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.FetchType;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 import java.util.List;
 
@@ -62,6 +65,9 @@ public class UserInfoDO extends BaseEntity {
     @Convert(converter = GroupConverter.class)
     private GroupInfoBO groupInfo;
 
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
+    @Column(columnDefinition = "TEXT")
     @Convert(converter = ListConverter.class)
     private List<String> message;
 
