@@ -31,7 +31,7 @@ import java.util.Date;
 @Setter
 @Slf4j
 @MappedSuperclass
-@EntityListeners(AuditingEntityListener.class)
+//@EntityListeners(AuditingEntityListener.class)
 public class BaseEntity {
 
     @Id
