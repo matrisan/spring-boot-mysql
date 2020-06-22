@@ -27,13 +27,18 @@ public class InitUserIndex {
     public void init() {
         repository.deleteAll();
         for (int i = 0; i < 10; i++) {
-            UserInfoDO userInfoDO = UserInfoDO.builder()
-                    .username("name:" + i)
-                    .role("role:" + i)
-                    .age(i)
-                    .build();
-            repository.save(userInfoDO);
+            repository.save(getUserInfoDO(i));
         }
+        UserInfoDO userInfoDO = getUserInfoDO(100);
+        userInfoDO.setId(100L);
+        repository.save(userInfoDO);
+    }
+    private UserInfoDO getUserInfoDO(int i) {
+        return UserInfoDO.builder()
+                .username("name:" + i)
+                .role("role:" + i)
+                .age(i)
+                .build();
     }
 
 }

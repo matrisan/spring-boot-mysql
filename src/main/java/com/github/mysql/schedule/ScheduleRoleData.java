@@ -16,8 +16,8 @@ import java.util.Date;
  * @date 2020-05-27 11:08
  */
 
-@Component
-@EnableScheduling
+//@Component
+//@EnableScheduling
 @RequiredArgsConstructor
 public class ScheduleRoleData {
 
