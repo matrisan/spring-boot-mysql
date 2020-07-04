@@ -1,5 +1,9 @@
 package com.github.mysql.pojo.vo;
 
+import com.github.mysql.pojo.orm.RoleInfoDO;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 import lombok.Value;
 
@@ -19,6 +23,7 @@ import java.util.Set;
 
 @Value
 @ToString
+@RequiredArgsConstructor
 public class UserInfoVO implements Serializable {
 
     private static final long serialVersionUID = 8795817443828424498L;
@@ -26,7 +31,7 @@ public class UserInfoVO implements Serializable {
     String username;
 
     Integer age;
-
-    Set<RoleInfoVO> roles;
+    // 不支持
+    // Set<RoleInfoDO> roles;
 
 }

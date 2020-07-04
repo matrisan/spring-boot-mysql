@@ -1,5 +1,8 @@
 package com.github.mysql.pojo.vo;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.springframework.beans.factory.annotation.Value;
+
 import java.util.Set;
 
 /**
@@ -15,10 +18,12 @@ import java.util.Set;
 
 public interface IUserProjectionVO {
 
+    @Value("#{@usernameMapper.getUsername(target.username)}")
     String getUsername();
 
     String getAge();
 
+    @JsonManagedReference
     Set<IRoleProjectionVO> getRoles();
 
 }

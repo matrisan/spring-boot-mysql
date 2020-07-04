@@ -35,15 +35,15 @@ public class UserInfoController {
     @Resource
     private IUserInfoRepository repository;
 
-    @GetMapping("users")
-    public Page<IUserProjectionVO> findAll(@PageableDefault Pageable pageable) {
+    @GetMapping("users1")
+    public Page<IUserProjectionVO> findAll1(@PageableDefault Pageable pageable) {
         return repository.findAllBy(pageable, IUserProjectionVO.class);
     }
 
-//    @GetMapping("users")
-//    public Page<UserInfoVO> findAll(@PageableDefault Pageable pageable) {
-//        return repository.findAllBy(pageable, UserInfoVO.class);
-//    }
+    @GetMapping("users2")
+    public Page<UserInfoVO> findAll2(@PageableDefault Pageable pageable) {
+        return repository.findAllBy(pageable, UserInfoVO.class);
+    }
 
     @GetMapping("user/u/{name}")
     public UserInfoVO findByUsername(@PathVariable String name) {
@@ -64,10 +64,5 @@ public class UserInfoController {
     public UserInfoDO findAll(@RequestBody UserInfoDO userIndex) {
         return repository.save(userIndex);
     }
-
-//    @GetMapping("/user/username/{username}")
-//    public UserInfoVO getByUsername(@PathVariable String username) {
-//        return repository.findByUsername(username);
-//    }
 
 }

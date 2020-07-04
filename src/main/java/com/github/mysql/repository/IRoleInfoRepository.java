@@ -1,6 +1,8 @@
 package com.github.mysql.repository;
 
 import com.github.mysql.pojo.orm.RoleInfoDO;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -15,5 +17,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 
 public interface IRoleInfoRepository extends JpaRepository<RoleInfoDO, Long> {
+    /**
+     * 分页查询所有的UserInfoDO，并将字段投影到泛型 T 的字段上
+     *
+     * @param pageable 分页信息
+     * @param clz      泛型类型
+     * @param <T>      泛型
+     * @return Page
+     */
+    <T> Page<T> findAllBy(Pageable pageable, Class<T> clz);
 
 }

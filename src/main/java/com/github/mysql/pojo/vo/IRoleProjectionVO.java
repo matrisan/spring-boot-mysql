@@ -1,5 +1,9 @@
 package com.github.mysql.pojo.vo;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import java.util.Set;
+
 /**
  * <p>
  * 创建时间为 下午4:23 2020/5/22
@@ -16,4 +20,7 @@ public interface IRoleProjectionVO {
     String getRoleName();
 
     String getRoleCode();
+
+    @JsonBackReference
+    Set<IUserProjectionVO> getUsers();
 }
