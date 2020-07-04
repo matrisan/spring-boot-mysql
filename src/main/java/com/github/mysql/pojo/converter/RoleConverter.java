@@ -1,6 +1,6 @@
 package com.github.mysql.pojo.converter;
 
-import com.github.mysql.pojo.orm.RoleInfoDO;
+import com.github.mysql.pojo.orm.user.RoleInfoDO;
 import com.github.mysql.pojo.vo.RoleInfoVO;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.BeanUtils;

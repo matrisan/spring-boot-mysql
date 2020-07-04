@@ -1,8 +1,6 @@
 package com.github.mysql.repository;
 
 import com.github.mysql.pojo.bo.GroupInfoBO;
-import com.github.mysql.pojo.orm.UserInfoDO;
-import com.github.mysql.pojo.vo.UserInfoVO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -12,7 +10,6 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
-import java.util.Collection;
 import java.util.Set;
 
 

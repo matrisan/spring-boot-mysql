@@ -1,6 +1,6 @@
-package com.github.mysql.controller;
+package com.github.mysql.controller.user;
 
-import com.github.mysql.pojo.orm.RoleInfoDO;
+import com.github.mysql.pojo.orm.user.RoleInfoDO;
 import com.github.mysql.pojo.vo.RoleInfoVO;
 import com.github.mysql.repository.IRoleInfoRepository;
 import org.springframework.data.domain.Page;

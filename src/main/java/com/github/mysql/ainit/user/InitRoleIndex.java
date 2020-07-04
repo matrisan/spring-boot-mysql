@@ -1,16 +1,11 @@
-package com.github.mysql.ainit;
+package com.github.mysql.ainit.user;
 
-import com.github.mysql.pojo.bo.GroupInfoBO;
-import com.github.mysql.pojo.orm.RoleInfoDO;
-import com.github.mysql.pojo.orm.UserInfoDO;
+import com.github.mysql.pojo.orm.user.RoleInfoDO;
 import com.github.mysql.repository.IRoleInfoRepository;
-import com.github.mysql.repository.IUserInfoRepository;
-import com.google.common.collect.Lists;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import java.util.List;
 
 /**
  * <p>

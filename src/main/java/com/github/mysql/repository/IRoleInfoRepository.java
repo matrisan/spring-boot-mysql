@@ -1,8 +1,7 @@
 package com.github.mysql.repository;
 
-import com.github.mysql.pojo.orm.RoleInfoDO;
+import com.github.mysql.pojo.orm.user.RoleInfoDO;
 import com.github.mysql.pojo.vo.RoleInfoVO;
-import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

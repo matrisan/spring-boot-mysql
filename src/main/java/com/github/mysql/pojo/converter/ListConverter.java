@@ -2,12 +2,10 @@ package com.github.mysql.pojo.converter;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.mysql.pojo.bo.GroupInfoBO;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 
 import javax.persistence.AttributeConverter;
-import javax.persistence.Converter;
 import java.util.List;
 
 /**

@@ -1,7 +1,7 @@
-package com.github.mysql.controller;
+package com.github.mysql.controller.user;
 
 
-import com.github.mysql.pojo.orm.UserInfoDO;
+import com.github.mysql.pojo.orm.user.UserInfoDO;
 import com.github.mysql.pojo.vo.UserInfoVO;
 import com.github.mysql.repository.IUserInfoRepository;
 import org.springframework.data.domain.Page;
@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.util.Collection;
 
 /**
  * <p>
