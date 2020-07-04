@@ -29,7 +29,7 @@ public class InitEmployee {
     public void init() {
         for (int i = 0; i < 10; i++) {
             DepartmentDO department = departmentRepository.findAll().get(0);
-            EmployeeDO employee = EmployeeDO.builder().name("name:" + i).department(department).build();
+            EmployeeDO employee = EmployeeDO.builder().empName("name:" + i).department(department).build();
             repository.save(employee);
         }
     }

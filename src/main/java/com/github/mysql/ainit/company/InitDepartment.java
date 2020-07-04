@@ -21,7 +21,7 @@ public class InitDepartment {
 
     @PostConstruct
     public void init() {
-        DepartmentDO department = DepartmentDO.builder().name("Department").build();
+        DepartmentDO department = DepartmentDO.builder().depName("Department").build();
         departmentRepository.save(department);
     }
 
