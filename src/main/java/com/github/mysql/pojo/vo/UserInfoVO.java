@@ -31,6 +31,7 @@ public class UserInfoVO implements Serializable {
     String username;
 
     Integer age;
+
     // 不支持
     // Set<RoleInfoDO> roles;
 

@@ -18,11 +18,26 @@ import java.util.Set;
 
 public interface IUserProjectionVO {
 
+    /**
+     * 获取用户名
+     *
+     * @return String
+     */
     @Value("#{@usernameMapper.getUsername(target.username)}")
     String getUsername();
 
+    /**
+     * 获取年龄
+     *
+     * @return String
+     */
     String getAge();
 
+    /**
+     * 获取角色
+     *
+     * @return Set
+     */
     @JsonManagedReference
     Set<IRoleProjectionVO> getRoles();
 

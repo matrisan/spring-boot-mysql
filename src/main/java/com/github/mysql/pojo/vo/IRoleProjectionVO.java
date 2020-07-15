@@ -17,10 +17,25 @@ import java.util.Set;
 
 public interface IRoleProjectionVO {
 
+    /**
+     * 获取角色名
+     *
+     * @return String
+     */
     String getRoleName();
 
+    /**
+     * 获取角色Code
+     *
+     * @return String
+     */
     String getRoleCode();
 
+    /**
+     * 获取用户
+     *
+     * @return Set
+     */
     @JsonBackReference
     Set<IUserProjectionVO> getUsers();
 }
