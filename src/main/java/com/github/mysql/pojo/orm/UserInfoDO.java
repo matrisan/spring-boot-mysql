@@ -1,6 +1,7 @@
 package com.github.mysql.pojo.orm;
 
 import com.github.mysql.pojo.BaseEntity;
+import com.github.mysql.pojo.converter.UsernameConverter;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,6 +15,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.FetchType;
@@ -51,6 +53,7 @@ public class UserInfoDO extends BaseEntity {
     private static final long serialVersionUID = 460626250371942731L;
 
     @Column(name = "name", nullable = false, columnDefinition = "varchar(20) default '默认名字' comment '我是username注释'")
+    @Convert(converter = UsernameConverter.class)
     private String username;
 
     @Column(name = "age", nullable = false, columnDefinition = "INT(4) default 18 comment '我是age注释'")
