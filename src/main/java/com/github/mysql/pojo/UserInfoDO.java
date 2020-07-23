@@ -51,8 +51,8 @@ public class UserInfoDO extends BaseEntity {
     private String role;
 
     @DomainEvents
-    public List<UserSaveEvent> domainEvents() {
-        return Lists.newArrayList(new UserSaveEvent(this.getId()));
+    public List<UserInfoDO> domainEvents() {
+        return Lists.newArrayList(this);
     }
 
     @AfterDomainEventPublication

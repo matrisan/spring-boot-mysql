@@ -1,6 +1,7 @@
 package com.github.mysql.listener;
 
 
+import com.github.mysql.pojo.UserInfoDO;
 import com.github.mysql.pojo.UserSaveEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
@@ -22,9 +23,15 @@ public class UserInfoListener {
     }
 
 
+//    @TransactionalEventListener(phase = TransactionPhase.BEFORE_COMMIT)
+//    public void userInfoSave2(@NotNull UserSaveEvent userInfo) {
+//        log.error("userInfoSave2-username:{}", userInfo.getId());
+//    }
+
     @TransactionalEventListener(phase = TransactionPhase.BEFORE_COMMIT)
-    public void userInfoSave2(@NotNull UserSaveEvent userInfo) {
+    public void userInfoSave2(@NotNull UserInfoDO userInfo) {
         log.error("userInfoSave2-username:{}", userInfo.getId());
     }
+
 
 }
