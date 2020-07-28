@@ -1,7 +1,6 @@
 package com.github.mysql.config;
 
 import org.jetbrains.annotations.NotNull;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
@@ -20,7 +19,6 @@ import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Properties;
 
 /**
  * @author 石少东
@@ -58,7 +56,7 @@ public class PrimarySourceConfig {
         return builder
                 .dataSource(primaryDataSource)
                 .properties(getVendorProperties())
-                .packages("xin.zhuyao.springbootjapdatasource.domain.primary")
+                .packages("com.github.mysql.pojo.orm.primary")
                 .persistenceUnit("primaryPersistenceUnit")
                 .build();
     }

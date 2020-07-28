@@ -1,7 +1,6 @@
 package com.github.mysql.config;
 
 import org.jetbrains.annotations.NotNull;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
@@ -19,7 +18,6 @@ import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Properties;
 
 /**
  * @author 石少东
@@ -44,17 +42,17 @@ public class SecondarySourceConfig {
     @Resource
     private Environment env;
 
-    @Bean(name = "entityManagerSecond")
+    @Bean(name = "entityManagerSecondary")
     public EntityManager entityManager(EntityManagerFactoryBuilder builder) {
         return Objects.requireNonNull(entityManagerFactorySecond(builder).getObject()).createEntityManager();
     }
 
-    @Bean(name = "entityManagerFactorySecond")
+    @Bean(name = "entityManagerFactorySecondary")
     public LocalContainerEntityManagerFactoryBean entityManagerFactorySecond (@NotNull EntityManagerFactoryBuilder builder) {
         return builder
                 .dataSource(secondDataSource)
                 .properties(getVendorProperties())
-                .packages("xin.zhuyao.springbootjapdatasource.domain.second")
+                .packages("com.github.mysql.pojo.orm.secondary")
                 .persistenceUnit("secondPersistenceUnit")
                 .build();
     }
@@ -69,7 +67,7 @@ public class SecondarySourceConfig {
         return jpaProperties;
     }
 
-    @Bean(name = "transactionManagerSecond")
+    @Bean(name = "transactionManagerSecondary")
     PlatformTransactionManager transactionManagerSecond(EntityManagerFactoryBuilder builder) {
         return new JpaTransactionManager(Objects.requireNonNull(entityManagerFactorySecond(builder).getObject()));
     }
