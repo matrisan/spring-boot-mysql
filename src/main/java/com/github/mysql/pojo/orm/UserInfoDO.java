@@ -9,19 +9,28 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.MapKey;
+import javax.persistence.MapKeyColumn;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -44,7 +53,7 @@ import java.util.Map;
 @AllArgsConstructor
 @Entity
 @Table(
-        name = "UserInfoDO",
+        name = "system_user",
         uniqueConstraints = {@UniqueConstraint(columnNames = {"username"}, name = "IDX_UNIQUE_NAME")}
 )
 @DynamicInsert
@@ -53,10 +62,16 @@ public class UserInfoDO extends BaseEntity {
 
     private static final long serialVersionUID = -2204556400282928461L;
 
-    @Column(name = "username", nullable = false, columnDefinition = "varchar(100) default '默认名字' comment '我是username注释'")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ColumnDefault("'默认名字123'")
+    @Column(name = "username", nullable = false, columnDefinition = "VARCHAR(100) DEFAULT '默认名字' COMMENT '我是username注释'")
     private String username;
 
-    @Column(name = "age", nullable = false, columnDefinition = "INT(11) default 18 comment '我是age注释'")
+    @ColumnDefault("1000")
+    @Column(name = "age", nullable = false, length = 11, columnDefinition = "COMMENT '我是age注释'")
     private Integer age;
 
     @MapKey

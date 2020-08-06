@@ -40,6 +40,10 @@ public class GroupInfoDO  extends BaseEntity {
 
     private static final long serialVersionUID = 5856498105715302636L;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String name;
 
 }

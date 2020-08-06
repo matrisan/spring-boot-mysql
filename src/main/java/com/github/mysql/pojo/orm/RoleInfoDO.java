@@ -9,6 +9,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -16,6 +17,9 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.MapKey;
 import javax.persistence.Table;
@@ -41,14 +45,18 @@ import java.util.Map;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "RoleInfoDO")
+@Table(name = "system_role")
 @DynamicInsert
 @DynamicUpdate
 public class RoleInfoDO extends BaseEntity {
 
     private static final long serialVersionUID = 8187760800498783769L;
 
-    //    @ColumnDefault("默认名字")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ColumnDefault("'默认'")
     @Column(name = "role_name", columnDefinition = "varchar(100) default '默认名字' comment '我是username注释'")
     private String roleName;
 

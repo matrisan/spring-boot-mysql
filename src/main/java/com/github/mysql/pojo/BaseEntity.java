@@ -37,10 +37,6 @@ public abstract class BaseEntity implements Serializable {
 
     private static final long serialVersionUID = -2179485616434241254L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @Column(columnDefinition = "INT(1) DEFAULT 0 COMMENT '改记录是否删除'")
     private Boolean deleted;
 

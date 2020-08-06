@@ -32,16 +32,14 @@ public class InitUserIndex2 {
 
     @PostConstruct
     public void init() throws Exception {
-        userInfoRepository.deleteAll();
+//        userInfoRepository.deleteAll();
         for (int i = 0; i < 10; i++) {
-
-            RoleInfoDO roleInfoDO = roleInfoRepository.save(
-                    RoleInfoDO.builder().roleName("name:" + i).build()
-            );
+            RoleInfoDO roleInfoDO = roleInfoRepository.save(RoleInfoDO.builder().roleName("name:" + i).build());
             Map<Long, RoleInfoDO> roles = Maps.newHashMap();
             roles.put(roleInfoDO.getId(), roleInfoDO);
             UserInfoDO userInfoDO = userInfoRepository.save(
-                    UserInfoDO.builder().username("name:" + i)
+                    UserInfoDO.builder()
+                            .username("name:" + i)
                             .age(i)
                             .roles(roles)
                             .build()
