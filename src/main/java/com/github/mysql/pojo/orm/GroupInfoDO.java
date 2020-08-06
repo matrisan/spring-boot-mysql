@@ -1,8 +1,10 @@
 package com.github.mysql.pojo.orm;
 
+import com.github.mysql.pojo.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +27,7 @@ import javax.persistence.Table;
  * @since 0.0.1
  */
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @Slf4j
 @Builder
@@ -33,12 +36,9 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @Entity
 @Table(name = "GroupInfoDO")
-public class GroupInfoDO {
+public class GroupInfoDO  extends BaseEntity {
 
-    @Id
-    @Column(name = "group_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long groupId;
+    private static final long serialVersionUID = 5856498105715302636L;
 
     private String name;
 

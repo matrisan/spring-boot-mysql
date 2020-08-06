@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.data.util.Streamable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +21,7 @@ import javax.annotation.Resource;
 import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
 import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * <p>

@@ -1,7 +1,11 @@
 package com.github.mysql.repository;
 
+import com.github.mysql.pojo.orm.GroupInfoDO;
 import com.github.mysql.pojo.orm.UserInfoDO;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.util.Streamable;
+
+import java.util.stream.Stream;
 
 /**
  * <p>

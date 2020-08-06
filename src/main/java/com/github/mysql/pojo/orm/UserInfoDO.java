@@ -1,5 +1,6 @@
 package com.github.mysql.pojo.orm;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.github.mysql.pojo.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,19 +12,17 @@ import lombok.extern.slf4j.Slf4j;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.ColumnResult;
-import javax.persistence.ConstructorResult;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Index;
-import javax.persistence.SqlResultSetMapping;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.MapKey;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-import javax.validation.executable.ExecutableType;
-import javax.validation.executable.ValidateOnExecution;
+import java.util.Map;
 
 /**
  * <p>
@@ -46,16 +45,13 @@ import javax.validation.executable.ValidateOnExecution;
 @Entity
 @Table(
         name = "UserInfoDO",
-        uniqueConstraints = {@UniqueConstraint(columnNames = {"username"}, name = "IDX_UNIQUE_NAME")},
-        indexes = {@Index(columnList = "role", name = "IDX_NON_UNIQUE_ROLE")}
+        uniqueConstraints = {@UniqueConstraint(columnNames = {"username"}, name = "IDX_UNIQUE_NAME")}
 )
 @DynamicInsert
 @DynamicUpdate
 public class UserInfoDO extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private static final long serialVersionUID = -2204556400282928461L;
 
     @Column(name = "username", nullable = false, columnDefinition = "varchar(100) default '默认名字' comment '我是username注释'")
     private String username;
@@ -63,7 +59,15 @@ public class UserInfoDO extends BaseEntity {
     @Column(name = "age", nullable = false, columnDefinition = "INT(11) default 18 comment '我是age注释'")
     private Integer age;
 
-    private String role;
+    @MapKey
+    @JoinTable(
+            name = "system_user_role",
+            joinColumns = {@JoinColumn(name = "mid_user_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "mid_role_id", referencedColumnName = "id")}
+    )
+    @ManyToMany(targetEntity = RoleInfoDO.class, cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private Map<Long, RoleInfoDO> roles;
 
 }
 

@@ -1,23 +1,25 @@
 package com.github.mysql.pojo.orm;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.github.mysql.pojo.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.ColumnResult;
-import javax.persistence.ConstructorResult;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SqlResultSetMapping;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
+import javax.persistence.MapKey;
 import javax.persistence.Table;
+import java.util.Map;
 
 /**
  * <p>
@@ -31,9 +33,7 @@ import javax.persistence.Table;
  */
 
 
-
-
-
+@EqualsAndHashCode(callSuper = true)
 @Data
 @Slf4j
 @Builder
@@ -44,22 +44,20 @@ import javax.persistence.Table;
 @Table(name = "RoleInfoDO")
 @DynamicInsert
 @DynamicUpdate
-public class RoleInfoDO {
+public class RoleInfoDO extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private static final long serialVersionUID = 8187760800498783769L;
 
     //    @ColumnDefault("默认名字")
     @Column(name = "role_name", columnDefinition = "varchar(100) default '默认名字' comment '我是username注释'")
     private String roleName;
 
-    //    @ColumnDefault("18")
-    @Column(name = "age", columnDefinition = "INT(11) default 18 comment '我是age注释'")
-    private Integer age;
 
-    @Column(name = "note", columnDefinition = "VARCHAR(100) DEFAULT '' COMMENT '我是 note 注释'")
-    private String note;
+    @MapKey
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH, mappedBy = "roles")
+    @JsonBackReference
+    private Map<Long, UserInfoDO> users;
+
 }
 
 
