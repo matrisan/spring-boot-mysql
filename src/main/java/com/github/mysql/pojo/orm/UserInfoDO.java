@@ -14,9 +14,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.CascadeType;
-import javax.persistence.CollectionTable;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -26,11 +24,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.MapKey;
-import javax.persistence.MapKeyColumn;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -63,6 +58,7 @@ public class UserInfoDO extends BaseEntity {
     private static final long serialVersionUID = -2204556400282928461L;
 
     @Id
+//    @SecondaryTable@PrimaryKeyJoinColumn(name="ADDRESS_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 

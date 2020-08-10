@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Stream;
 
 /**
  * <p>
@@ -35,13 +34,13 @@ public class GroupInfoController {
         return repository.findAll();
     }
 
-    @GetMapping("group/{group_id}")
-    public GroupInfoDO findById(@PathVariable("group_id") GroupInfoDO groupInfo) {
+    @GetMapping("group/{id}")
+    public GroupInfoDO findById(@PathVariable("id") GroupInfoDO groupInfo) {
         return groupInfo;
     }
 
-    @GetMapping("groups/{group_id}")
-    public Set<GroupInfoDO> findById(@PathVariable("group_id") Set<GroupInfoDO> groupInfos) {
+    @GetMapping("groups/{id}")
+    public Set<GroupInfoDO> findById(@PathVariable("id") Set<GroupInfoDO> groupInfos) {
         return groupInfos;
     }
 
