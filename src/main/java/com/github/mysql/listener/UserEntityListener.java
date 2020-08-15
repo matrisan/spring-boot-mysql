@@ -1,29 +1,14 @@
 package com.github.mysql.listener;
 
 import com.github.mysql.pojo.UserInfoDO;
-import com.github.mysql.service.BeanUtil;
 import com.github.mysql.service.UserService;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
-import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.ObjectFactory;
-import org.springframework.beans.factory.annotation.Autowire;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Configurable;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
-import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.data.auditing.AuditingHandler;
-import org.springframework.lang.Nullable;
-import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
-import javax.annotation.Resource;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.PostLoad;
 import javax.persistence.PostPersist;
 import javax.persistence.PostRemove;
@@ -40,7 +25,7 @@ import javax.persistence.PreUpdate;
 
 @Slf4j
 @Setter(onMethod=@__(@Autowired))
-@Configurable
+//@Configurable
 public class UserEntityListener {
 
     private ObjectFactory<UserService> handler;

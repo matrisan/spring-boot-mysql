@@ -4,7 +4,8 @@ import com.github.mysql.pojo.UserInfoDO;
 import com.github.mysql.repository.IUserInfoRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -27,5 +28,11 @@ public class UserInfoController {
         repository.updateAgeByUsername(username, age);
         return null;
     }
+
+    @PostMapping("/user")
+    public UserInfoDO save(@RequestBody UserInfoDO userInfo) {
+        return repository.save(userInfo);
+    }
+
 
 }
