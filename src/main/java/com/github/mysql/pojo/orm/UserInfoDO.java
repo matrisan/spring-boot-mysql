@@ -1,5 +1,6 @@
-package com.github.mysql.pojo;
+package com.github.mysql.pojo.orm;
 
+import com.github.mysql.pojo.BaseEntity;
 import com.google.common.collect.Lists;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,6 +20,9 @@ import javax.persistence.Index;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import java.util.List;
+import java.util.Objects;
+
+import static com.github.mysql.pojo.constant.TableName.USER_INFO;
 
 /**
  * <p>
@@ -40,14 +44,15 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(
-        name = "UserInfoDO",
+        name = USER_INFO,
         uniqueConstraints = {@UniqueConstraint(columnNames = {"username"}, name = "IDX_UNIQUE_NAME")},
         indexes = {@Index(columnList = "role", name = "IDX_NON_UNIQUE_ROLE")}
 )
 @DynamicInsert
 @DynamicUpdate
-//@EntityListeners(UserEntityListener.class)
 public class UserInfoDO extends BaseEntity {
+
+    private static final long serialVersionUID = -7565947168915682933L;
 
     @Column(name = "username", nullable = false, columnDefinition = "varchar(100) default '默认名字' comment '我是username注释'")
     private String username;
@@ -67,6 +72,22 @@ public class UserInfoDO extends BaseEntity {
         System.out.println("CallBackMethod");
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        UserInfoDO that = (UserInfoDO) o;
+        return Objects.equals(getId(), that.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId());
+    }
 }
 
 

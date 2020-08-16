@@ -1,7 +1,7 @@
 package com.github.mysql.controller;
 
 
-import com.github.mysql.pojo.UserInfoDO;
+import com.github.mysql.pojo.orm.UserInfoDO;
 import com.github.mysql.pojo.UserInfoDTO;
 import com.github.mysql.repository.IUserInfoRepository;
 import lombok.extern.slf4j.Slf4j;

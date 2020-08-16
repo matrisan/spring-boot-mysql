@@ -1,6 +1,6 @@
 package com.github.mysql.service;
 
-import com.github.mysql.pojo.UserInfoDO;
+import com.github.mysql.pojo.orm.UserInfoDO;
 import org.springframework.stereotype.Service;
 
 /**

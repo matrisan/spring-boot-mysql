@@ -1,6 +1,6 @@
 package com.github.mysql.listener;
 
-import com.github.mysql.pojo.UserInfoDO;
+import com.github.mysql.pojo.orm.UserInfoDO;
 import com.github.mysql.service.UserService;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;

@@ -1,6 +1,6 @@
 package com.github.mysql.hibernate;
 
-import com.github.mysql.pojo.UserInfoDO;
+import com.github.mysql.pojo.orm.UserInfoDO;
 import io.github.teastman.hibernate.annotation.HibernateEventListener;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.event.spi.PreInsertEvent;

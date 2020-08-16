@@ -1,6 +1,6 @@
 package com.github.mysql.controller;
 
-import com.github.mysql.pojo.UserInfoDO;
+import com.github.mysql.pojo.orm.UserInfoDO;
 import com.github.mysql.repository.IUserInfoRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
