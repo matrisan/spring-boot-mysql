@@ -1,6 +1,6 @@
 package com.github.mysql.pojo;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -69,7 +69,7 @@ public class ManyToManyUserDO implements Serializable {
             joinColumns = {@JoinColumn(name = "mid_user_id", referencedColumnName = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "mid_role_id", referencedColumnName = "role_id")}
     )
-    @JsonIgnoreProperties(value = "users")
+    @JsonManagedReference
     private Set<ManyToManyRoleDO> roles;
 
 }

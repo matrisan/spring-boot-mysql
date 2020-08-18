@@ -2,6 +2,11 @@ package com.github.mysql.controller;
 
 import com.github.mysql.pojo.ManyToManyRoleDO;
 import com.github.mysql.repository.ISystemRoleRepository;
+import com.github.mysql.repository.ISystemUserRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,26 +33,35 @@ import java.util.List;
 public class RoleController {
 
     @Resource
-    private ISystemRoleRepository repository;
+    private ISystemUserRepository userRepository;
+
+    @Resource
+    private ISystemRoleRepository roleRepository;
+
+    @GetMapping("roles/{userId}")
+    public Page<ManyToManyRoleDO> findAllRoles(@PathVariable Long userId,
+                                               @PageableDefault(direction = Sort.Direction.DESC, size = 4, sort = "createDate") Pageable pageable) {
+        return userRepository.findAllRole(userId, pageable);
+    }
 
     @GetMapping("roles")
     public List<ManyToManyRoleDO> findAll() {
-        return repository.findAll();
+        return roleRepository.findAll();
     }
 
     @PostMapping("role")
     public ManyToManyRoleDO save(@RequestBody ManyToManyRoleDO manyRole) {
-        return repository.save(manyRole);
+        return roleRepository.save(manyRole);
     }
 
     @PutMapping("role")
     public ManyToManyRoleDO update(@RequestBody ManyToManyRoleDO manyRole) {
-        return repository.save(manyRole);
+        return roleRepository.save(manyRole);
     }
 
     @DeleteMapping("role/{roleId}")
     public String delete(@PathVariable long roleId) {
-        repository.deleteById(roleId);
+        roleRepository.deleteById(roleId);
         return "删除数据";
     }
 
