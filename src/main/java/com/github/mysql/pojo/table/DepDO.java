@@ -1,6 +1,6 @@
 package com.github.mysql.pojo.table;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -16,11 +16,12 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.MapKey;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import java.io.Serializable;
-import java.util.Set;
+import java.util.Map;
 
 
 /**
@@ -54,10 +55,11 @@ public class DepDO implements Serializable {
 
     private String depName;
 
+    @MapKey
     @OrderBy("empId asc")
 //    @NotFound(action = NotFoundAction.IGNORE)
     @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "dep")
-//    @JsonIgnoreProperties(value = {"dep"})
-    private Set<EmpDO> emps;
+    @JsonManagedReference
+    private Map<Long, EmpDO> emps;
 
 }

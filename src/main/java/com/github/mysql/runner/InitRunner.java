@@ -1,7 +1,14 @@
 package com.github.mysql.runner;
 
+import com.github.mysql.pojo.table.DepDO;
+import com.github.mysql.pojo.table.EmpDO;
+import com.github.mysql.repository.IDepRepository;
+import com.github.mysql.repository.IEmpRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.Resource;
 
 /**
  * <p>
@@ -13,11 +20,29 @@ import org.springframework.stereotype.Component;
  * @version 0.0.1
  * @since 0.0.1
  */
+
+@Slf4j
 @Component
 public class InitRunner implements CommandLineRunner {
 
+    @Resource
+    private IDepRepository depRepository;
+
+    @Resource
+    private IEmpRepository empRepository;
+
     @Override
     public void run(String... args) throws Exception {
+
+        DepDO dep = DepDO.builder().depName("TestDep").build();
+        dep = depRepository.save(dep);
+        log.info("保存 dep - {}", dep.toString());
+        for (int i = 0; i < 13; i++) {
+            EmpDO emp = EmpDO.builder().empName("TestEmp:" + i).dep(dep).build();
+            empRepository.save(emp);
+            log.info("保存 emp - {}", i);
+        }
+
 
     }
 
