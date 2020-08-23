@@ -40,8 +40,8 @@ public class EmpController {
         return repository.save(emp);
     }
 
-    @PutMapping("emp")
-    public EmpDO update(@RequestBody EmpDO emp) {
+    @PutMapping("emp/{empId}")
+    public EmpDO update(@PathVariable("empId") EmpDO emp,@RequestBody EmpDO emp) {
         return repository.save(emp);
     }
 
