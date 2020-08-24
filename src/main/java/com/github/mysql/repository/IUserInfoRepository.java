@@ -34,6 +34,14 @@ public interface IUserInfoRepository extends JpaRepository<UserInfoDO, Long> {
     @Query("SELECT user.roles FROM UserInfoDO AS user WHERE user.username=?1")
     Set<RoleInfoDO> findRolesByUsername(String username);
 
+    /**
+     * 根据姓名查找所有的角色
+     *
+     * @param username 姓名
+     * @param clz      类型
+     * @param <T>      泛型
+     * @return Set
+     */
     @Query("SELECT user.roles FROM UserInfoDO AS user WHERE user.username=?1")
     <T> Set<T> findRolesByUsername(String username, Class<T> clz);
 
