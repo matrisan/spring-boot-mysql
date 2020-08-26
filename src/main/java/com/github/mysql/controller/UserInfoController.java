@@ -24,9 +24,9 @@ public class UserInfoController {
     private IUserInfoRepository repository;
 
     @GetMapping("/user/{username}/{age}")
-    public UserInfoDO updateAge(@PathVariable String username, @PathVariable Integer age) {
+    public String updateAge(@PathVariable String username, @PathVariable Integer age) {
         repository.updateAgeByUsername(username, age);
-        return null;
+        return "updateAge:" + username + "  " + age;
     }
 
     @PostMapping("/user")

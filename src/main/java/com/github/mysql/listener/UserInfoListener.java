@@ -22,12 +22,6 @@ public class UserInfoListener {
         log.error("userInfoSave1-username:{}", userInfo.getId());
     }
 
-
-//    @TransactionalEventListener(phase = TransactionPhase.BEFORE_COMMIT)
-//    public void userInfoSave2(@NotNull UserSaveEvent userInfo) {
-//        log.error("userInfoSave2-username:{}", userInfo.getId());
-//    }
-
     @TransactionalEventListener(phase = TransactionPhase.BEFORE_COMMIT)
     public void userInfoSave2(@NotNull UserInfoDO userInfo) {
         log.error("userInfoSave2-username:{}", userInfo.getId());
