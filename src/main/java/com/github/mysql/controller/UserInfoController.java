@@ -2,6 +2,7 @@ package com.github.mysql.controller;
 
 
 import com.github.mysql.pojo.orm.UserInfoDO;
+import com.github.mysql.pojo.vo.IRoleProjectionVO;
 import com.github.mysql.pojo.vo.IUserProjectionVO;
 import com.github.mysql.pojo.vo.UserInfoVO;
 import com.github.mysql.repository.IUserInfoRepository;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.util.Collection;
+import java.util.List;
 
 /**
  * <p>
@@ -63,6 +64,13 @@ public class UserInfoController {
     @PostMapping("user")
     public UserInfoDO findAll(@RequestBody UserInfoDO userIndex) {
         return repository.save(userIndex);
+    }
+
+    @GetMapping("/user/roles/projection/{username}")
+    public List<IRoleProjectionVO> getAllRoles(@PathVariable String username) {
+//        return repository.findRolesByUsername(username);
+//        return repository.findRolesByUsername(username, RoleInfoDO.class);
+        return repository.findRolesByUsername(username, IRoleProjectionVO.class);
     }
 
 }

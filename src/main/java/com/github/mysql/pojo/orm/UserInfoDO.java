@@ -1,5 +1,6 @@
 package com.github.mysql.pojo.orm;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.github.mysql.pojo.BaseEntity;
 import com.github.mysql.pojo.converter.UsernameConverter;
 import lombok.AllArgsConstructor;
@@ -23,7 +24,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import java.util.Set;
+import java.util.List;
 
 /**
  * <p>
@@ -65,7 +66,8 @@ public class UserInfoDO extends BaseEntity {
             joinColumns = {@JoinColumn(name = "mid_user_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "mid_role_id", referencedColumnName = "id")}
     )
-    private Set<RoleInfoDO> roles;
+    @JsonManagedReference
+    private List<RoleInfoDO> roles;
 
 }
 

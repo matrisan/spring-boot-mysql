@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -32,7 +33,7 @@ public interface IUserInfoRepository extends JpaRepository<UserInfoDO, Long> {
      * @return Set
      */
     @Query("SELECT user.roles FROM UserInfoDO AS user WHERE user.username=?1")
-    Set<RoleInfoDO> findRolesByUsername(String username);
+    List<RoleInfoDO> findRolesByUsername(String username);
 
     /**
      * 根据姓名查找所有的角色
@@ -43,7 +44,7 @@ public interface IUserInfoRepository extends JpaRepository<UserInfoDO, Long> {
      * @return Set
      */
     @Query("SELECT user.roles FROM UserInfoDO AS user WHERE user.username=?1")
-    <T> Set<T> findRolesByUsername(String username, Class<T> clz);
+    <T> List<T> findRolesByUsername(String username, Class<T> clz);
 
     /**
      * 分页查询所有的UserInfoDO，并将字段投影到泛型 T 的字段上

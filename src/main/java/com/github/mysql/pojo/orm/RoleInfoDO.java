@@ -1,5 +1,6 @@
 package com.github.mysql.pojo.orm;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.github.mysql.pojo.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,7 +20,7 @@ import javax.persistence.EntityListeners;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import java.util.Set;
+import java.util.List;
 
 /**
  * <p>
@@ -57,7 +58,8 @@ public class RoleInfoDO extends BaseEntity {
     private String roleCode;
 
     @ManyToMany(targetEntity = UserInfoDO.class, fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH}, mappedBy = "roles")
-    private Set<UserInfoDO> users;
+    @JsonBackReference
+    private List<UserInfoDO> users;
 
 }
 
