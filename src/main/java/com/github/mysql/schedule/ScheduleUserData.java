@@ -3,7 +3,9 @@ package com.github.mysql.schedule;
 import com.github.mysql.pojo.orm.UserInfoDO;
 import com.github.mysql.repository.IUserInfoRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
@@ -12,8 +14,8 @@ import java.util.Date;
  * @date 2020-05-27 11:08
  */
 
-//@Component
-//@EnableScheduling
+@Component
+@EnableScheduling
 @RequiredArgsConstructor
 public class ScheduleUserData {
 

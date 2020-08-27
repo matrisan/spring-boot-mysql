@@ -7,6 +7,8 @@ import org.hibernate.event.spi.PreInsertEvent;
 import org.hibernate.event.spi.SaveOrUpdateEvent;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
+
 import static io.github.teastman.hibernate.tool.HibernateEventUtils.getPropertyIndex;
 
 /**
@@ -17,10 +19,12 @@ import static io.github.teastman.hibernate.tool.HibernateEventUtils.getPropertyI
 
 @Slf4j
 @Component
-public class AppPreUpdateEventListener2  {
+public class AppPreUpdateEventListener2 {
 
     @HibernateEventListener
     public void onSave(UserInfoDO entity, SaveOrUpdateEvent event) {
+        log.error("onSave - {}", entity.toString());
+
         int index = getPropertyIndex(event, "name");
 //        if (event.getOldState()[index] != event.getState()[index]) {
 //            // The name changed.
@@ -29,6 +33,8 @@ public class AppPreUpdateEventListener2  {
 
     @HibernateEventListener
     public void onUpdate(UserInfoDO entity, PreInsertEvent event) {
+        entity.setUsername("PreInsertEvent " + new Date().toString());
+
         int index = getPropertyIndex(event, "name");
 //        if (event.getOldState()[index] != event.getState()[index]) {
 //            // The name changed.
