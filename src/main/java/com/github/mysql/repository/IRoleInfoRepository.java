@@ -1,12 +1,7 @@
 package com.github.mysql.repository;
 
 import com.github.mysql.pojo.orm.RoleInfoDO;
-import com.github.mysql.pojo.orm.UserInfoDO;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
-
-import java.util.Set;
 
 /**
  * <p>
@@ -21,7 +16,7 @@ import java.util.Set;
 
 public interface IRoleInfoRepository extends JpaRepository<RoleInfoDO, Long> {
 
-    @Query("SELECT role.roleCode FROM RoleInfoDO AS role WHERE role MEMBER OF ")
-    Set<String> findAllRoleCode(@Param("user") UserInfoDO userInfo);
+//    @Query("SELECT role.roleCode FROM RoleInfoDO AS role WHERE role MEMBER OF ")
+//    Set<String> findAllRoleCode(  UserInfoDO userInfo);
 
 }

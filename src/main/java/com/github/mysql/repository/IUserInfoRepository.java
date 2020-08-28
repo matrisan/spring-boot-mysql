@@ -24,9 +24,6 @@ import java.util.Set;
 
 public interface IUserInfoRepository extends JpaRepository<UserInfoDO, Long> {
 
-
-
-
     /**
      * 分页查询所有的UserInfoDO，并将字段投影到泛型 T 的字段上
      *
