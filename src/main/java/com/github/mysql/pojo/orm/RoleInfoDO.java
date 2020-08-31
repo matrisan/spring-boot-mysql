@@ -1,5 +1,6 @@
 package com.github.mysql.pojo.orm;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.github.mysql.pojo.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -56,6 +57,7 @@ public class RoleInfoDO extends BaseEntity {
     private String roleCode;
 
     @ManyToMany(targetEntity = UserInfoDO.class, cascade = {CascadeType.REFRESH}, mappedBy = "roles")
+    @JsonBackReference
     private Set<UserInfoDO> users;
 
 

@@ -1,5 +1,6 @@
 package com.github.mysql.pojo.orm;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.github.mysql.pojo.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,8 +11,6 @@ import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
-import org.springframework.data.annotation.Transient;
-import org.springframework.data.domain.Persistable;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.CascadeType;
@@ -21,6 +20,9 @@ import javax.persistence.EntityListeners;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedAttributeNode;
+import javax.persistence.NamedEntityGraph;
+import javax.persistence.NamedEntityGraphs;
 import javax.persistence.Table;
 import java.util.Set;
 
@@ -35,6 +37,11 @@ import java.util.Set;
  * @since 0.0.1
  */
 
+
+@NamedEntityGraphs(value = {
+        @NamedEntityGraph(name = "UserInfoDO.findAll", attributeNodes = {@NamedAttributeNode("roles")}),
+        @NamedEntityGraph(name = "UserInfoDO.findByUsername", attributeNodes = {@NamedAttributeNode("roles")}),
+})
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Slf4j
@@ -63,6 +70,7 @@ public class UserInfoDO extends BaseEntity {
             joinColumns = {@JoinColumn(name = "mid_user_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "mid_role_id", referencedColumnName = "id")}
     )
+    @JsonManagedReference
     private Set<RoleInfoDO> roles;
 
 }

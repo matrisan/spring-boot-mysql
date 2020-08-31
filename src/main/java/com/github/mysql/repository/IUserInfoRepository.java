@@ -3,12 +3,14 @@ package com.github.mysql.repository;
 import com.github.mysql.pojo.orm.UserInfoDO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -23,6 +25,10 @@ import java.util.Set;
  */
 
 public interface IUserInfoRepository extends JpaRepository<UserInfoDO, Long> {
+
+//    @EntityGraph(value = "UserInfoDO.findAll")
+    @Override
+    List<UserInfoDO> findAll();
 
     /**
      * 分页查询所有的UserInfoDO，并将字段投影到泛型 T 的字段上
@@ -42,6 +48,7 @@ public interface IUserInfoRepository extends JpaRepository<UserInfoDO, Long> {
      * @param <T>  泛型
      * @return Set
      */
+    @EntityGraph(value = "UserInfoDO.findByUsername")
     <T> T findByUsername(String name, Class<T> clz);
 
     /**

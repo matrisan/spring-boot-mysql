@@ -2,6 +2,7 @@ package com.github.mysql.controller;
 
 
 import com.github.mysql.pojo.orm.UserInfoDO;
+import com.github.mysql.pojo.vo.IUserInfoVO;
 import com.github.mysql.pojo.vo.UserInfoVO;
 import com.github.mysql.repository.IUserInfoRepository;
 import org.springframework.data.domain.Page;
@@ -39,10 +40,18 @@ public class UserInfoController {
         return repository.findAllBy(pageable, UserInfoVO.class);
     }
 
-    @GetMapping("user/u/{name}")
-    public UserInfoVO findByUsername(@PathVariable String name) {
+    @GetMapping("user/u1/{name}")
+    public IUserInfoVO findByUsername1(@PathVariable String name) {
+        return repository.findByUsername(name, IUserInfoVO.class);
+    }
+
+    @GetMapping("user/u2/{name}")
+    public UserInfoVO findByUsername2(@PathVariable String name) {
         return repository.findByUsername(name, UserInfoVO.class);
     }
+
+
+
 
 
     @GetMapping("user/roles")
