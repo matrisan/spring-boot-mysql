@@ -9,6 +9,8 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -50,10 +52,11 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "UserInfoDO")
+@Table(name = "user_info")
 @DynamicInsert
 @DynamicUpdate
 @EntityListeners({AuditingEntityListener.class})
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "UserInfoDO")
 public class UserInfoDO extends BaseEntity {
 
     private static final long serialVersionUID = 460626250371942731L;
@@ -71,6 +74,7 @@ public class UserInfoDO extends BaseEntity {
             inverseJoinColumns = {@JoinColumn(name = "mid_role_id", referencedColumnName = "id")}
     )
     @JsonManagedReference
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "RoleInfoDO")
     private Set<RoleInfoDO> roles;
 
 }

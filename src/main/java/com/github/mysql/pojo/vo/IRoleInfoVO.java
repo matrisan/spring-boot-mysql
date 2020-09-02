@@ -1,6 +1,8 @@
 package com.github.mysql.pojo.vo;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import java.util.List;
 
@@ -15,7 +17,7 @@ import java.util.List;
  * @since 0.0.1
  */
 
-
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "RoleInfoDO")
 public interface IRoleInfoVO {
 
     String getRoleName();
@@ -23,6 +25,7 @@ public interface IRoleInfoVO {
     String getRoleCode();
 
     @JsonBackReference
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "UserInfoDO")
     List<IUserInfoVO> getUsers();
 
 }

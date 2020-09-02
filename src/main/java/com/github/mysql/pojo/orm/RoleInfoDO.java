@@ -9,6 +9,8 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -41,23 +43,24 @@ import java.util.Set;
 @AllArgsConstructor
 @EqualsAndHashCode(exclude = "users", callSuper = false)
 @Entity
-@Table(name = "RoleInfoDO")
+@Table(name = "role_info")
 @DynamicInsert
 @DynamicUpdate
 @EntityListeners({AuditingEntityListener.class})
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "RoleInfoDO")
 public class RoleInfoDO extends BaseEntity {
 
     private static final long serialVersionUID = -8807482859115915839L;
 
-    //    @ColumnDefault("默认名字")
-    @Column(name = "role_name", columnDefinition = "varchar(20) default '默认名字' comment '我是roleName注释'")
+    @Column(name = "role_name", columnDefinition = "VARCHAR(20) DEFAULT '默认roleName' COMMENT '我是roleName注释'")
     private String roleName;
 
-    @Column(name = "role_code", columnDefinition = "varchar(20) default '默认名字' comment '我是roleCode注释'")
+    @Column(name = "role_code", columnDefinition = "VARCHAR(20) DEFAULT '默认roleCode' COMMENT '我是roleCode注释'")
     private String roleCode;
 
     @ManyToMany(targetEntity = UserInfoDO.class, cascade = {CascadeType.REFRESH}, mappedBy = "roles")
     @JsonBackReference
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "UserInfoDO")
     private Set<UserInfoDO> users;
 
 

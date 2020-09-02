@@ -7,9 +7,9 @@ import com.github.mysql.repository.IUserInfoRepository;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
 import java.util.List;
 
 /**
@@ -24,14 +24,14 @@ import java.util.List;
  */
 @Component
 @RequiredArgsConstructor
-public class InitUserIndex {
+public class InitUserIndex implements CommandLineRunner {
 
     private final IUserInfoRepository userInfoRepository;
 
     private final IRoleInfoRepository roleInfoRepository;
 
-    @PostConstruct
-    public void init() {
+    @Override
+    public void run(String... args) throws Exception {
         userInfoRepository.deleteAll();
         roleInfoRepository.deleteAll();
         RoleInfoDO roleInfoDO1 = roleInfoRepository.save(RoleInfoDO.builder().roleName("role-test1").build());

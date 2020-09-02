@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 /**
  * @author shao
  */
+
 @EnableJpaAuditing
 @SpringBootApplication
 @EnableTransactionManagement
