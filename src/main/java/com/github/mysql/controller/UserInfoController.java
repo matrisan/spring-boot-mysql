@@ -1,13 +1,14 @@
 package com.github.mysql.controller;
 
 
+import com.github.mysql.pojo.dto.QueryConditionsDTO;
 import com.github.mysql.pojo.orm.UserInfoDO;
 import com.github.mysql.pojo.vo.IUserInfoVO;
 import com.github.mysql.pojo.vo.UserInfoVO;
 import com.github.mysql.repository.IUserInfoRepository;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+
+import static org.springframework.data.domain.ExampleMatcher.GenericPropertyMatchers.endsWith;
+import static org.springframework.data.domain.ExampleMatcher.GenericPropertyMatchers.startsWith;
 
 /**
  * <p>
@@ -40,39 +44,28 @@ public class UserInfoController {
         return repository.findAllBy(pageable, UserInfoVO.class);
     }
 
+    @GetMapping("users")
+    public Page<IUserInfoVO> findAll(QueryConditionsDTO query, @PageableDefault Pageable pageable) {
+        ExampleMatcher matcher = ExampleMatcher.matching()
+                .withMatcher("firstname", endsWith())
+                .withMatcher("lastname", startsWith().ignoreCase());
+
+
+//        Example<UserInfoDO> example = Example.of(UserInfoDO, matcher);
+
+        return null;
+    }
+
+
     @GetMapping("user/u1/{name}")
     public IUserInfoVO findByUsername1(@PathVariable String name) {
         return repository.findByUsername(name, IUserInfoVO.class);
-    }
-
-    @GetMapping("user/u2/{name}")
-    public UserInfoVO findByUsername2(@PathVariable String name) {
-        return repository.findByUsername(name, UserInfoVO.class);
-    }
-
-
-
-
-
-    @GetMapping("user/roles")
-    public Page<String> findAllRoles(@PageableDefault(size = 4, direction = Sort.Direction.DESC) Pageable pageable) {
-        return repository.findAllRoles(pageable);
-    }
-
-    @GetMapping("user/id/{userId}")
-    public UserInfoDO getByUserId(@PathVariable("userId") UserInfoDO userInfoDO) {
-        return userInfoDO;
     }
 
     @PostMapping("user")
     public UserInfoDO findAll(@RequestBody UserInfoDO userIndex) {
         return repository.save(userIndex);
     }
-
-//    @GetMapping("/user/username/{username}")
-//    public UserInfoVO getByUsername(@PathVariable String username) {
-//        return repository.findByUsername(username);
-//    }
 
     @DeleteMapping("{id}")
     public String deleteById(@PathVariable Long id) {

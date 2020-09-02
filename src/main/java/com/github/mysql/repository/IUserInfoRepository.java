@@ -26,7 +26,6 @@ import java.util.Set;
 
 public interface IUserInfoRepository extends JpaRepository<UserInfoDO, Long> {
 
-//    @EntityGraph(value = "UserInfoDO.findAll")
     @Override
     List<UserInfoDO> findAll();
 
