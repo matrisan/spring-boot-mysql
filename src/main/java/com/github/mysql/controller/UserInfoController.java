@@ -42,17 +42,13 @@ public class UserInfoController {
 
     @GetMapping("user/u1/{name}")
     public IUserInfoVO findByUsername1(@PathVariable String name) {
-        return repository.findByUsername(name, IUserInfoVO.class);
+        return repository.findByUsername(name);
     }
 
     @GetMapping("user/u2/{name}")
-    public UserInfoVO findByUsername2(@PathVariable String name) {
-        return repository.findByUsername(name, UserInfoVO.class);
+    public UserInfoDO findByUsername2(@PathVariable String name) {
+        return repository.findByUsernameEquals(name);
     }
-
-
-
-
 
     @GetMapping("user/roles")
     public Page<String> findAllRoles(@PageableDefault(size = 4, direction = Sort.Direction.DESC) Pageable pageable) {
@@ -65,14 +61,9 @@ public class UserInfoController {
     }
 
     @PostMapping("user")
-    public UserInfoDO findAll(@RequestBody UserInfoDO userIndex) {
+    public UserInfoDO update(@RequestBody UserInfoDO userIndex) {
         return repository.save(userIndex);
     }
-
-//    @GetMapping("/user/username/{username}")
-//    public UserInfoVO getByUsername(@PathVariable String username) {
-//        return repository.findByUsername(username);
-//    }
 
     @DeleteMapping("{id}")
     public String deleteById(@PathVariable Long id) {

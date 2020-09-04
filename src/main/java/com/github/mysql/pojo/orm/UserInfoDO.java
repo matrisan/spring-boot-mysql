@@ -20,11 +20,12 @@ import javax.persistence.EntityListeners;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.MapKey;
 import javax.persistence.NamedAttributeNode;
 import javax.persistence.NamedEntityGraph;
 import javax.persistence.NamedEntityGraphs;
 import javax.persistence.Table;
-import java.util.Set;
+import java.util.Map;
 
 /**
  * <p>
@@ -38,10 +39,6 @@ import java.util.Set;
  */
 
 
-@NamedEntityGraphs(value = {
-        @NamedEntityGraph(name = "UserInfoDO.findAll", attributeNodes = {@NamedAttributeNode("roles")}),
-        @NamedEntityGraph(name = "UserInfoDO.findByUsername", attributeNodes = {@NamedAttributeNode("roles")}),
-})
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Slf4j
@@ -64,14 +61,15 @@ public class UserInfoDO extends BaseEntity {
     @Column(name = "age", nullable = false, columnDefinition = "INT(4) default 18 comment '我是age注释'")
     private Integer age;
 
+    @MapKey
     @ManyToMany(targetEntity = RoleInfoDO.class, cascade = {CascadeType.REFRESH})
     @JoinTable(
             name = "user_role",
             joinColumns = {@JoinColumn(name = "mid_user_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "mid_role_id", referencedColumnName = "id")}
     )
-    @JsonManagedReference
-    private Set<RoleInfoDO> roles;
+//    @JsonManagedReference
+    private Map<Long, RoleInfoDO> roles;
 
 }
 

@@ -48,8 +48,8 @@ public interface IUserInfoRepository extends JpaRepository<UserInfoDO, Long> {
      * @param <T>  泛型
      * @return Set
      */
-    @EntityGraph(value = "UserInfoDO.findByUsername")
-    <T> T findByUsername(String name, Class<T> clz);
+//    @EntityGraph(value = "UserInfoDO.findByUsername")
+    <T> T findByUsername(String name);
 
     /**
      * @param username 用户名

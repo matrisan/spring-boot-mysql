@@ -5,12 +5,14 @@ import com.github.mysql.pojo.orm.UserInfoDO;
 import com.github.mysql.repository.IRoleInfoRepository;
 import com.github.mysql.repository.IUserInfoRepository;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -37,12 +39,17 @@ public class InitUserIndex {
         RoleInfoDO roleInfoDO1 = roleInfoRepository.save(RoleInfoDO.builder().roleName("role-test1").build());
         RoleInfoDO roleInfoDO2 = roleInfoRepository.save(RoleInfoDO.builder().roleName("role-test2").build());
         RoleInfoDO roleInfoDO3 = roleInfoRepository.save(RoleInfoDO.builder().roleName("role-test3").build());
+        Map<Long, RoleInfoDO> map = Maps.newHashMap();
+        map.put(roleInfoDO1.getId(), roleInfoDO1);
+        map.put(roleInfoDO2.getId(), roleInfoDO2);
+        map.put(roleInfoDO3.getId(), roleInfoDO3);
+
         List<RoleInfoDO> list = Lists.newArrayList(roleInfoDO1, roleInfoDO2, roleInfoDO3);
 
         for (int i = 0; i < 10; i++) {
             UserInfoDO userInfoDO = UserInfoDO.builder()
                     .username("name:" + i)
-                    .roles(Sets.newHashSet(list))
+                    .roles(map)
                     .age(i)
                     .build();
             userInfoRepository.save(userInfoDO);

@@ -1,6 +1,5 @@
 package com.github.mysql.pojo.orm;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.github.mysql.pojo.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,8 +17,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.ManyToMany;
+import javax.persistence.MapKey;
 import javax.persistence.Table;
-import java.util.Set;
+import java.util.Map;
 
 /**
  * <p>
@@ -56,9 +56,10 @@ public class RoleInfoDO extends BaseEntity {
     @Column(name = "role_code", columnDefinition = "varchar(20) default '默认名字' comment '我是roleCode注释'")
     private String roleCode;
 
+    @MapKey
     @ManyToMany(targetEntity = UserInfoDO.class, cascade = {CascadeType.REFRESH}, mappedBy = "roles")
-    @JsonBackReference
-    private Set<UserInfoDO> users;
+//    @JsonBackReference
+    private Map<Long, UserInfoDO> users;
 
 
 }
