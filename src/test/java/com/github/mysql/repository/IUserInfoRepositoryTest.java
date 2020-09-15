@@ -1,10 +1,6 @@
 package com.github.mysql.repository;
 
 import com.github.mysql.pojo.orm.RoleInfoDO;
-import com.github.mysql.pojo.orm.UserInfoDO;
-import com.github.mysql.pojo.vo.IRoleProjectionVO;
-import com.github.mysql.pojo.vo.IUserProjectionVO;
-import com.github.mysql.pojo.vo.UserInfoVO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -14,7 +10,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
-import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 
@@ -42,7 +38,7 @@ public class IUserInfoRepositoryTest {
 
     @Test
     public void findRolesByUsername() {
-        Set<RoleInfoDO>roles = repository.findRolesByUsername("name:1");
+        List<RoleInfoDO> roles = repository.findRolesByUsername("name:1");
         roles.forEach(one -> System.out.println(one.getRoleName()));
     }
 
