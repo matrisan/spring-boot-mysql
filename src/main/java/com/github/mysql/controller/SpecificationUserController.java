@@ -7,8 +7,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,6 +33,13 @@ public class SpecificationUserController {
     @Resource
     private IUserInfoRepository repository;
 
+    @GetMapping("/user/{id}")
+    public UserInfoDO findUserById(@PathVariable Long id) {
+        return repository.findByIdEquals(id);
+    }
+
+    @Modifying
+    @Transactional(rollbackFor = Exception.class)
     @PutMapping("/user")
     public UserInfoDO updateUser(@RequestBody UserInfoDO userInfo) {
         return repository.save(userInfo);

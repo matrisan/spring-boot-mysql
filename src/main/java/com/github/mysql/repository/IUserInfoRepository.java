@@ -18,6 +18,8 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 public interface IUserInfoRepository extends JpaSpecificationExecutor<UserInfoDO>, JpaRepository<UserInfoDO, Long> {
 
+    UserInfoDO findByIdEquals(Long id);
+
 }
 
 

@@ -2,7 +2,6 @@ package com.github.mysql.pojo.common;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
@@ -10,9 +9,6 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Version;
 import java.io.Serializable;
@@ -28,17 +24,12 @@ import java.util.Date;
 @Getter
 @Setter
 @MappedSuperclass
-@EqualsAndHashCode(of = "id", callSuper = false)
+
 public abstract class BaseEntity implements Serializable {
 
     private static final long serialVersionUID = 6967867647425236119L;
 
     protected static final String ID = "id";
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = ID)
-    private Long id;
 
     @JsonIgnore
     @ColumnDefault("0")
