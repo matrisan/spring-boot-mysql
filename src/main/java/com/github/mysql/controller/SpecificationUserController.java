@@ -1,5 +1,6 @@
 package com.github.mysql.controller;
 
+import com.github.mysql.common.UpdateUtil;
 import com.github.mysql.pojo.UserInfoDO;
 import com.github.mysql.pojo.dto.UserInfoDTO;
 import com.github.mysql.repository.IUserInfoRepository;
@@ -11,8 +12,8 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -40,11 +41,12 @@ public class SpecificationUserController {
 
     @Modifying
     @Transactional(rollbackFor = Exception.class)
-    @PutMapping("/user")
+    @PatchMapping("/user")
     public UserInfoDO updateUser(@RequestBody UserInfoDO userInfo) {
-        return repository.save(userInfo);
+        UserInfoDO dbUserInfo = repository.findByIdEquals(userInfo.getId());
+        UpdateUtil.copyNullProperties(dbUserInfo, userInfo);
+        return repository.saveAndFlush(userInfo);
     }
-
 
     @GetMapping("/users")
     public Page<UserInfoDO> listUsers(UserInfoDTO user, Pageable pageable) {

@@ -48,7 +48,7 @@ public class UserInfoDO extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = ID)
+    @Column(name = "id")
     private Long id;
 
     @Column(columnDefinition = "VARCHAR(20) COMMENT '用户名'")

@@ -23,7 +23,7 @@ public class InitUserRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        repository.deleteAll();
+//        repository.deleteAll();
         Random random = new Random();
         for (int i = 0; i < 100; i++) {
             UserInfoDO user = UserInfoDO.builder()

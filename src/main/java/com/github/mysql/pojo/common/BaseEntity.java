@@ -24,7 +24,6 @@ import java.util.Date;
 @Getter
 @Setter
 @MappedSuperclass
-
 public abstract class BaseEntity implements Serializable {
 
     private static final long serialVersionUID = 6967867647425236119L;
