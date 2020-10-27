@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.CascadeType;
@@ -52,6 +54,8 @@ import java.util.Set;
 @Table(name = "table_dept")
 @Entity
 @Where(clause = "deleted = false")
+@DynamicInsert
+@DynamicUpdate
 public class DeptInfoDO implements Serializable {
 
     private static final long serialVersionUID = -3509680463086200457L;
