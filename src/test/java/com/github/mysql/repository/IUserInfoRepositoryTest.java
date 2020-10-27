@@ -27,7 +27,7 @@ import java.util.Set;
 
 @DirtiesContext
 @AutoConfigureMockMvc
-@ActiveProfiles("junit")
+@ActiveProfiles("dev")
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class IUserInfoRepositoryTest {
