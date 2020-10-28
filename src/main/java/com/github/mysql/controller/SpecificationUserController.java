@@ -3,7 +3,6 @@ package com.github.mysql.controller;
 import com.github.mysql.common.UpdateUtil;
 import com.github.mysql.pojo.dto.UserInfoDTO;
 import com.github.mysql.pojo.orm.UserInfoDO;
-import com.github.mysql.pojo.vo.IUserInfoVO;
 import com.github.mysql.repository.IUserInfoRepository;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Page;
@@ -67,30 +66,6 @@ public class SpecificationUserController {
     }
 
 
-    /**
-     * 就目前而言，Spring Data JPA Specification 不支持投影
-     *
-     * @param user     用户信息
-     * @param pageable 分页信息
-     * @return Page
-     */
-    @Deprecated
-    @GetMapping("/users/projections")
-    public Page<IUserInfoVO> listUsersProjections(UserInfoDTO user, Pageable pageable) {
-        return repository.findAllProjectedBy((Specification<UserInfoDO>) (root, query, builder) -> {
-            List<Predicate> list = new ArrayList<>();
-            if (StringUtils.isNotBlank(user.getUsername())) {
-                Predicate predicateParent = builder.equal(root.get("username").as(Long.class), user.getUsername());
-                list.add(predicateParent);
-            }
-            if (!ObjectUtils.isEmpty(user.getAge())) {
-                Predicate predicateParent = builder.ge(root.get("age").as(Integer.class), user.getAge());
-                list.add(predicateParent);
-            }
-            Predicate[] predicates = list.toArray(new Predicate[0]);
-            return query.where(predicates).getRestriction();
-        }, pageable);
-    }
 
 
 }
