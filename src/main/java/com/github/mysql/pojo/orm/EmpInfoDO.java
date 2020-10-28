@@ -1,4 +1,4 @@
-package com.github.mysql.pojo;
+package com.github.mysql.pojo.orm;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

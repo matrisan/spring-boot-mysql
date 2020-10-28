@@ -1,10 +1,9 @@
 package com.github.mysql.init;
 
-import com.github.mysql.pojo.UserInfoDO;
+import com.github.mysql.pojo.orm.UserInfoDO;
 import com.github.mysql.repository.IUserInfoRepository;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.Random;
@@ -15,7 +14,7 @@ import java.util.Random;
  * @since 1.0
  */
 
-@Component
+//@Component
 public class InitUserRunner implements CommandLineRunner {
 
     @Resource

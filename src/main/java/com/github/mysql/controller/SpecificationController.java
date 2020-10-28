@@ -1,7 +1,7 @@
 package com.github.mysql.controller;
 
-import com.github.mysql.pojo.DeptInfoDO;
-import com.github.mysql.pojo.EmpInfoDO;
+import com.github.mysql.pojo.orm.DeptInfoDO;
+import com.github.mysql.pojo.orm.EmpInfoDO;
 import com.github.mysql.pojo.dto.DeptInfoDTO;
 import com.github.mysql.repository.IDeptInfoRepository;
 import org.apache.commons.lang3.StringUtils;

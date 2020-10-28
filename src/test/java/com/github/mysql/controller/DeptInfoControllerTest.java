@@ -1,7 +1,7 @@
 package com.github.mysql.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.mysql.pojo.DeptInfoDO;
+import com.github.mysql.pojo.orm.DeptInfoDO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;

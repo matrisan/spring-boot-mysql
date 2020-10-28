@@ -1,11 +1,9 @@
 package com.github.mysql.repository;
 
 
-import com.github.mysql.pojo.DeptInfoDO;
+import com.github.mysql.pojo.orm.DeptInfoDO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
 
 /**
  * <p>

@@ -1,7 +1,10 @@
 package com.github.mysql.repository;
 
 
-import com.github.mysql.pojo.UserInfoDO;
+import com.github.mysql.pojo.orm.UserInfoDO;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
@@ -19,6 +22,8 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 public interface IUserInfoRepository extends JpaSpecificationExecutor<UserInfoDO>, JpaRepository<UserInfoDO, Long> {
 
     UserInfoDO findByIdEquals(Long id);
+
+    <V> Page<V> findAllProjectedBy(Specification<UserInfoDO> specification, Pageable pageable);
 
 }
 

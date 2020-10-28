@@ -1,6 +1,6 @@
 package com.github.mysql.service.impl;
 
-import com.github.mysql.pojo.DeptInfoDO;
+import com.github.mysql.pojo.orm.DeptInfoDO;
 import com.github.mysql.repository.IDeptInfoRepository;
 import com.github.mysql.service.IDeptInfoService;
 import org.springframework.data.jpa.domain.Specification;

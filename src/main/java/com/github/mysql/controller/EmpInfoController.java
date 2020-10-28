@@ -1,6 +1,6 @@
 package com.github.mysql.controller;
 
-import com.github.mysql.pojo.EmpInfoDO;
+import com.github.mysql.pojo.orm.EmpInfoDO;
 import com.github.mysql.repository.IEmpInfoRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

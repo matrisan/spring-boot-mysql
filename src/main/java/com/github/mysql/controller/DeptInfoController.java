@@ -1,9 +1,7 @@
 package com.github.mysql.controller;
 
-import com.github.mysql.pojo.DeptInfoDO;
-import com.github.mysql.pojo.EmpInfoDO;
+import com.github.mysql.pojo.orm.DeptInfoDO;
 import com.github.mysql.repository.IDeptInfoRepository;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -11,8 +9,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import javax.persistence.criteria.Path;
-import javax.persistence.criteria.Subquery;
 import java.util.List;
 
 /**

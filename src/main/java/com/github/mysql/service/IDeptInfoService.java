@@ -1,6 +1,6 @@
 package com.github.mysql.service;
 
-import com.github.mysql.pojo.DeptInfoDO;
+import com.github.mysql.pojo.orm.DeptInfoDO;
 
 import java.util.List;
 
