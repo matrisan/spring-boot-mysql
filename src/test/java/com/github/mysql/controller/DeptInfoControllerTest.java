@@ -1,7 +1,6 @@
 package com.github.mysql.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.mysql.pojo.orm.DeptInfoDO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -45,7 +44,7 @@ public class DeptInfoControllerTest {
     public void save() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/customer")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString( getUserInfo() )))
+                .content(objectMapper.writeValueAsString("")))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andReturn()
@@ -53,11 +52,5 @@ public class DeptInfoControllerTest {
                 .getContentAsString();
     }
 
-    private DeptInfoDO getUserInfo() {
-        return DeptInfoDO.builder()
-
-
-                .build();
-    }
 
 }
