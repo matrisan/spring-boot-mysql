@@ -1,14 +1,10 @@
 package com.github.mysql.pojo.vo;
 
-import com.github.mysql.pojo.orm.RoleInfoDO;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 import lombok.Value;
 
 import java.io.Serializable;
-import java.util.Set;
 
 /**
  * <p>

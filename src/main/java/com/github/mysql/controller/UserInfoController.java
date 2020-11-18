@@ -2,22 +2,14 @@ package com.github.mysql.controller;
 
 
 import com.github.mysql.pojo.orm.UserInfoDO;
-import com.github.mysql.pojo.vo.IRoleProjectionVO;
-import com.github.mysql.pojo.vo.IUserProjectionVO;
-import com.github.mysql.pojo.vo.UserInfoVO;
 import com.github.mysql.repository.IUserInfoRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * <p>
@@ -36,41 +28,10 @@ public class UserInfoController {
     @Resource
     private IUserInfoRepository repository;
 
-    @GetMapping("users1")
-    public Page<IUserProjectionVO> findAll1(@PageableDefault Pageable pageable) {
-        return repository.findAllBy(pageable, IUserProjectionVO.class);
+    @GetMapping("users")
+    public Page<UserInfoDO> findAll1(@PageableDefault Pageable pageable) {
+        return repository.findAll(pageable);
     }
 
-    @GetMapping("users2")
-    public Page<UserInfoVO> findAll2(@PageableDefault Pageable pageable) {
-        return repository.findAllBy(pageable, UserInfoVO.class);
-    }
-
-    @GetMapping("user/u/{name}")
-    public UserInfoVO findByUsername(@PathVariable String name) {
-        return repository.findByUsername(name, UserInfoVO.class);
-    }
-
-    @GetMapping("user/roles")
-    public Page<String> findAllRoles(@PageableDefault(size = 4, direction = Sort.Direction.DESC) Pageable pageable) {
-        return repository.findAllRoles(pageable);
-    }
-
-    @GetMapping("user/id/{userId}")
-    public UserInfoDO getByUserId(@PathVariable("userId") UserInfoDO userInfoDO) {
-        return userInfoDO;
-    }
-
-    @PostMapping("user")
-    public UserInfoDO findAll(@RequestBody UserInfoDO userIndex) {
-        return repository.save(userIndex);
-    }
-
-    @GetMapping("/user/roles/projection/{username}")
-    public List<IRoleProjectionVO> getAllRoles(@PathVariable String username) {
-//        return repository.findRolesByUsername(username);
-//        return repository.findRolesByUsername(username, RoleInfoDO.class);
-        return repository.findRolesByUsername(username, IRoleProjectionVO.class);
-    }
 
 }

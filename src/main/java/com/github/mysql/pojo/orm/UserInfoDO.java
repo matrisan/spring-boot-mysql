@@ -1,30 +1,30 @@
 package com.github.mysql.pojo.orm;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.github.mysql.pojo.BaseEntity;
 import com.github.mysql.pojo.converter.UsernameConverter;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.CascadeType;
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.Convert;
+import javax.persistence.Embeddable;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import java.util.List;
+import java.io.Serializable;
 
 /**
  * <p>
@@ -60,15 +60,29 @@ public class UserInfoDO extends BaseEntity {
     @Column(name = "age", nullable = false, columnDefinition = "INT(4) default 18 comment '我是age注释'")
     private Integer age;
 
-    @ManyToMany(targetEntity = RoleInfoDO.class, fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH})
-    @JoinTable(
-            name = "user_role",
-            joinColumns = {@JoinColumn(name = "mid_user_id", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "mid_role_id", referencedColumnName = "id")}
-    )
-    @JsonManagedReference
-    private List<RoleInfoDO> roles;
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "roleName", column = @Column(name = "roleName")),
+            @AttributeOverride(name = "roleDesc", column = @Column(name = "roleDesc"))
+    })
+    private RoleInfoBO roleInfo;
 
+    @Getter
+    @Setter
+    @Builder
+    @ToString
+    @Embeddable
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class RoleInfoBO implements Serializable {
+
+        private static final long serialVersionUID = 4385340807425312589L;
+
+        private String roleName;
+
+        private String roleDesc;
+
+    }
 }
 
 

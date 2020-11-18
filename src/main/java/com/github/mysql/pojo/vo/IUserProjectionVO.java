@@ -1,9 +1,6 @@
 package com.github.mysql.pojo.vo;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.springframework.beans.factory.annotation.Value;
-
-import java.util.Set;
 
 /**
  * <p>
@@ -32,13 +29,5 @@ public interface IUserProjectionVO {
      * @return String
      */
     String getAge();
-
-    /**
-     * 获取角色
-     *
-     * @return Set
-     */
-    @JsonManagedReference
-    Set<IRoleProjectionVO> getRoles();
 
 }
