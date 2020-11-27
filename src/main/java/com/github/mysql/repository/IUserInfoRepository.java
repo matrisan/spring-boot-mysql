@@ -24,6 +24,30 @@ import java.util.Set;
 
 public interface IUserInfoRepository extends JpaRepository<UserInfoDO, Long> {
 
+
+    /**
+     * 根据姓名更新年龄
+     *
+     * @param age      年龄
+     * @param username 姓名
+     */
+    @Modifying
+    @Transactional(rollbackFor = Exception.class)
+    @Query("UPDATE UserInfoDO AS user SET user.age = (user.age + :age) WHERE user.username=:username ")
+    int updateAge2(@Param("age") int age, @Param("username") String username);
+
+
+    /**
+     * 根据姓名更新年龄
+     *
+     * @param age      年龄
+     * @param username 姓名
+     */
+    @Modifying
+    @Transactional(rollbackFor = Exception.class)
+    @Query("UPDATE UserInfoDO AS user SET user.age = (user.age + :age) WHERE user.username=:username")
+    int updateAge(@Param("age") int age, @Param("username") String username);
+
     /**
      * 分页查询所有的UserInfoDO，并将字段投影到泛型 T 的字段上
      *
