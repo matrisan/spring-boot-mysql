@@ -21,9 +21,17 @@ public class IUserInfoRepositoryTest {
     private IUserInfoRepository repository;
 
     @Test
+    public void findOne() throws Exception {
+//        UserInfoDO num = repository.findOne( "123");
+//        System.out.println(num);
+    }
+
+
+
+    @Test
     public void updateAge() throws Exception {
-        int num = repository.updateAge(10, "name:11");
-        System.out.println(num);
+//        int num = repository.updateAge(10, "name:11");
+//        System.out.println(num);
     }
 
 

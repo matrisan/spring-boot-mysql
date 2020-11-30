@@ -9,7 +9,6 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
-import java.util.Set;
 
 
 /**
@@ -52,16 +51,16 @@ public class IUserInfoRepositoryBakTest {
 
     @Test
     public void findAllRoles() {
-        Set<String> set = repository.findAllRoles();
-        set.forEach(System.out::println);
+//        Set<String> set = repository.findAllRoles();
+//        set.forEach(System.out::println);
     }
 
     @Test
     public void updateAge() {
-        String username = "name:0";
-        System.out.println(repository.findByUsernameEquals(username));
-        repository.updateAge(username, 10);
-        System.out.println(repository.findByUsernameEquals(username));
+//        String username = "name:0";
+//        System.out.println(repository.findByUsernameEquals(username));
+//        repository.updateAge(username, 10);
+//        System.out.println(repository.findByUsernameEquals(username));
     }
 
 
