@@ -28,6 +28,18 @@ public interface IUserInfoRepository extends JpaRepository<UserInfoDO, Long> {
     /**
      * 根据姓名更新年龄
      *
+     * @param id       id
+     * @param username 姓名
+     */
+    @Modifying
+    @Transactional(rollbackFor = Exception.class)
+    @Query("UPDATE UserInfoDO AS user SET user.username = :username WHERE user.id=:id ")
+    int updateUsernameById(@Param("id") long id, @Param("username") String username);
+
+
+    /**
+     * 根据姓名更新年龄
+     *
      * @param age      年龄
      * @param username 姓名
      */

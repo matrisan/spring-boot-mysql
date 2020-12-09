@@ -10,6 +10,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -44,7 +45,6 @@ public class UserInfoController {
         return repository.findByUsername(name, UserInfoVO.class);
     }
 
-
     @GetMapping("user/roles")
     public Page<String> findAllRoles(@PageableDefault(size = 4, direction = Sort.Direction.DESC) Pageable pageable) {
         return repository.findAllRoles(pageable);
@@ -56,14 +56,16 @@ public class UserInfoController {
     }
 
     @PostMapping("user")
-    public UserInfoDO findAll(@RequestBody UserInfoDO userIndex) {
+    public UserInfoDO save(@RequestBody UserInfoDO userIndex) {
         return repository.save(userIndex);
     }
 
-//    @GetMapping("/user/username/{username}")
-//    public UserInfoVO getByUsername(@PathVariable String username) {
-//        return repository.findByUsername(username);
-//    }
+
+    @PatchMapping("user/{userId}/{username}")
+    public UserInfoDO patch(@PathVariable("userId") UserInfoDO userInfoDO, @PathVariable String username) {
+        userInfoDO.setUsername(username);
+        return repository.save(userInfoDO);
+    }
 
     @DeleteMapping("{id}")
     public String deleteById(@PathVariable Long id) {

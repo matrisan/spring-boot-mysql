@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Version;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -37,6 +38,9 @@ public abstract class BaseEntity implements Serializable {
 
     @Column(name = "note", columnDefinition = "VARCHAR(100) DEFAULT '' COMMENT '我是 note 注释'")
     private String note;
+
+    @Version
+    private Long version;
 
     @Column(columnDefinition = "INT(1) DEFAULT 0 COMMENT '改记录是否删除'")
     private Boolean deleted;
