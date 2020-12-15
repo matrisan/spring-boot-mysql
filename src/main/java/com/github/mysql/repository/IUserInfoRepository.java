@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.Set;
 
 /**
@@ -108,5 +109,9 @@ public interface IUserInfoRepository extends JpaRepository<UserInfoDO, Long> {
     @Transactional(rollbackFor = Exception.class)
     @Query("UPDATE UserInfoDO AS user SET user.age = (user.age + :age) WHERE user.username=:username")
     void updateAge(@Param("username") String username, @Param("age") int age);
+
+    @Modifying
+    @Transactional(rollbackFor = Exception.class)
+    int deleteByCreateDateBefore(Date date);
 
 }
