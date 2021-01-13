@@ -5,7 +5,6 @@ import com.github.mysql.pojo.orm.UserInfoDO;
 import com.github.mysql.repository.IRoleInfoRepository;
 import com.github.mysql.repository.IUserInfoRepository;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

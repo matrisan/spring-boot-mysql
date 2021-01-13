@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.Optional;
 
 /**
  * <p>
@@ -51,8 +52,8 @@ public class UserInfoController {
     }
 
     @GetMapping("user/id/{userId}")
-    public UserInfoDO getByUserId(@PathVariable("userId") UserInfoDO userInfoDO) {
-        return userInfoDO;
+    public UserInfoDO getByUserId(@PathVariable("userId") Optional<UserInfoDO> optional) {
+        return optional.orElse(null);
     }
 
     @PostMapping("user")
